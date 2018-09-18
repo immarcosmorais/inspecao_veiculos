@@ -8,7 +8,7 @@
                             <core:Title text="Véiculo" level="Auto"/>
                         </form:title>
                         <form:formContainers>   
-                            <form:FormContainer visible="true">
+                            <form:FormContainer visible="true">   
                                 <form:formElements>
                                     <form:FormElement visible="true">
                                     	
