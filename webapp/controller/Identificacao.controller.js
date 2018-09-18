@@ -3,9 +3,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"./utilities",
 	"sap/ui/core/routing/History",
 	"sap/ui/ux3/ToolPopup",
-	'sap/ui/model/Filter',
-	'sap/ui/model/json/JSONModel'
-], function(BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel) {
+	'sap/ui/model/Filter'
+], function(BaseController, MessageBox, Utilities, History, ToolPopup, Filter) {
 	"use strict";
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
@@ -162,14 +161,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		onInit: function() {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-			/**
-			// set explored app's demo model on this sample
-			var oModel = new sap.ui.model.json.JSONModel();
-			oModel.setData('getJSON');
-			// the default limit of the model is set to 100. We want to show all the entries.
-			oModel.setSizeLimit(1000000);
-			this.getView().setModel(oModel);
-			**/
 		}
 	});
 }, /* bExport= */ true);
