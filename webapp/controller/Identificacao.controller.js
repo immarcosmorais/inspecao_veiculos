@@ -42,7 +42,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// create value help dialog
 			if (!this._valueHelpDialog) {
 				this._valueHelpDialog = sap.ui.xmlfragment(
-					"sap.m.sample.InputAssisted.Dialog",
+					"sap.m.sample.InputAssisted.Dialog2",
 					this
 				);
 				this.getView().addDependent(this._valueHelpDialog);
