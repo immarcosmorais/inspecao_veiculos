@@ -4,15 +4,14 @@
 	<SelectDialog
 		title="Products"
 		class="sapUiPopupWithPadding"
-		items="{/ProductCollection}"
+		items="{/Veiculo}"
 		search="_handleValueHelpSearch"
 		confirm="_handleValueHelpClose"
 		cancel="_handleValueHelpClose">
 		<StandardListItem
-			icon="{ProductPicUrl}"
 			iconDensityAware="false"
 			iconInset="false"
-			title="{Name}"
-			description="{ProductId}" />
+			title="{Placa}"
+			description="{Descricao}" />
 	</SelectDialog>
 </core:FragmentDefinition>
