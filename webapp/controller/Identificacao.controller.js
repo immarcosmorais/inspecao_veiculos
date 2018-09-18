@@ -43,7 +43,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				"Placa",
 				sap.ui.model.FilterOperator.Contains, sInputValue
 			)]);
-
+			
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
