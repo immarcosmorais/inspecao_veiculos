@@ -17,7 +17,7 @@
                                         </form:label>
                                         
                                         <form:fields>
-                                            <Input id = "idTrator"
+                                            <Input id = "tratorInput"
                                             	   placeholder="Ex.: ABC123" 
                                             	   type="Text" 
                                             	   showValueHelp="true" 
@@ -26,10 +26,10 @@
                                             	   width="auto" 
                                             	   valueHelpOnly="false" 
                                             	   maxLength="0" 
-                                            	   valueHelpRequest="valueHelpRequest"
-                                            	   suggestionItems="{/ProductCollection}">
+                                            	   valueHelpRequest="handleValueHelp"
+                                            	   suggestionItems="{/Veiculo}">
                                             	   <suggestionItems>
-														<core:Item text="{Name}" />
+														<core:Item text="{Placa}" />
 												   </suggestionItems>
 												</Input>
                                         </form:fields>

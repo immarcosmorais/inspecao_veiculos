@@ -24,25 +24,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		
-		valueHelpRequest: function(oEvent){
-			/**
-    		var oValueHelpDialog = new sap.ui.ux3.ToolPopup({
-                        modal: true,
-                        inverted: false,                          // disable color inversion
-                        title: "Select Material Number",
-                        opener:  "idMatnrInput",             // locate dialog next to this field
-                        closed: function (oEvent) {
-                    }
-        	});
-        	**/
-        	
-        	var sInputValue = oEvent.getSource().getValue();
+		handleValueHelp : function (oEvent) {
+			var sInputValue = oEvent.getSource().getValue();
 
 			this.inputId = oEvent.getSource().getId();
 			// create value help dialog
 			if (!this._valueHelpDialog) {
 				this._valueHelpDialog = sap.ui.xmlfragment(
-					"sap.m.sample.InputAssisted.Dialog2",
+					"com.sap.build.standard.formInspecaoDeVeiculos.view.Dialog",
 					this
 				);
 				this.getView().addDependent(this._valueHelpDialog);
@@ -50,19 +39,20 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			// create a filter for the binding
 			this._valueHelpDialog.getBinding("items").filter([new Filter(
-				"Name",
+				//Name
+				"Placa",
 				sap.ui.model.FilterOperator.Contains, sInputValue
 			)]);
 
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
-        	
 		},
-		
+
 		_handleValueHelpSearch : function (evt) {
 			var sValue = evt.getParameter("value");
 			var oFilter = new Filter(
-				"Name",
+				//Name
+				"Placa",
 				sap.ui.model.FilterOperator.Contains, sValue
 			);
 			evt.getSource().getBinding("items").filter([oFilter]);
