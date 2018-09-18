@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns:core='sap.ui.core'>
+	<layout:BlockLayoutCell xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" width="1" title=""
+		titleAlignment="Begin" titleLevel="H4">
+		<layout:content>
+			<Text xmlns="sap.m" text="Varredura (A)" width="180px" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"
+				visible="true"/>
+			<CheckBox xmlns="sap.m" text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto"
+				textDirection="Inherit" wrapping="false" useEntireWidth="true"/>
+			<CheckBox xmlns="sap.m" text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto"
+				textDirection="Inherit" wrapping="false" useEntireWidth="true"/>
+		</layout:content>
+	</layout:BlockLayoutCell>
+</core:FragmentDefinition>

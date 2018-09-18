@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "com.sap.build.standard.formInspecaoDeVeiculos.inspecaoVeiculos",
+        "description": "Vistoria Veiculos",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/webapp",
+        "appUrl": "#inspecaoVeiculos-Display",
+        "navigationComponentName": "com.sap.build.standard.formInspecaoDeVeiculos",
+        "intentSemanticObject": "inspecaoVeiculos",
+        "intentAction": "Display",
+        "html5ApplicationName": "inspecaoveiculos",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "5a6a82f4-7af0-4cb5-b858-be6a57536a0a"
+        ],
+        "contentPackages": [
+            "7bc04603-5a79-437e-8b34-fdfb27214ad2"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Vistoria",
+        "subtitle": "Cadastro vistoria",
+        "searchKeywords": "Vistoria,Cadastro vistoria",
+        "displayIconUrl": "sap-icon://shipping-status",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}
