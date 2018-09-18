@@ -2,8 +2,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
 	"sap/ui/core/routing/History",
-	"sap/ui/ux3/ToolPopup"
-], function(BaseController, MessageBox, Utilities, History, ToolPopup) {
+	"sap/ui/ux3/ToolPopup",
+	'sap/ui/model/Filter'
+], function(BaseController, MessageBox, Utilities, History, ToolPopup, Filter) {
 	"use strict";
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
@@ -24,6 +25,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 		
 		valueHelpRequest: function(oEvent){
+			/**
     		var oValueHelpDialog = new sap.ui.ux3.ToolPopup({
                         modal: true,
                         inverted: false,                          // disable color inversion
@@ -32,6 +34,47 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
                         closed: function (oEvent) {
                     }
         	});
+        	**/
+        	
+        	var sInputValue = oEvent.getSource().getValue();
+
+			this.inputId = oEvent.getSource().getId();
+			// create value help dialog
+			if (!this._valueHelpDialog) {
+				this._valueHelpDialog = sap.ui.xmlfragment(
+					"sap.m.sample.InputAssisted.Dialog",
+					this
+				);
+				this.getView().addDependent(this._valueHelpDialog);
+			}
+
+			// create a filter for the binding
+			this._valueHelpDialog.getBinding("items").filter([new Filter(
+				"Name",
+				sap.ui.model.FilterOperator.Contains, sInputValue
+			)]);
+
+			// open value help dialog filtered by the input value
+			this._valueHelpDialog.open(sInputValue);
+        	
+		},
+		
+		_handleValueHelpSearch : function (evt) {
+			var sValue = evt.getParameter("value");
+			var oFilter = new Filter(
+				"Name",
+				sap.ui.model.FilterOperator.Contains, sValue
+			);
+			evt.getSource().getBinding("items").filter([oFilter]);
+		},
+
+		_handleValueHelpClose : function (evt) {
+			var oSelectedItem = evt.getParameter("selectedItem");
+			if (oSelectedItem) {
+				var productInput = this.byId(this.inputId);
+				productInput.setValue(oSelectedItem.getTitle());
+			}
+			evt.getSource().getBinding("items").filter([]);
 		},
 		
 		_onPageNavButtonPress: function() {
@@ -128,7 +171,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		onInit: function() {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-
 		}
 	});
 }, /* bExport= */ true);

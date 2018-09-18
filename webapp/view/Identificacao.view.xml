@@ -11,12 +11,29 @@
                             <form:FormContainer visible="true">
                                 <form:formElements>
                                     <form:FormElement visible="true">
+                                    	
                                         <form:label>
                                             <Label text="Trator" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                         </form:label>
+                                        
                                         <form:fields>
-                                            <Input placeholder="Ex.: ABC123" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="valueHelpRequest"/>
+                                            <Input id = "idTrator"
+                                            	   placeholder="Ex.: ABC123" 
+                                            	   type="Text" 
+                                            	   showValueHelp="true" 
+                                            	   enabled="true" 
+                                            	   visible="true" 
+                                            	   width="auto" 
+                                            	   valueHelpOnly="false" 
+                                            	   maxLength="0" 
+                                            	   valueHelpRequest="valueHelpRequest"
+                                            	   suggestionItems="{/ProductCollection}">
+                                            	   <suggestionItems>
+														<core:Item text="{Name}" />
+												   </suggestionItems>
+												</Input>
                                         </form:fields>
+                                        
                                     </form:FormElement>
                                     <form:FormElement visible="true">
                                         <form:label>
@@ -39,7 +56,7 @@
                                             <Label text="Reboque(2)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                         </form:label>
                                         <form:fields>
-                                            <Input placeholder="Ex.: ABC123" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"/>
+                                            <Input placeholder="Ex.: ABC123" type="Text" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" showValueHelp="true"/>
                                         </form:fields>
                                     </form:FormElement>
                                     <form:FormElement visible="true">
