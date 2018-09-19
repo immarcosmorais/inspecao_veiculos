@@ -36,11 +36,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
 				filtro = "Placa";
 			}
-			else if(this.inputId.toString().indexOf("Reboque1Input") != -1){
-				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogReboque";
-				filtro = "Placa";
-			}
-			else if(this.inputId.toString().indexOf("Reboque2Input") != -1){
+			else if((this.inputId.toString().indexOf("Reboque1Input") != -1) || (this.inputId.toString().indexOf("Reboque2Input") != -1) ){
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogReboque";
 				filtro = "Placa";
 			}
