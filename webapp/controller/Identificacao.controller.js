@@ -163,11 +163,19 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			
-			var oModel = new JSONModel(jQuery.sap.getModulePath("sap.ui.demo.mock", "/products.json"));
 			
-			oModel.setSizeLimit(1000000);
-			this.getView().setModel(oModel);
+			//this.getView().getModel().setSizeLimit(1000000);
 			
+			//var oModel = new JSONModel(this.getView().getModel());
+			
+			//oModel.bindList('/Veiculo');
+			
+			//oModel.setSizeLimit(1000000);
+			//this.getView().setModel(oModel);
+			
+		},
+		onMetadataLoaded: function(myODataModel) {
+			myODataModel.setSizeLimit(1000000);
 		}
 	});
 }, /* bExport= */ true);
