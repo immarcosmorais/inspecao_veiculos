@@ -162,15 +162,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		onInit: function() {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-			// set explored app's demo model on this sample
-			var oModel = new sap.ui.model.json.JSONModel();
-			//var json = [];
-			//json.mySecret = sap.ui.getCore().byId(this.createId("veiculoId")).getValue();
-			//oModel.setData(json);
-			//oModel.setDefaultBindingMode(sap.ui.model.BindingMode.OneWay);
-			//oModel.loadData("http://sap-022.sedeadn.comigo.com.br:8000/sap/opu/odata/sap/ZGW_VISTORIA_SRV/Veiculo?$format=json");
-			//oModel.loadData("/Veiculo");
-			// the default limit of the model is set to 100. We want to show all the entries.
+			
+			var oModel = new JSONModel(jQuery.sap.getModulePath("sap.ui.demo.mock", "/products.json"));
+			
 			oModel.setSizeLimit(1000000);
 			this.getView().setModel(oModel);
 			
