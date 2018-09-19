@@ -39,9 +39,25 @@
                                         <form:label>
                                             <Label text="Transportador" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                         </form:label>
+                                        
                                         <form:fields>
-                                            <Input placeholder="Ex.: Comigo" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"/>
+                                            <Input id = "fornecedorInput"
+                                            	   placeholder="Ex.: Nome do motorista" 
+                                            	   type="Text" 
+                                            	   showValueHelp="true" 
+                                            	   enabled="true" 
+                                            	   visible="true" 
+                                            	   width="auto" 
+                                            	   valueHelpOnly="false" 
+                                            	   maxLength="0" 
+                                            	   valueHelpRequest="handleValueHelp"
+                                            	   suggestionItems="{/Fornecedor}">
+                                            	   <suggestionItems>
+														<core:Item text="{Name1}" />
+												   </suggestionItems>
+												</Input>
                                         </form:fields>
+                                        
                                     </form:FormElement>
                                     <form:FormElement visible="true">
                                     	
@@ -50,7 +66,7 @@
                                         </form:label>
                                         
                                         <form:fields>
-                                            <Input id = "Reboque1Input"
+                                            <Input id = "reboque1Input"
                                             	   placeholder="Ex.: ABC123" 
                                             	   type="Text" 
                                             	   showValueHelp="true" 
@@ -74,7 +90,7 @@
                                         </form:label>
                                         
                                         <form:fields>
-                                            <Input id = "Reboque2Input"
+                                            <Input id = "reboque2Input"
                                             	   placeholder="Ex.: ABC123" 
                                             	   type="Text" 
                                             	   showValueHelp="true" 
@@ -96,9 +112,25 @@
                                         <form:label>
                                             <Label text="Motorista" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                         </form:label>
+                                        
                                         <form:fields>
-                                            <Input placeholder="Nome do motorista" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"/>
+                                            <Input id = "motoristaInput"
+                                            	   placeholder="Ex.: Nome do motorista" 
+                                            	   type="Text" 
+                                            	   showValueHelp="true" 
+                                            	   enabled="true" 
+                                            	   visible="true" 
+                                            	   width="auto" 
+                                            	   valueHelpOnly="false" 
+                                            	   maxLength="0" 
+                                            	   valueHelpRequest="handleValueHelp"
+                                            	   suggestionItems="{/Motorista}">
+                                            	   <suggestionItems>
+														<core:Item text="{Name1}" />
+												   </suggestionItems>
+												</Input>
                                         </form:fields>
+                                        
                                     </form:FormElement>
                                 </form:formElements>
                                 <form:title/>

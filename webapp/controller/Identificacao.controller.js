@@ -8,7 +8,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 ], function(BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel) {
 	"use strict";
 	
-	
+	var caminho = "";
+	var filtro = "";
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
 		handleRouteMatched: function(oEvent) {
@@ -30,16 +31,25 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		handleValueHelp : function (oEvent) {
 			var sInputValue = oEvent.getSource().getValue();
 			this.inputId = oEvent.getSource().getId();
-			var caminho = "";
-			var filtro = "";
+			
 			if(this.inputId.toString().indexOf("tratorInput") != -1){
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
 				filtro = "Placa";
 			}
-			else if((this.inputId.toString().indexOf("Reboque1Input") != -1) || (this.inputId.toString().indexOf("Reboque2Input") != -1) ){
+			else if((this.inputId.toString().indexOf("reboque1Input") != -1) || (this.inputId.toString().indexOf("reboque2Input") != -1) ){
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogReboque";
 				filtro = "Placa";
 			}
+			else if(this.inputId.toString().indexOf("motoristaInput") != -1){
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogMotorista";
+				filtro = "Name1";
+			}
+			else if(this.inputId.toString().indexOf("fornecedorInput") != -1){
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogFornecedor";
+				filtro = "Name1";
+			}
+			
+			
 			// create value help dialog
 			if (!this._valueHelpDialog) {
 				this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
@@ -167,13 +177,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			
-			
 			//this.getView().getModel().setSizeLimit(1000000);
-			
 			//var oModel = new JSONModel(this.getView().getModel());
-			
 			//oModel.bindList('/Veiculo');
-			
 			//oModel.setSizeLimit(1000000);
 			//this.getView().setModel(oModel);
 			
