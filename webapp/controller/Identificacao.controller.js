@@ -7,6 +7,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	'sap/ui/model/json/JSONModel'
 ], function(BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel) {
 	"use strict";
+	
+	
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
 		handleRouteMatched: function(oEvent) {
@@ -27,24 +29,31 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		
 		handleValueHelp : function (oEvent) {
 			var sInputValue = oEvent.getSource().getValue();
-
 			this.inputId = oEvent.getSource().getId();
+			var caminho = "";
+			var filtro = "";
+			if(this.inputId.toString().indexOf("tratorInput") != -1){
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
+				filtro = "Placa";
+			}
+			else if(this.inputId.toString().indexOf("Reboque1Input") != -1){
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogReboque";
+				filtro = "Placa";
+			}
+			else if(this.inputId.toString().indexOf("Reboque2Input") != -1){
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogReboque";
+				filtro = "Placa";
+			}
 			// create value help dialog
 			if (!this._valueHelpDialog) {
-				this._valueHelpDialog = sap.ui.xmlfragment(
-					"com.sap.build.standard.formInspecaoDeVeiculos.view.Dialog",
-					this
-				);
+				this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
 				this.getView().addDependent(this._valueHelpDialog);
 			}
-
 			// create a filter for the binding
 			this._valueHelpDialog.getBinding("items").filter([new Filter(
-				//Name
-				"Placa",
+				filtro,
 				sap.ui.model.FilterOperator.Contains, sInputValue
 			)]);
-			
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
@@ -52,8 +61,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		_handleValueHelpSearch : function (evt) {
 			var sValue = evt.getParameter("value");
 			var oFilter = new Filter(
-				//Name
-				"Placa",
+				filtro,
 				sap.ui.model.FilterOperator.Contains, sValue
 			);
 			evt.getSource().getBinding("items").filter([oFilter]);
