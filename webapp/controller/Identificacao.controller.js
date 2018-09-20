@@ -49,12 +49,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				filtro = "Name1";
 			}
 			
-			
 			// create value help dialog
+			
+			/**
 			if (!this._valueHelpDialog) {
 				this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
 				this.getView().addDependent(this._valueHelpDialog);
 			}
+			**/
+			
+			this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
+			this.getView().addDependent(this._valueHelpDialog);
+			
 			// create a filter for the binding
 			this._valueHelpDialog.getBinding("items").filter([new Filter(
 				filtro,

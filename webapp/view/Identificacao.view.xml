@@ -42,7 +42,7 @@
                                         
                                         <form:fields>
                                             <Input id = "fornecedorInput"
-                                            	   placeholder="Ex.: Nome do motorista" 
+                                            	   placeholder="Ex.: Nome do transportador" 
                                             	   type="Text" 
                                             	   showValueHelp="true" 
                                             	   enabled="true" 
