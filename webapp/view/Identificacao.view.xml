@@ -5,7 +5,7 @@
                 <content>
                     <form:Form width="100%" editable="true" visible="true">
                         <form:title>
-                            <core:Title text="Véiculo" level="Auto"/>
+                            <core:Title text="Veículo" level="Auto"/>
                         </form:title>
                         <form:formContainers>   
                             <form:FormContainer visible="true">   

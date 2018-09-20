@@ -2,7 +2,7 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<SelectDialog
-		title="Fornecedores"
+		title="Transportadores"
 		class="sapUiPopupWithPadding"
 		items="{/Fornecedor}"
 		search="_handleValueHelpSearch"

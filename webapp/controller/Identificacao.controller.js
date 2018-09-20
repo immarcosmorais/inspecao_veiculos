@@ -72,6 +72,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		_handleValueHelpSearch : function (evt) {
 			var sValue = evt.getParameter("value");
+			sValue = sValue.toUpperCase();
 			var oFilter = new Filter(
 				filtro,
 				sap.ui.model.FilterOperator.Contains, sValue
