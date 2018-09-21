@@ -450,15 +450,11 @@ sap.ui.define([
 					additionalText: "{Addtext}"
 				});
 				
-				var cb = new sap.m.ComboBox({items: { path: "/Produto",
-										             template: oItemTemplate } });
-					
-				
-					
+				var cb = new sap.m.ComboBox({items: { path: "/Produto",template: oItemTemplate }});
+	
 				cb.setWidth("100%");
 				var layout = this.getView().byId("layoutProdutos");
 				layout.addContent(cb);
-				
 				
 				/*var cb = new sap.m.ComboBox({items:[
 						new sap.ui.core.ListItem({text:"Farelo de soja tostado granel", additionalText:""}),

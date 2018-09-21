@@ -87,6 +87,19 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				productInput.setValue(oSelectedItem.getTitle());
 			}
 			evt.getSource().getBinding("items").filter([]);
+			
+			
+			if(this.inputId.toString().indexOf("tratorInput") != -1){
+				var layout1 = this.getView().byId("reboque1Input");
+				var sValue = oSelectedItem.getTitle();
+				var oFilter = new Filter(
+					"Placa_Vei",
+					sap.ui.model.FilterOperator.Contains, sValue
+				);
+				evt.getSource().getBinding("items").filter([oFilter]);
+				layout1.setValue(oSelectedItem.getTitle());
+			}
+			
 		},
 		
 		_onPageNavButtonPress: function() {
