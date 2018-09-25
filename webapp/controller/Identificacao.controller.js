@@ -83,7 +83,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var productInput = this.byId(this.inputId);
 				productInput.setValue(oSelectedItem.getTitle());
 			}
-
+			
+			/**
 			if (this.inputId.toString().indexOf("tratorInput") != -1) {
 				var sValue = oSelectedItem.getTitle();
 				var partyList = new sap.m.List();
@@ -98,6 +99,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				partyList.bindAggregation("items", "/Reboque", partyListItem);
 				var binding = partyList.getBinding("items");
 			}
+			*/
 
 			evt.getSource().getBinding("items").filter([]);
 		},
