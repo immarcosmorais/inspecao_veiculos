@@ -36,6 +36,7 @@
                                         
                                     </form:FormElement>
                                     <form:FormElement visible="true">
+                                    	
                                         <form:label>
                                             <Label text="Transportador" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                         </form:label>

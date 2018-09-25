@@ -5,14 +5,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/ui/ux3/ToolPopup",
 	'sap/ui/model/Filter',
 	'sap/ui/model/json/JSONModel'
-], function(BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel) {
+], function (BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel) {
 	"use strict";
-	
+
 	var caminho = "";
 	var filtro = "";
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
-		handleRouteMatched: function(oEvent) {
+		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 			if (oEvent.mParameters.data.context) {
 				this.sContext = oEvent.mParameters.data.context;
@@ -27,40 +27,36 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		
-		handleValueHelp : function (oEvent) {
+
+		handleValueHelp: function (oEvent) {
 			var sInputValue = oEvent.getSource().getValue();
 			this.inputId = oEvent.getSource().getId();
-			
-			if(this.inputId.toString().indexOf("tratorInput") != -1){
+
+			if (this.inputId.toString().indexOf("tratorInput") != -1) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
 				filtro = "Placa";
-			}
-			else if((this.inputId.toString().indexOf("reboque1Input") != -1) || (this.inputId.toString().indexOf("reboque2Input") != -1) ){
+			} else if ((this.inputId.toString().indexOf("reboque1Input") != -1) || (this.inputId.toString().indexOf("reboque2Input") != -1)) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogReboque";
 				filtro = "Placa";
-			}
-			else if(this.inputId.toString().indexOf("motoristaInput") != -1){
+			} else if (this.inputId.toString().indexOf("motoristaInput") != -1) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogMotorista";
 				filtro = "Name1";
-			}
-			else if(this.inputId.toString().indexOf("fornecedorInput") != -1){
+			} else if (this.inputId.toString().indexOf("fornecedorInput") != -1) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogFornecedor";
 				filtro = "Name1";
 			}
-			
+
 			// create value help dialog
-			
 			/**
 			if (!this._valueHelpDialog) {
 				this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
 				this.getView().addDependent(this._valueHelpDialog);
 			}
 			**/
-			
-			this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
+
+			this._valueHelpDialog = sap.ui.xmlfragment(caminho, this);
 			this.getView().addDependent(this._valueHelpDialog);
-			
+
 			// create a filter for the binding
 			this._valueHelpDialog.getBinding("items").filter([new Filter(
 				filtro,
@@ -68,9 +64,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			)]);
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
+
 		},
 
-		_handleValueHelpSearch : function (evt) {
+		_handleValueHelpSearch: function (evt) {
 			var sValue = evt.getParameter("value");
 			sValue = sValue.toUpperCase();
 			var oFilter = new Filter(
@@ -80,29 +77,32 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			evt.getSource().getBinding("items").filter([oFilter]);
 		},
 
-		_handleValueHelpClose : function (evt) {
+		_handleValueHelpClose: function (evt) {
 			var oSelectedItem = evt.getParameter("selectedItem");
 			if (oSelectedItem) {
 				var productInput = this.byId(this.inputId);
 				productInput.setValue(oSelectedItem.getTitle());
 			}
-			evt.getSource().getBinding("items").filter([]);
-			
-			
-			if(this.inputId.toString().indexOf("tratorInput") != -1){
-				var layout1 = this.getView().byId("reboque1Input");
+
+			if (this.inputId.toString().indexOf("tratorInput") != -1) {
 				var sValue = oSelectedItem.getTitle();
-				var oFilter = new Filter(
-					"Placa_Vei",
-					sap.ui.model.FilterOperator.Contains, sValue
-				);
-				evt.getSource().getBinding("items").filter([oFilter]);
-				layout1.setValue(oSelectedItem.getTitle());
+				var partyList = new sap.m.List();
+				var partyListItem = new sap.m.ObjectListItem({
+					text: "{Placa}",
+					additionalText: "{Placa_Vei}",
+					filters: [new Filter(
+						"Placa_Vei",
+						sap.ui.model.FilterOperator.Contains, sValue
+					)]
+				});
+				partyList.bindAggregation("items", "/Reboque", partyListItem);
+				var binding = partyList.getBinding("items");
 			}
-			
+
+			evt.getSource().getBinding("items").filter([]);
 		},
-		
-		_onPageNavButtonPress: function() {
+
+		_onPageNavButtonPress: function () {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
 			var oQueryParams = this.getQueryParameters(window.location);
@@ -113,9 +113,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("default", true);
 			}
-
 		},
-		getQueryParameters: function(oLocation) {
+		getQueryParameters: function (oLocation) {
 			var oQuery = {};
 			var aParams = oLocation.search.substring(1).split("&");
 			for (var i = 0; i < aParams.length; i++) {
@@ -125,21 +124,21 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			return oQuery;
 
 		},
-		_onButtonPress: function(oEvent) {
+		_onButtonPress: function (oEvent) {
 
 			var oBindingContext = oEvent.getSource().getBindingContext();
 
-			return new Promise(function(fnResolve) {
+			return new Promise(function (fnResolve) {
 
 				this.doNavigate("Inspecao", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function(err) {
+			}.bind(this)).catch(function (err) {
 				if (err !== undefined) {
 					MessageBox.error(err.message);
 				}
 			});
 
 		},
-		doNavigate: function(sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
+		doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
 			var oModel = (oBindingContext) ? oBindingContext.getModel() : null;
 
@@ -154,7 +153,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sMasterContext = this.sMasterContext ? this.sMasterContext : sPath;
 
 			if (sEntityNameSet !== null) {
-				sNavigationPropertyName = sViaRelation || this.getOwnerComponent().getNavigationPropertyForNavigationWithContext(sEntityNameSet, sRouteName);
+				sNavigationPropertyName = sViaRelation || this.getOwnerComponent().getNavigationPropertyForNavigationWithContext(sEntityNameSet,
+					sRouteName);
 			}
 			if (sNavigationPropertyName !== null && sNavigationPropertyName !== undefined) {
 				if (sNavigationPropertyName === "") {
@@ -163,7 +163,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						masterContext: sMasterContext
 					}, false);
 				} else {
-					oModel.createBindingContext(sNavigationPropertyName, oBindingContext, null, function(bindingContext) {
+					oModel.createBindingContext(sNavigationPropertyName, oBindingContext, null, function (bindingContext) {
 						if (bindingContext) {
 							sPath = bindingContext.getPath();
 							if (sPath.substring(0, 1) === "/") {
@@ -193,18 +193,19 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		onInit: function() {
+		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-			
+
 			//this.getView().getModel().setSizeLimit(1000000);
 			//var oModel = new JSONModel(this.getView().getModel());
 			//oModel.bindList('/Veiculo');
 			//oModel.setSizeLimit(1000000);
 			//this.getView().setModel(oModel);
-			
+
 		},
-		onMetadataLoaded: function(myODataModel) {
+
+		onMetadataLoaded: function (myODataModel) {
 			myODataModel.setSizeLimit(1000000);
 		}
 	});
