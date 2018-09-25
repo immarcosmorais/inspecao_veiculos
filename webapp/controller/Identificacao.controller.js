@@ -84,22 +84,27 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				productInput.setValue(oSelectedItem.getTitle());
 			}
 			
-			/**
+			
 			if (this.inputId.toString().indexOf("tratorInput") != -1) {
+				
 				var sValue = oSelectedItem.getTitle();
-				var partyList = new sap.m.List();
-				var partyListItem = new sap.m.ObjectListItem({
-					text: "{Placa}",
-					additionalText: "{Placa_Vei}",
-					filters: [new Filter(
-						"Placa_Vei",
-						sap.ui.model.FilterOperator.Contains, sValue
-					)]
-				});
-				partyList.bindAggregation("items", "/Reboque", partyListItem);
-				var binding = partyList.getBinding("items");
+				var oModel = this.getView().getModel();
+				
+				var r1 = oModel.getData("/Veiculo('"+sValue+"')").Reboque1;
+				var r2 = oModel.getData("/Veiculo('"+sValue+"')").Reboque2;
+				
+				var i1 = this.getView().byId("reboque1Input");
+				var i2 = this.getView().byId("reboque2Input");
+				
+				if(r1 != ""){
+					i1.setValue(r1);	
+				}
+				if(r2 != ""){
+					i2.setValue(r2);
+				}
+				
 			}
-			*/
+			
 
 			evt.getSource().getBinding("items").filter([]);
 		},
