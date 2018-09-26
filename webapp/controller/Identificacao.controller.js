@@ -222,7 +222,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			validateValue: function (oValue) {
 				// The following Regex is NOT a completely correct one and only used for demonstration purposes.
 				// RFC 5322 cannot even checked by a Regex and the Regex for RFC 822 is very long and complex.
-				var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+				var rexMail = '[A-Z]{3}\[0-9]{4}';
 				if (!oValue.match(rexMail)) {
 					throw new ValidateException("'" + oValue + "' is not a valid email address");
 				}
