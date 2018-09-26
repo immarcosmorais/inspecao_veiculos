@@ -4,8 +4,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"sap/ui/ux3/ToolPopup",
 	'sap/ui/model/Filter',
-	'sap/ui/model/json/JSONModel'
-], function (BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel) {
+	'sap/ui/model/json/JSONModel',
+	'sap/ui/model/SimpleType',
+	'sap/ui/model/ValidateException'
+], function (BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel, SimpleType, ValidateException) {
 	"use strict";
 
 	var caminho = "";
@@ -26,87 +28,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}
 			}
 
-		},
-
-		handleValueHelp: function (oEvent) {
-			var sInputValue = oEvent.getSource().getValue();
-			this.inputId = oEvent.getSource().getId();
-
-			if (this.inputId.toString().indexOf("tratorInput") != -1) {
-				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
-				filtro = "Placa";
-			} else if ((this.inputId.toString().indexOf("reboque1Input") != -1) || (this.inputId.toString().indexOf("reboque2Input") != -1)) {
-				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogReboque";
-				filtro = "Placa";
-			} else if (this.inputId.toString().indexOf("motoristaInput") != -1) {
-				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogMotorista";
-				filtro = "Name1";
-			} else if (this.inputId.toString().indexOf("fornecedorInput") != -1) {
-				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogFornecedor";
-				filtro = "Name1";
-			}
-
-			// create value help dialog
-			/**
-			if (!this._valueHelpDialog) {
-				this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
-				this.getView().addDependent(this._valueHelpDialog);
-			}
-			**/
-
-			this._valueHelpDialog = sap.ui.xmlfragment(caminho, this);
-			this.getView().addDependent(this._valueHelpDialog);
-
-			// create a filter for the binding
-			this._valueHelpDialog.getBinding("items").filter([new Filter(
-				filtro,
-				sap.ui.model.FilterOperator.Contains, sInputValue
-			)]);
-			// open value help dialog filtered by the input value
-			this._valueHelpDialog.open(sInputValue);
-
-		},
-
-		_handleValueHelpSearch: function (evt) {
-			var sValue = evt.getParameter("value");
-			sValue = sValue.toUpperCase();
-			var oFilter = new Filter(
-				filtro,
-				sap.ui.model.FilterOperator.Contains, sValue
-			);
-			evt.getSource().getBinding("items").filter([oFilter]);
-		},
-
-		_handleValueHelpClose: function (evt) {
-			var oSelectedItem = evt.getParameter("selectedItem");
-			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId);
-				productInput.setValue(oSelectedItem.getTitle());
-			}
-			
-			
-			if (this.inputId.toString().indexOf("tratorInput") != -1) {
-				
-				var sValue = oSelectedItem.getTitle();
-				var oModel = this.getView().getModel();
-				
-				var r1 = oModel.getData("/Veiculo('"+sValue+"')").Reboque1;
-				var r2 = oModel.getData("/Veiculo('"+sValue+"')").Reboque2;
-				
-				var i1 = this.getView().byId("reboque1Input");
-				var i2 = this.getView().byId("reboque2Input");
-				
-				if(r1 != ""){
-					i1.setValue(r1);	
-				}
-				if(r2 != ""){
-					i2.setValue(r2);
-				}
-				
-			}
-			
-
-			evt.getSource().getBinding("items").filter([]);
 		},
 
 		_onPageNavButtonPress: function () {
@@ -200,16 +121,123 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
+		
+		//Auxiliar de pesquisa
+		handleValueHelp: function (oEvent) {
+			var sInputValue = oEvent.getSource().getValue();
+			this.inputId = oEvent.getSource().getId();
+
+			if (this.inputId.toString().indexOf("tratorInput") != -1) {
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
+				filtro = "Placa";
+			} else if ((this.inputId.toString().indexOf("reboque1Input") != -1) || (this.inputId.toString().indexOf("reboque2Input") != -1)) {
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogReboque";
+				filtro = "Placa";
+			} else if (this.inputId.toString().indexOf("motoristaInput") != -1) {
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogMotorista";
+				filtro = "Name1";
+			} else if (this.inputId.toString().indexOf("fornecedorInput") != -1) {
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogFornecedor";
+				filtro = "Name1";
+			}
+
+			// create value help dialog
+			/**
+			if (!this._valueHelpDialog) {
+				this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
+				this.getView().addDependent(this._valueHelpDialog);
+			}
+			**/
+
+			this._valueHelpDialog = sap.ui.xmlfragment(caminho, this);
+			this.getView().addDependent(this._valueHelpDialog);
+
+			// create a filter for the binding
+			this._valueHelpDialog.getBinding("items").filter([new Filter(
+				filtro,
+				sap.ui.model.FilterOperator.Contains, sInputValue
+			)]);
+			// open value help dialog filtered by the input value
+			this._valueHelpDialog.open(sInputValue);
+
+		},
+
+		_handleValueHelpSearch: function (evt) {
+			var sValue = evt.getParameter("value");
+			sValue = sValue.toUpperCase();
+			var oFilter = new Filter(
+				filtro,
+				sap.ui.model.FilterOperator.Contains, sValue
+			);
+			evt.getSource().getBinding("items").filter([oFilter]);
+		},
+
+		_handleValueHelpClose: function (evt) {
+			var oSelectedItem = evt.getParameter("selectedItem");
+			if (oSelectedItem) {
+				var productInput = this.byId(this.inputId);
+				productInput.setValue(oSelectedItem.getTitle());
+			}
+			
+			if (this.inputId.toString().indexOf("tratorInput") != -1) {
+				
+				var sValue = oSelectedItem.getTitle();
+				var oModel = this.getView().getModel();
+				
+				var r1 = oModel.getData("/Veiculo('"+sValue+"')").Reboque1;
+				var r2 = oModel.getData("/Veiculo('"+sValue+"')").Reboque2;
+				
+				var i1 = this.getView().byId("reboque1Input");
+				var i2 = this.getView().byId("reboque2Input");
+				
+				if(r1 != ""){
+					i1.setValue(r1);	
+				}
+				if(r2 != ""){
+					i2.setValue(r2);
+				}
+			}
+			
+			evt.getSource().getBinding("items").filter([]);
+			
+		},
+		
+		customPlacaType : SimpleType.extend("placa", {
+			//Esse método recebe o valor analisado (valor interno) como um parâmetro e deve retornar um valor formatado 
+			//(ou seja, um valor externo correspondente). Esse valor formatado é exibido na interface do usuário.
+			formatValue: function (oValue) {
+				return oValue;
+			},
+			//Este método recebe a entrada do usuário como um parâmetro. 
+			//O trabalho deste método é converter o valor do usuário (valor externo) em
+			//uma representação interna adequada do valor (valor interno).
+			parseValue: function (oValue) {
+				//parsing step takes place before validating step, value could be altered here
+				return oValue;
+			},
+			//Esse método recebe o valor analisado (ou seja, a representação interna do valor 
+			//conforme determinado pelo método parseValue ) e deve decidir se o valor é válido ou não. 
+			//Se a entrada for determinada como inválida, uma exceção do tipo 
+			//sap.ui.model.ValidateException deve ser lançada de dentro desse método.
+			validateValue: function (oValue) {
+				// The following Regex is NOT a completely correct one and only used for demonstration purposes.
+				// RFC 5322 cannot even checked by a Regex and the Regex for RFC 822 is very long and complex.
+				var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
+				if (!oValue.match(rexMail)) {
+					throw new ValidateException("'" + oValue + "' is not a valid email address");
+				}
+			}
+		}),
+		
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-
-			//this.getView().getModel().setSizeLimit(1000000);
-			//var oModel = new JSONModel(this.getView().getModel());
-			//oModel.bindList('/Veiculo');
-			//oModel.setSizeLimit(1000000);
-			//this.getView().setModel(oModel);
-
+			
+			var oView = this.getView();
+			oView.setModel(new JSONModel({
+				placa : ""
+			}));
+			sap.ui.getCore().getMessageManager().registerObject(oView.byId("tratorInput"), true);
 		},
 
 		onMetadataLoaded: function (myODataModel) {
