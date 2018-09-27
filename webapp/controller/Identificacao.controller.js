@@ -216,7 +216,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				i2.setValue(r2);
 			}
 			
-			this.onInit();
+			this.onInit();   
 
 		},
 
