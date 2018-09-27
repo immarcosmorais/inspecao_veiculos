@@ -10,8 +10,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 ], function (BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel, SimpleType, ValidateException) {
 	"use strict";
 
-	var caminho = "";
-	var filtro = "";
+	var caminho,
+		filtro,
+		gModelHelp,
+		gModelCustom;
+		
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
 		handleRouteMatched: function (oEvent) {
@@ -27,7 +30,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					this.getView().bindObject(oPath);
 				}
 			}
-
 		},
 
 		_onPageNavButtonPress: function () {
@@ -100,7 +102,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						} else {
 							sPath = "undefined";
 						}
-
 						// If the navigation is a 1-n, sPath would be "undefined" as this is not supported in Build
 						if (sPath === "undefined") {
 							this.oRouter.navTo(sRouteName);
@@ -121,9 +122,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		
+
 		//Auxiliar de pesquisa
 		handleValueHelp: function (oEvent) {
+
+			// this.getView().setModel(oModel);
+
+			if (gModelHelp == null) {
+				var sServiceUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+				gModelHelp = new sap.ui.model.odata.v2.ODataModel(sServiceUrl, true);
+			}
+			this.getView().setModel(gModelHelp);
+
 			var sInputValue = oEvent.getSource().getValue();
 			this.inputId = oEvent.getSource().getId();
 
@@ -163,6 +173,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		_handleValueHelpSearch: function (evt) {
+
 			var sValue = evt.getParameter("value");
 			sValue = sValue.toUpperCase();
 			var oFilter = new Filter(
@@ -173,41 +184,46 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		_handleValueHelpClose: function (evt) {
+			var productInput, r1, r2, i1, i2, sValue;
 			var oSelectedItem = evt.getParameter("selectedItem");
 			if (oSelectedItem) {
-				var productInput = this.byId(this.inputId);
-				productInput.setValue(oSelectedItem.getTitle());
+				productInput = this.byId(this.inputId);
+				sValue = oSelectedItem.getTitle();
 			}
-			
-			if (this.inputId.toString().indexOf("tratorInput") != -1) {
-				
-				var sValue = oSelectedItem.getTitle();
-				var oModel = this.getView().getModel();
-				
-				var r1 = oModel.getData("/Veiculo('"+sValue+"')").Reboque1;
-				var r2 = oModel.getData("/Veiculo('"+sValue+"')").Reboque2;
-				
-				var i1 = this.getView().byId("reboque1Input");
-				var i2 = this.getView().byId("reboque2Input");
-				
-				if(r1 != ""){
-					i1.setValue(r1);	
-				}
-				if(r2 != ""){
-					i2.setValue(r2);
-				}
+			gModelHelp = this.getView().getModel();
+			if (this.inputId.toString().indexOf("tratorInput") != -1 && (oSelectedItem)) {
+				r1 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque1;
+				r2 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque2;
+				i1 = this.getView().byId("reboque1Input");
+				i2 = this.getView().byId("reboque2Input");
 			}
-			
+
 			evt.getSource().getBinding("items").filter([]);
-			
+
+			// this.getView().setModel(gModelCustom);
+			// sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
+			// sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque1Input"), true);
+			// sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque2Input"), true);
+
+			this.onInit();
+			productInput.setValue(sValue);
+			if (r1 != "") {
+				i1.setValue(r1);
+			}
+			if (r2 != "") {
+				i2.setValue(r2);
+			}
+
 		},
-		
-		customPlacaType : SimpleType.extend("placa", {
+
+		customPlacaType: SimpleType.extend("placa", {
+
 			//Esse método recebe o valor analisado (valor interno) como um parâmetro e deve retornar um valor formatado 
 			//(ou seja, um valor externo correspondente). Esse valor formatado é exibido na interface do usuário.
 			formatValue: function (oValue) {
 				return oValue;
 			},
+
 			//Este método recebe a entrada do usuário como um parâmetro. 
 			//O trabalho deste método é converter o valor do usuário (valor externo) em
 			//uma representação interna adequada do valor (valor interno).
@@ -215,6 +231,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				//parsing step takes place before validating step, value could be altered here
 				return oValue;
 			},
+
 			//Esse método recebe o valor analisado (ou seja, a representação interna do valor 
 			//conforme determinado pelo método parseValue ) e deve decidir se o valor é válido ou não. 
 			//Se a entrada for determinada como inválida, uma exceção do tipo 
@@ -222,22 +239,30 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			validateValue: function (oValue) {
 				// The following Regex is NOT a completely correct one and only used for demonstration purposes.
 				// RFC 5322 cannot even checked by a Regex and the Regex for RFC 822 is very long and complex.
+				oValue = oValue.toUpperCase();
 				var rexMail = '[A-Z]{3}\[0-9]{4}';
 				if (!oValue.match(rexMail)) {
-					throw new ValidateException("'" + oValue + "' is not a valid email address");
+					throw new ValidateException("'" + oValue + "' não é uma placa válida.");
 				}
 			}
 		}),
-		
+
 		onInit: function () {
+
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-			
-			var oView = this.getView();
-			oView.setModel(new JSONModel({
-				placa : ""
-			}));
-			sap.ui.getCore().getMessageManager().registerObject(oView.byId("tratorInput"), true);
+
+			if (gModelCustom == null) {
+				gModelCustom = new JSONModel({
+					placa: ""
+				});
+			}
+
+			this.getView().setModel(gModelCustom);
+			sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
+			sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque1Input"), true);
+			sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque2Input"), true);
+
 		},
 
 		onMetadataLoaded: function (myODataModel) {

@@ -45,7 +45,8 @@
 										</form:label>
 										<form:fields>
 											<Input id="reboque1Input" placeholder="Ex.: ABC123" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}">
+												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}"
+												value="{ path : '/placa', type : '.customPlacaType' }">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
@@ -58,7 +59,8 @@
 										</form:label>
 										<form:fields>
 											<Input id="reboque2Input" placeholder="Ex.: ABC123" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}">
+												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}"
+												value="{ path : '/placa', type : '.customPlacaType' }">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
