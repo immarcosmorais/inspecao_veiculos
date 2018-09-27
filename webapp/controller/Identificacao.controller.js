@@ -14,7 +14,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		filtro,
 		gModelHelp,
 		gModelCustom;
-		
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
 		handleRouteMatched: function (oEvent) {
@@ -129,15 +128,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// this.getView().setModel(oModel);
 			var sInputValue = oEvent.getSource().getValue();
 			this.inputId = oEvent.getSource().getId();
-
-
-			if (gModelHelp == null) {
-				var sServiceUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
-				gModelHelp = new sap.ui.model.odata.v2.ODataModel(sServiceUrl, true);
-			}
 			this.getView().setModel(gModelHelp);
-
-			
 
 			if (this.inputId.toString().indexOf("tratorInput") != -1) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
@@ -153,14 +144,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				filtro = "Name1";
 			}
 
-			// create value help dialog
-			/**
-			if (!this._valueHelpDialog) {
-				this._valueHelpDialog = sap.ui.xmlfragment(caminho,this);
-				this.getView().addDependent(this._valueHelpDialog);
-			}
-			**/
-
 			this._valueHelpDialog = sap.ui.xmlfragment(caminho, this);
 			this.getView().addDependent(this._valueHelpDialog);
 
@@ -171,11 +154,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			)]);
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
-
 		},
 
 		_handleValueHelpSearch: function (evt) {
-
 			var sValue = evt.getParameter("value");
 			sValue = sValue.toUpperCase();
 			var oFilter = new Filter(
@@ -200,24 +181,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				i2 = this.getView().byId("reboque2Input");
 			}
 
-			evt.getSource().getBinding("items").filter([]);
-
-			 //this.getView().setModel(gModelCustom);
-		     //sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
-			 //sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque1Input"), true);
-			 //sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque2Input"), true);
-
-			
-			productInput.setValue(sValue);   
+			productInput.setValue(sValue);
 			if (r1 != "") {
 				i1.setValue(r1);
 			}
 			if (r2 != "") {
 				i2.setValue(r2);
 			}
-			
-			this.onInit();   
 
+			evt.getSource().getBinding("items").filter([]);
 		},
 
 		customPlacaType: SimpleType.extend("placa", {
@@ -251,6 +223,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 		}),
 
+		handleLiveChange: function (oEvent) {
+			if (this.getView().getModel() != gModelCustom) {
+				var value1 = this.getView().byId("reboque1Input").getValue();
+				var value2 = this.getView().byId("reboque2Input").getValue();
+				var value3 = this.getView().byId("tratorInput").getValue();
+				this.getView().setModel(gModelCustom);
+				this.getView().byId("reboque1Input").setValue(value1);
+				this.getView().byId("reboque2Input").setValue(value2);
+				this.getView().byId("tratorInput").setValue(value3);
+			} 
+		},
+
 		onInit: function () {
 
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -262,11 +246,21 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				});
 			}
 
+			if (gModelHelp == null) {
+				var sServiceUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+				gModelHelp = new sap.ui.model.odata.v2.ODataModel(sServiceUrl, true);
+			}
+
+			// if (gModelOdata == null) {
+			// 	gModelOdata = new JSONModel({
+			// 		data: {}
+			// 	});
+			// }
+
 			this.getView().setModel(gModelCustom);
 			sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
 			sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque1Input"), true);
 			sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque2Input"), true);
-
 		},
 
 		onMetadataLoaded: function (myODataModel) {
