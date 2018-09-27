@@ -208,7 +208,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			 //sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque2Input"), true);
 
 			
-			productInput.setValue(sValue);
+			productInput.setValue(sValue);   
 			if (r1 != "") {
 				i1.setValue(r1);
 			}
