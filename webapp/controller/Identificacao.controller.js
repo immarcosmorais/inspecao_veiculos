@@ -127,6 +127,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		handleValueHelp: function (oEvent) {
 
 			// this.getView().setModel(oModel);
+			var sInputValue = oEvent.getSource().getValue();
+			this.inputId = oEvent.getSource().getId();
+
 
 			if (gModelHelp == null) {
 				var sServiceUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
@@ -134,8 +137,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 			this.getView().setModel(gModelHelp);
 
-			var sInputValue = oEvent.getSource().getValue();
-			this.inputId = oEvent.getSource().getId();
+			
 
 			if (this.inputId.toString().indexOf("tratorInput") != -1) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
@@ -200,12 +202,12 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			evt.getSource().getBinding("items").filter([]);
 
-			// this.getView().setModel(gModelCustom);
-			// sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
-			// sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque1Input"), true);
-			// sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque2Input"), true);
+			 //this.getView().setModel(gModelCustom);
+		     //sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
+			 //sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque1Input"), true);
+			 //sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque2Input"), true);
 
-			this.onInit();
+			
 			productInput.setValue(sValue);
 			if (r1 != "") {
 				i1.setValue(r1);
@@ -213,6 +215,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			if (r2 != "") {
 				i2.setValue(r2);
 			}
+			
+			this.onInit();
 
 		},
 
