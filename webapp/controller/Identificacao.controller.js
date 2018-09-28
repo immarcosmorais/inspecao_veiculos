@@ -106,8 +106,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// 		if (!oValue.match(rexMail)) {
 				// 			throw new ValidateException("'" + oValue + "' não é uma placa válida.");
 				// 		}
+
 				var id = oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1];
-				if ((id != "reboque1Input") && (id != "reboque2Input") && (id != "tratorInput")) {
+				if ((id != "reboque1Input") &&
+					(id != "reboque2Input") &&
+					(id != "tratorInput")) {
 					if (oInput.getValue() == "") {
 						oInput.setValueState("Error");
 						bValidationError = true;
@@ -120,7 +123,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						}
 					}
 				}
-
 			});
 
 			// output result
