@@ -17,12 +17,28 @@
 											<Label text="Trator" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											<Input id="tratorInput" placeholder="Ex.: ABC123" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Veiculo}"
-												value="{ path : '/placa', type : '.customPlacaType' }" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange">
+											<Input 
+												id="tratorInput" 
+												placeholder="Ex.: ABC123" 
+												type="Text" showValueHelp="true" 
+												enabled="true" 
+												visible="true" 
+												width="auto"
+												valueHelpOnly="false" 
+												maxLength="0" 
+												valueHelpRequest="handleValueHelp" 
+												suggestionItems="{/Veiculo}"
+												
+												value="{ path : '/placa', 
+													     type : '.customPlacaType' }"
+													     
+												valueLiveUpdate="{/ValueLiveUpdate}" 
+												liveChange="handleLiveChange" >
+													
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
+												
 											</Input>
 										</form:fields>
 									</form:FormElement>
@@ -31,8 +47,22 @@
 											<Label text="Transportador" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											<Input id="fornecedorInput" placeholder="Ex.: Nome do transportador" type="Text" showValueHelp="true" enabled="true" visible="true"
-												width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Fornecedor}">
+											<Input 
+												id="fornecedorInput" 
+												placeholder="Ex.: Nome do transportador" 
+												type="Text" 
+												showValueHelp="true" 
+												enabled="true" 
+												visible="true"
+												width="auto" 
+												valueHelpOnly="false" 
+												maxLength="0" 
+												valueHelpRequest="handleValueHelp" 
+												suggestionItems="{/Fornecedor}"
+												
+												valueLiveUpdate="{/ValueLiveUpdate}" 
+												liveChange="handleLiveChange" >
+												
 												<suggestionItems>
 													<core:Item text="{Name1}"/>
 												</suggestionItems>
@@ -44,9 +74,22 @@
 											<Label text="Reboque(1)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											<Input id="reboque1Input" placeholder="Ex.: ABC123" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}"
-												value="{ path : '/placa', type : '.customPlacaType' }" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange">
+											<Input 
+												id="reboque1Input" 
+												placeholder="Ex.: ABC123" 
+												type="Text" 
+												showValueHelp="true" 
+												enabled="true" 
+												visible="true" 
+												width="auto"
+												valueHelpOnly="false" 
+												maxLength="0" 
+												valueHelpRequest="handleValueHelp" 
+												suggestionItems="{/Reboque}"
+												value="{ path : '/placa', 
+													     type : '.customPlacaType' }" 
+												valueLiveUpdate="{/ValueLiveUpdate}" 
+												liveChange="handleLiveChange">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
@@ -58,9 +101,25 @@
 											<Label text="Reboque(2)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											<Input id="reboque2Input" placeholder="Ex.: ABC123" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}"
-												value="{ path : '/placa', type : '.customPlacaType' }" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange">
+											<Input 
+												id="reboque2Input" 
+												placeholder="Ex.: ABC123" 
+												type="Text" 
+												showValueHelp="true" 
+												enabled="true" 
+												visible="true"
+												width="auto"
+												valueHelpOnly="false" 
+												maxLength="0" 
+												valueHelpRequest="handleValueHelp" 
+												suggestionItems="{/Reboque}"
+												value="{ path : '/placa', 
+														 type : '.customPlacaType' }" 
+												
+												valueLiveUpdate="{/ValueLiveUpdate}" 
+												liveChange="handleLiveChange"
+												
+												>
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
@@ -72,8 +131,23 @@
 											<Label text="Motorista" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											<Input id="motoristaInput" placeholder="Ex.: Nome do motorista" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Motorista}">
+											<Input 
+												id="motoristaInput" 
+												placeholder="Ex.: Nome do motorista" 
+												type="Text" 
+												showValueHelp="true" 
+												enabled="true" 
+												visible="true" 
+												width="auto"
+												valueHelpOnly="false" 
+												maxLength="0" 
+												valueHelpRequest="handleValueHelp" 
+												suggestionItems="{/Motorista}"
+												
+												valueLiveUpdate="{/ValueLiveUpdate}" 
+												liveChange="handleLiveChange"
+												
+												>
 												<suggestionItems>
 													<core:Item text="{Name1}"/>
 												</suggestionItems>
@@ -96,7 +170,7 @@
 				<content>
 					<ToolbarSpacer width=""/>
 					<Button text="" type="Emphasized" icon="sap-icon://navigation-right-arrow" iconFirst="true" width="auto" enabled="true" visible="true"
-						iconDensityAware="false" press="_onButtonPress"/>
+						iconDensityAware="false" press="_onContinue"/>
 				</content>
 			</OverflowToolbar>
 		</footer>
