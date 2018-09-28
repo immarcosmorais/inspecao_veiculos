@@ -251,12 +251,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				gModelHelp = new sap.ui.model.odata.v2.ODataModel(sServiceUrl, true);
 			}
 
-			// if (gModelOdata == null) {
-			// 	gModelOdata = new JSONModel({
-			// 		data: {}
-			// 	});
-			// }
-
 			this.getView().setModel(gModelCustom);
 			sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
 			sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque1Input"), true);
