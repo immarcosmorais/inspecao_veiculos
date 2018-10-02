@@ -5,6 +5,9 @@ sap.ui.define([
 		"sap/ui/core/routing/History"
 	], function (BaseController, MessageBox, Utilities, History) {
 		"use strict";
+
+		var idElements = 0;
+
 		return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Inspecao", {
 			handleRouteMatched: function (oEvent) {
 				var oParams = {};
@@ -415,41 +418,68 @@ sap.ui.define([
 					fnPromiseResolve();
 				}
 			},
-			onInit: function () {
-				this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-				this.oRouter.getTarget("Inspecao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-			},
-			/**
-			 *@memberOf com.sap.build.standard.formInspecaoDeVeiculos.controller.Inspecao
-			 * Marcos R. Morais
-			 */
 
-			_addDelete: function () {
+			_deleteItem: function (element) {
+				var id = element.getParameter("id").split("btnDelete")[1];
+				
+				var vBoxProdutos = this.getView().byId("vBoxProdutos");
+				var vBoxBotoes = this.getView().byId("vBoxBotoes");
+				
+				// var hBoxProdutos = this.getView().byId("hBoxProdutos" + id);
+				// var hBoxBotoes = this.getView().byId("hBoxBotoes" + id);
+				
+				vBoxProdutos.removeItem("hBoxProdutos" + id);
+				vBoxBotoes.removeItem("hBoxBotoes" + id);
 
+				// vBoxProdutos.removeItem(this.getView().byId("hBoxProdutos" + id[1]));
+				// vBoxBotoes.removeItem(this.getView().byId("hBoxBotoes" + id[1]));
+				// sap.ui.getCore().byId("hBoxBotoes" + id).exit());
+				// sap.ui.getCore().byId("hBoxProdutos" + id).exit());
+				// this.getView().byId("hBoxBotoes" + id).removeAllContent();
+				// this.getView().byId("hBoxProdutos" + id).removeAllContent();
 			},
 
 			_addItem: function () {
 
-				var oItemTemplate = new sap.ui.core.ListItem({
+				var itemTemplate = new sap.ui.core.ListItem({
 					key: "{Id}",
 					text: "{Text}",
 					additionalText: "{Addtext}"
 				});
 
-				var cb = new sap.m.ComboBox({
+				var selectProdutos = new sap.m.ComboBox("selectProdutos" + idElements, {
 					items: {
 						path: "/Produto",
-						template: oItemTemplate
+						template: itemTemplate
 					}
 				});
+				selectProdutos.setWidth("100%");
+				selectProdutos.setMaxWidth("100%");
+				selectProdutos.setEnabled(true);
+				selectProdutos.setPickerType("Default");
+				selectProdutos.setTextAlign("Initial");
+				selectProdutos.setValueState("None");
 
-				cb.setWidth("100%");
-				var layoutProdutos = this.getView().byId("layoutProdutos");
-				layoutProdutos.addItem(cb);
+				var oHBox1 = new sap.m.HBox("hBoxProdutos" + idElements, {
+					items: [
+						selectProdutos
+					]
+				});
+				oHBox1.setAlignItems("Stretch");
+				oHBox1.setDirection("Row");
+				oHBox1.setFitContainer(false);
+				oHBox1.setWidth("100%");
+				oHBox1.setHeight("100%");
+				oHBox1.setJustifyContent("Center");
+				oHBox1.setRenderType("Div");
+				oHBox1.setVisible(true);
+				oHBox1.setDisplayInline(false);
+				oHBox1.addStyleClass("sapUiTinyMargin");
 
-				var layoutButtons = this.getView().byId("layoutButtons");
+				var vBoxProdutos = this.getView().byId("vBoxProdutos");
+				vBoxProdutos.addItem(oHBox1);
 
-				var btnDelete = new sap.m.Button();
+				var btnDelete = new sap.m.Button("btnDelete" + idElements);
 				btnDelete.setType("Default");
 				btnDelete.setIcon("sap-icon://delete");
 				btnDelete.setIconFirst(true);
@@ -457,9 +487,9 @@ sap.ui.define([
 				btnDelete.setEnabled(true);
 				btnDelete.setVisible(true);
 				btnDelete.setIconDensityAware(false);
-				btnDelete.addStyleClass("sapUiTinyMargin");
+				btnDelete.attachPress(this._deleteItem, this);
 
-				var btnAdd = new sap.m.Button();
+				var btnAdd = new sap.m.Button("btnAdd" + idElements);
 				btnAdd.setType("Default");
 				btnAdd.setIcon("sap-icon://add");
 				btnAdd.setIconFirst(true);
@@ -467,36 +497,38 @@ sap.ui.define([
 				btnAdd.setEnabled(true);
 				btnAdd.setVisible(true);
 				btnAdd.setIconDensityAware(false);
-				btnAdd.addStyleClass("sapUiTinyMargin");
+				btnAdd.addStyleClass("sapUiTinyMarginBegin");
+				btnAdd.attachPress(this._addItem, this);
 
-				// alignItems="Center" 
-				// direction="Row" 
-				// fitContainer="false" 
-				// height="auto" 
-				// justifyContent="Center" 
-				// renderType="Div" 
-				// visible="true" 
-				// displayInline="false"
-
-				var oHBox1 = new sap.m.HBox({
+				var oHBox2 = new sap.m.HBox("hBoxBotoes" + idElements, {
 					items: [
 						btnDelete,
 						btnAdd
 					]
 				});
+				oHBox2.setAlignItems("Center");
+				oHBox2.setDirection("Row");
+				oHBox2.setFitContainer(false);
+				oHBox2.setWidth("100%");
+				oHBox2.setHeight("100%");
+				oHBox2.setJustifyContent("Center");
+				oHBox2.setRenderType("Div");
+				oHBox2.setVisible(true);
+				oHBox2.setDisplayInline(false);
+				oHBox2.addStyleClass("sapUiTinyMargin");
 
-				oHBox1.setAlignItems("Center");
-				oHBox1.setDirection("Row");
-				oHBox1.setFitContainer(false);
-				oHBox1.setHeight("auto");
-				oHBox1.setJustifyContent("Center");
-				oHBox1.setRenderType("Div");
-				oHBox1.setVisible(true);
-				oHBox1.setDisplayInline(false);
+				var vBoxBotoes = this.getView().byId("vBoxBotoes");
+				vBoxBotoes.addItem(oHBox2);
 
-				layoutButtons.addItem(oHBox1);
+				idElements++;
+			},
 
+			onInit: function () {
+				this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				this.oRouter.getTarget("Inspecao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
+				this._addItem();
 			}
+
 		});
 	}, /* bExport= */
 	true);

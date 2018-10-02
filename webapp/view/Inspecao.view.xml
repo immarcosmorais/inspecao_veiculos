@@ -1,15 +1,16 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core"
-	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout"
 	controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Inspecao">
 	<Page showHeader="true" title="Inspeção" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
 			<ScrollContainer horizontal="true" vertical="true" width="100%" height="100%" visible="true">
 				<content>
-					<Panel height="auto" width="100%" headerText="Tipo de Carroceria" expandable="true" expandAnimation="true" backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Tipo de Carroceria" expandable="true" expanded="false" expandAnimation="true"
+						backgroundDesign="Solid">
 						<content>
 							<RadioButtonGroup
 								id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536251559036-content-sap_m_RadioButtonGroup-1536251573633"
-								columns="1" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect">
+								columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit"
+								select="_onRadioButtonGroupSelect">
 								<buttons>
 									<RadioButton text="Madeira" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 									<RadioButton text="Metal" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
@@ -20,65 +21,52 @@
 							</RadioButtonGroup>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Produtos" expandAnimation="true" backgroundDesign="Solid" expandable="true" expanded="true">
+					<Panel height="auto" width="100%" headerText="Produtos" expandable="true" expanded="true" expandAnimation="true" backgroundDesign="Solid">
 						<content>
-							<!--<layout:BlockLayout background="Default" visible="true">-->
-							<!--    <layout:content>-->
-							<!--        <layout:BlockLayoutRow scrollable="false">-->
-							<!--            <layout:content>-->
-							<!--                <layout:BlockLayoutCell width="3" title="" titleAlignment="Begin" titleLevel="Auto" id="layoutProdutos">-->
-							<!--                    <layout:content>-->
-							<!--                        <Select width="100%" icon="" enabled="true" type="Default" textAlign="Initial" valueState="None" forceSelection="false" id="selectProdutos" items="{/Produto}" >-->
-							<!--                            <items>-->
-							<!--                                <core:Item key="{Id}" text="{Text}" enabled="true"/>-->
-							<!--                            </items>-->
-							<!--                        </Select>-->
-							<!--                    </layout:content>-->
-							<!--                </layout:BlockLayoutCell>-->
-							<!--                <layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">-->
-							<!--                    <layout:content>-->
-							<!--                        <Button text="" type="Default" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_addItem"/>-->
-							<!--                    </layout:content>-->
-							<!--                </layout:BlockLayoutCell>-->
-							<!--            </layout:content>-->
-							<!--        </layout:BlockLayoutRow>-->
-							<!--    </layout:content>-->
-							<!--</layout:BlockLayout>-->
-							<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="100%" height="100%" justifyContent="Start" renderType="Div"
+							<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="100%" justifyContent="Start" renderType="Div"
 								visible="true" displayInline="false">
 								<items>
-									<VBox id="layoutProdutos" alignItems="Stretch" direction="Column" fitContainer="false" width="85%" height="auto" justifyContent="Center"
+	
+									<VBox id="vBoxProdutos" alignItems="Stretch" direction="Column" fitContainer="false" width="85%" height="100%" justifyContent="Start"
 										renderType="Div" visible="true" displayInline="false">
 										<items>
-											<Select icon="" enabled="true" type="Default" textAlign="Initial" valueState="None" forceSelection="false" id="selectProdutos"
-												items="{/Produto}" maxWidth="auto" width="100%">
+											<HBox alignItems="Center" direction="Row" fitContainer="false" width="auto" height="100%" justifyContent="Center" renderType="Div"
+												visible="true" displayInline="false" class="sapUiTinyMargin">
 												<items>
-													<core:Item key="{Id}" text="{Text}" enabled="true"/>
-												</items>
-											</Select>
-										</items>
-										<layoutData/>
-									</VBox>
-									<VBox id="layoutButtons" width="15%">
-										<items>
-											<HBox alignItems="Center" direction="Row" fitContainer="false" height="auto" justifyContent="Center" renderType="Div" visible="true" displayInline="false">
-												<items>
-													<Button text="" type="Default" icon="sap-icon://delete" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
-														class="sapUiTinyMargin" press="_addDelete"/>
-													<Button text="" type="Default" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
-														class="sapUiTinyMargin" press="_addItem"/>
+													<!--<Button text="" type="Default" icon="sap-icon://delete" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+													<!--<Button text="" type="Default" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"-->
+													<!--	class="sapUiTinyMarginBegin" press="_addItem"/>-->
 												</items>
 												<layoutData/>
 											</HBox>
 										</items>
 										<layoutData/>
 									</VBox>
+									
+									
+									<VBox id="vBoxBotoes" alignItems="Stretch" direction="Column" fitContainer="false" width="15%" height="100%" justifyContent="Start"
+										renderType="Div" visible="true" displayInline="false">
+										<items>
+											<HBox alignItems="Center" direction="Row" fitContainer="false" width="auto" height="100%" justifyContent="Center" renderType="Div"
+												visible="true" displayInline="false" class="sapUiTinyMargin">
+												<items>
+													<!--<Button text="" type="Default" icon="sap-icon://delete" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+													<!--<Button text="" type="Default" icon="sap-icon://add" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"-->
+													<!--	class="sapUiTinyMarginBegin" press="_addItem"/>-->
+												</items>
+												<layoutData/>
+											</HBox>
+										</items>
+										<layoutData/>
+									</VBox>
+									
+									
 								</items>
 								<layoutData/>
 							</HBox>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Últimas cargas transportadas" expandable="true" expandAnimation="true"
+					<Panel height="auto" width="100%" headerText="Últimas cargas transportadas" expandable="true" expanded="false" expandAnimation="true"
 						backgroundDesign="Solid">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
@@ -113,42 +101,55 @@
 							</layout:BlockLayout>
 						</content>
 					</Panel>
-					<Panel height="auto" width="auto" headerText="Tipo de limpeza" expandAnimation="true" backgroundDesign="Solid" expandable="true">
+					<Panel height="auto" width="auto" headerText="Tipo de limpeza" expandable="true" expanded="false" expandAnimation="true"
+						backgroundDesign="Solid">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>
 									<layout:BlockLayoutRow scrollable="false">
 										<layout:content>
+											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
+												<layout:content>
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+														visible="true" displayInline="false">
+														<items>
+															<Text text="Sopro com ar comprimido (A)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+														</items>
+														<layoutData/>
+													</VBox>
+												</layout:content>
+											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="H4">
 												<layout:content>
-													<VBox width="100%" direction="Column">
-														<Text text="Varredura (A)" width="180px" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-														<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															useEntireWidth="true" busyIndicatorSize="Auto" wrapping="true"/>
-														<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+														visible="true" displayInline="false">
+														<items>
+															<Text text="Varredura (A)" width="180px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+														</items>
+														<layoutData/>
 													</VBox>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox width="100%" direction="Column">
-														<Text text="Sopro com ar comprimido (A)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-														<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
-														<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
-													</VBox>
-												</layout:content>
-											</layout:BlockLayoutCell>
-											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
-												<layout:content>
-													<VBox width="100%" direction="Column">
-														<Text text="Lavagem com água (B)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-														<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
-														<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+														visible="true" displayInline="false">
+														<items>
+															<Text text="Lavagem com água (B)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+														</items>
+														<layoutData/>
 													</VBox>
 												</layout:content>
 											</layout:BlockLayoutCell>
@@ -158,37 +159,49 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox width="100%" direction="Column">
-														<Text text="Vaporização (com vapor d'água) (C)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
-															visible="true"/>
-														<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
-														<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+														visible="true" displayInline="false">
+														<items>
+															<Text text="Vaporização (com vapor d'água) (C)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
+																visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+														</items>
+														<layoutData/>
 													</VBox>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox width="100%" direction="Column">
-														<Text text="Lavagem com água e agente de limpeza (C)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
-															visible="true"/>
-														<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
-														<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+														visible="true" displayInline="false">
+														<items>
+															<Text text="Lavagem com água e agente de limpeza (C)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
+																visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+														</items>
+														<layoutData/>
 													</VBox>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox width="100%" direction="Column">
-														<Text text="Lavagem com água e agente de desinfecção (D)" width="auto" maxLines="2" wrapping="true" textAlign="Begin"
-															textDirection="Inherit" visible="true"/>
-														<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
-														<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-															wrapping="false" useEntireWidth="true"/>
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+														visible="true" displayInline="false">
+														<items>
+															<Text text="Lavagem com água e agente de desinfecção (D)" width="auto" maxLines="2" wrapping="true" textAlign="Begin"
+																textDirection="Inherit" visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
+																wrapping="false" useEntireWidth="true"/>
+														</items>
+														<layoutData/>
 													</VBox>
 												</layout:content>
 											</layout:BlockLayoutCell>
@@ -198,7 +211,8 @@
 							</layout:BlockLayout>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Condições do veículo" expandable="true" expandAnimation="true" backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Condições do veículo" expandable="true" expanded="false" expandAnimation="true"
+						backgroundDesign="Solid">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>

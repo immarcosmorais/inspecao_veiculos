@@ -130,7 +130,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				//MessageToast.show("The input is validated. You could now continue to the next screen");
 				this._onButtonPress(oEvent);
 			} else {
-				MessageBox.alert("Alguns campos podem estar vazios, ou as placas não estão no padrão correto (ABC123)");
+				MessageBox.alert("Alguns campos podem estar vazios, ou as placas não estão no padrão correto (ABC1234)");
 			}
 		},
 
