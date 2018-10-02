@@ -420,107 +420,115 @@ sap.ui.define([
 			},
 
 			_deleteItem: function (element) {
+
 				var id = element.getParameter("id").split("btnDelete")[1];
-				
 				var vBoxProdutos = this.getView().byId("vBoxProdutos");
 				var vBoxBotoes = this.getView().byId("vBoxBotoes");
-				
-				// var hBoxProdutos = this.getView().byId("hBoxProdutos" + id);
-				// var hBoxBotoes = this.getView().byId("hBoxBotoes" + id);
-				
-				vBoxProdutos.removeItem("hBoxProdutos" + id);
-				vBoxBotoes.removeItem("hBoxBotoes" + id);
+				var arrayItems = vBoxProdutos.getItems();
+				if (arrayItems.length > 2) {
+					vBoxProdutos.removeItem("hBoxProdutos" + id);
+					vBoxBotoes.removeItem("hBoxBotoes" + id);
+				}
 
-				// vBoxProdutos.removeItem(this.getView().byId("hBoxProdutos" + id[1]));
-				// vBoxBotoes.removeItem(this.getView().byId("hBoxBotoes" + id[1]));
-				// sap.ui.getCore().byId("hBoxBotoes" + id).exit());
-				// sap.ui.getCore().byId("hBoxProdutos" + id).exit());
-				// this.getView().byId("hBoxBotoes" + id).removeAllContent();
-				// this.getView().byId("hBoxProdutos" + id).removeAllContent();
 			},
 
 			_addItem: function () {
 
-				var itemTemplate = new sap.ui.core.ListItem({
-					key: "{Id}",
-					text: "{Text}",
-					additionalText: "{Addtext}"
-				});
-
-				var selectProdutos = new sap.m.ComboBox("selectProdutos" + idElements, {
-					items: {
-						path: "/Produto",
-						template: itemTemplate
-					}
-				});
-				selectProdutos.setWidth("100%");
-				selectProdutos.setMaxWidth("100%");
-				selectProdutos.setEnabled(true);
-				selectProdutos.setPickerType("Default");
-				selectProdutos.setTextAlign("Initial");
-				selectProdutos.setValueState("None");
-
-				var oHBox1 = new sap.m.HBox("hBoxProdutos" + idElements, {
-					items: [
-						selectProdutos
-					]
-				});
-				oHBox1.setAlignItems("Stretch");
-				oHBox1.setDirection("Row");
-				oHBox1.setFitContainer(false);
-				oHBox1.setWidth("100%");
-				oHBox1.setHeight("100%");
-				oHBox1.setJustifyContent("Center");
-				oHBox1.setRenderType("Div");
-				oHBox1.setVisible(true);
-				oHBox1.setDisplayInline(false);
-				oHBox1.addStyleClass("sapUiTinyMargin");
-
-				var vBoxProdutos = this.getView().byId("vBoxProdutos");
-				vBoxProdutos.addItem(oHBox1);
-
-				var btnDelete = new sap.m.Button("btnDelete" + idElements);
-				btnDelete.setType("Default");
-				btnDelete.setIcon("sap-icon://delete");
-				btnDelete.setIconFirst(true);
-				btnDelete.setWidth("auto");
-				btnDelete.setEnabled(true);
-				btnDelete.setVisible(true);
-				btnDelete.setIconDensityAware(false);
-				btnDelete.attachPress(this._deleteItem, this);
-
-				var btnAdd = new sap.m.Button("btnAdd" + idElements);
-				btnAdd.setType("Default");
-				btnAdd.setIcon("sap-icon://add");
-				btnAdd.setIconFirst(true);
-				btnAdd.setWidth("auto");
-				btnAdd.setEnabled(true);
-				btnAdd.setVisible(true);
-				btnAdd.setIconDensityAware(false);
-				btnAdd.addStyleClass("sapUiTinyMarginBegin");
-				btnAdd.attachPress(this._addItem, this);
-
-				var oHBox2 = new sap.m.HBox("hBoxBotoes" + idElements, {
-					items: [
-						btnDelete,
-						btnAdd
-					]
-				});
-				oHBox2.setAlignItems("Center");
-				oHBox2.setDirection("Row");
-				oHBox2.setFitContainer(false);
-				oHBox2.setWidth("100%");
-				oHBox2.setHeight("100%");
-				oHBox2.setJustifyContent("Center");
-				oHBox2.setRenderType("Div");
-				oHBox2.setVisible(true);
-				oHBox2.setDisplayInline(false);
-				oHBox2.addStyleClass("sapUiTinyMargin");
-
 				var vBoxBotoes = this.getView().byId("vBoxBotoes");
-				vBoxBotoes.addItem(oHBox2);
+				var vBoxProdutos = this.getView().byId("vBoxProdutos");
+				var arrayItems = vBoxProdutos.getItems();
+				var item = arrayItems[arrayItems.length - 1];
+				var sp = item.getItems();
+				var value = "";
+				try {
+					value = sp[0].getProperty("value");
+				} catch (e) {
 
-				idElements++;
+				}
+
+				if (value != "" || idElements == 0) {
+
+					var itemTemplate = new sap.ui.core.ListItem({
+						key: "{Id}",
+						text: "{Text}",
+						additionalText: "{Addtext}"
+					});
+
+					var selectProdutos = new sap.m.ComboBox("selectProdutos" + idElements, {
+						items: {
+							path: "/Produto",
+							template: itemTemplate
+						}
+					});
+					selectProdutos.setWidth("100%");
+					selectProdutos.setMaxWidth("100%");
+					selectProdutos.setEnabled(true);
+					selectProdutos.setPickerType("Default");
+					selectProdutos.setTextAlign("Initial");
+					selectProdutos.setValueState("None");
+
+					var oHBox1 = new sap.m.HBox("hBoxProdutos" + idElements, {
+						items: [
+							selectProdutos
+						]
+					});
+					oHBox1.setAlignItems("Stretch");
+					oHBox1.setDirection("Row");
+					oHBox1.setFitContainer(false);
+					oHBox1.setWidth("100%");
+					oHBox1.setHeight("100%");
+					oHBox1.setJustifyContent("Center");
+					oHBox1.setRenderType("Div");
+					oHBox1.setVisible(true);
+					oHBox1.setDisplayInline(false);
+					oHBox1.addStyleClass("sapUiTinyMargin");
+
+					vBoxProdutos.addItem(oHBox1);
+
+					var btnDelete = new sap.m.Button("btnDelete" + idElements);
+					btnDelete.setType("Default");
+					btnDelete.setIcon("sap-icon://delete");
+					btnDelete.setIconFirst(true);
+					btnDelete.setWidth("auto");
+					btnDelete.setEnabled(true);
+					btnDelete.setVisible(true);
+					btnDelete.setIconDensityAware(false);
+					btnDelete.attachPress(this._deleteItem, this);
+
+					var btnAdd = new sap.m.Button("btnAdd" + idElements);
+					btnAdd.setType("Default");
+					btnAdd.setIcon("sap-icon://add");
+					btnAdd.setIconFirst(true);
+					btnAdd.setWidth("auto");
+					btnAdd.setEnabled(true);
+					btnAdd.setVisible(true);
+					btnAdd.setIconDensityAware(false);
+					btnAdd.addStyleClass("sapUiTinyMarginBegin");
+					btnAdd.attachPress(this._addItem, this);
+
+					var oHBox2 = new sap.m.HBox("hBoxBotoes" + idElements, {
+						items: [
+							btnDelete,
+							btnAdd
+						]
+					});
+					oHBox2.setAlignItems("Center");
+					oHBox2.setDirection("Row");
+					oHBox2.setFitContainer(false);
+					oHBox2.setWidth("100%");
+					oHBox2.setHeight("100%");
+					oHBox2.setJustifyContent("Center");
+					oHBox2.setRenderType("Div");
+					oHBox2.setVisible(true);
+					oHBox2.setDisplayInline(false);
+					oHBox2.addStyleClass("sapUiTinyMargin");
+					vBoxBotoes.addItem(oHBox2);
+
+					idElements++;
+					
+				} else {
+					MessageBox.alert("É necessário selecionar um item para definir um novo.");
+				}
 			},
 
 			onInit: function () {
