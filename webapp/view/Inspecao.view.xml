@@ -427,7 +427,7 @@
 				<content>
 					<ToolbarSpacer width=""/>
 					<Button text="" type="Emphasized" icon="sap-icon://navigation-right-arrow" iconFirst="true" width="auto" enabled="true" visible="true"
-						iconDensityAware="false" press="_onContinue"/>
+						iconDensityAware="false" press="_onButtonPress"/>
 				</content>
 			</OverflowToolbar>
 		</footer>

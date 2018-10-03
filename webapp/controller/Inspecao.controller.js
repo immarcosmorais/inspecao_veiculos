@@ -538,77 +538,77 @@ sap.ui.define([
 				}
 			},
 
-			_onContinue: function (oEvent) {
-				var bValidationError = false;
+			// _onContinue: function (oEvent) {
+			// 	var bValidationError = false;
 
-				// // collect input controls
-				// var oView = this.getView();
-				// var aInputs = [
-				// 	oView.byId("tratorInput"),
-				// 	oView.byId("reboque1Input"),
-				// 	oView.byId("reboque2Input"),
-				// 	oView.byId("motoristaInput"),
-				// 	oView.byId("fornecedorInput")
-				// ];
-				// var bValidationError = false;
-				// var rexMail = '[A-Z]{3}\[0-9]{4}';
+			// 	// // collect input controls
+			// 	// var oView = this.getView();
+			// 	// var aInputs = [
+			// 	// 	oView.byId("tratorInput"),
+			// 	// 	oView.byId("reboque1Input"),
+			// 	// 	oView.byId("reboque2Input"),
+			// 	// 	oView.byId("motoristaInput"),
+			// 	// 	oView.byId("fornecedorInput")
+			// 	// ];
+			// 	// var bValidationError = false;
+			// 	// var rexMail = '[A-Z]{3}\[0-9]{4}';
 
-				// // check that inputs are not empty
-				// // this does not happen during data binding as this is only triggered by changes
-				// jQuery.each(aInputs, function (i, oInput) {
-				// 	// var oBinding = oInput.getBinding("value");
-				// 	// try {
-				// 	// 	oBinding.getType().validateValue(oInput.getValue());
-				// 	// } catch (oException) {
-				// 	// 	oInput.setValueState("Error");
-				// 	// 	bValidationError = true;
-				// 	// }
-				// 	// if (oInput.getValue() == "" && oInput.getId().split("application-BUILD-prototype-component---Identificacao--") !="reboque2Input") {
-				// 	// 	oInput.setValueState("Error");
-				// 	// 	bValidationError = true;
-				// 	// }
-				// 	// if (oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1] == ("tratorInput" || "reboque1Input" ||
-				// 	// 		"reboque2Input") && !oInput.getValue().match('[A-Z]{3}\[0-9]{4}')) {
-				// 	// 	oInput.setValueState("Error");
-				// 	// 	bValidationError = true;
-				// 	// }
+			// 	// // check that inputs are not empty
+			// 	// // this does not happen during data binding as this is only triggered by changes
+			// 	// jQuery.each(aInputs, function (i, oInput) {
+			// 	// 	// var oBinding = oInput.getBinding("value");
+			// 	// 	// try {
+			// 	// 	// 	oBinding.getType().validateValue(oInput.getValue());
+			// 	// 	// } catch (oException) {
+			// 	// 	// 	oInput.setValueState("Error");
+			// 	// 	// 	bValidationError = true;
+			// 	// 	// }
+			// 	// 	// if (oInput.getValue() == "" && oInput.getId().split("application-BUILD-prototype-component---Identificacao--") !="reboque2Input") {
+			// 	// 	// 	oInput.setValueState("Error");
+			// 	// 	// 	bValidationError = true;
+			// 	// 	// }
+			// 	// 	// if (oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1] == ("tratorInput" || "reboque1Input" ||
+			// 	// 	// 		"reboque2Input") && !oInput.getValue().match('[A-Z]{3}\[0-9]{4}')) {
+			// 	// 	// 	oInput.setValueState("Error");
+			// 	// 	// 	bValidationError = true;
+			// 	// 	// }
 
-				// 	// 		var rexMail = '[A-Z]{3}\[0-9]{4}';
-				// 	// 		if (!oValue.match(rexMail)) {
-				// 	// 			throw new ValidateException("'" + oValue + "' não é uma placa válida.");
-				// 	// 		}
+			// 	// 	// 		var rexMail = '[A-Z]{3}\[0-9]{4}';
+			// 	// 	// 		if (!oValue.match(rexMail)) {
+			// 	// 	// 			throw new ValidateException("'" + oValue + "' não é uma placa válida.");
+			// 	// 	// 		}
 
-				// 	var id = oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1];
-				// 	if ((id != "reboque1Input") &&
-				// 		(id != "reboque2Input") &&
-				// 		(id != "tratorInput")) {
-				// 		if (oInput.getValue() == "") {
-				// 			oInput.setValueState("Error");
-				// 			bValidationError = true;
-				// 		}
-				// 	} else {
-				// 		if (oInput.getValue() != "" || id == "tratorInput") {
-				// 			if (!oInput.getValue().match(rexMail)) {
-				// 				oInput.setValueState("Error");
-				// 				bValidationError = true;
-				// 			}
-				// 		}
-				// 	}
-				// });
-				// output result
+			// 	// 	var id = oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1];
+			// 	// 	if ((id != "reboque1Input") &&
+			// 	// 		(id != "reboque2Input") &&
+			// 	// 		(id != "tratorInput")) {
+			// 	// 		if (oInput.getValue() == "") {
+			// 	// 			oInput.setValueState("Error");
+			// 	// 			bValidationError = true;
+			// 	// 		}
+			// 	// 	} else {
+			// 	// 		if (oInput.getValue() != "" || id == "tratorInput") {
+			// 	// 			if (!oInput.getValue().match(rexMail)) {
+			// 	// 				oInput.setValueState("Error");
+			// 	// 				bValidationError = true;
+			// 	// 			}
+			// 	// 		}
+			// 	// 	}
+			// 	// });
+			// 	// output result
 				
-				var rbCarroceria = this.getView().byId("radioButtonCarroceria");
-				if(rbCarroceria.getSelectedButton() != null){
-					rbCarroceria.setValueState("Error");
-					bValidationError = true;
-				}
+			// 	var rbCarroceria = this.getView().byId("radioButtonCarroceria");
+			// 	if(rbCarroceria.getSelectedButton() != null){
+			// 		rbCarroceria.setValueState("Error");
+			// 		bValidationError = true;
+			// 	}
 				
-				if (!bValidationError) {
-					this._onButtonPress(oEvent);
-				} else {
-					MessageBox.alert("Alguns campos podem estar vazios, ou as placas não estão no padrão correto (ABC1234)");
-				}
-			},
+			// 	if (!bValidationError) {
+			// 		this._onButtonPress(oEvent);
+			// 	} else {
+			// 		MessageBox.alert("Alguns campos podem estar vazios, ou as placas não estão no padrão correto (ABC1234)");
+			// 	}
+			// },
 
 			onInit: function () {
 				this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
