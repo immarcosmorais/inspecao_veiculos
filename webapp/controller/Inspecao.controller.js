@@ -425,8 +425,8 @@ sap.ui.define([
 				var vBoxProdutos = this.getView().byId("vBoxProdutos");
 				var vBoxBotoes = this.getView().byId("vBoxBotoes");
 				var arrayItems = vBoxProdutos.getItems();
-				if (arrayItems.length > 2) {
-					vBoxProdutos.removeItem("hBoxProdutos" + id);
+				if (arrayItems.length > 1) {
+					vBoxProdutos.removeItem("vBoxProdutos" + id);
 					vBoxBotoes.removeItem("hBoxBotoes" + id);
 				}
 
@@ -436,11 +436,12 @@ sap.ui.define([
 
 				var vBoxBotoes = this.getView().byId("vBoxBotoes");
 				var vBoxProdutos = this.getView().byId("vBoxProdutos");
-				var arrayItems = vBoxProdutos.getItems();
-				var item = arrayItems[arrayItems.length - 1];
-				var sp = item.getItems();
 				var value = "";
+
 				try {
+					var arrayItems = vBoxProdutos.getItems();
+					var item = arrayItems[arrayItems.length - 1];
+					var sp = item.getItems();
 					value = sp[0].getProperty("value");
 				} catch (e) {
 
@@ -458,76 +459,154 @@ sap.ui.define([
 						items: {
 							path: "/Produto",
 							template: itemTemplate
-						}
+						},
+						width: "100%",
+						maxWidth: "100%",
+						icon: "",
+						enabled: true,
+						type: "Default",
+						textAlign: "Initial",
+						valueState: "None",
+						forceSelection: false
 					});
-					selectProdutos.setWidth("100%");
-					selectProdutos.setMaxWidth("100%");
-					selectProdutos.setEnabled(true);
-					selectProdutos.setPickerType("Default");
-					selectProdutos.setTextAlign("Initial");
-					selectProdutos.setValueState("None");
 
-					var oHBox1 = new sap.m.HBox("hBoxProdutos" + idElements, {
+					var oVBox1 = new sap.m.VBox("vBoxProdutos" + idElements, {
 						items: [
 							selectProdutos
-						]
+						],
+						alignItems: "Stretch",
+						direction: "Column",
+						fitContainer: false,
+						width: "auto",
+						hight: "auto",
+						justifyContent: "Start",
+						renderType: "Div",
+						visible: true,
+						displayInline: false,
 					});
-					oHBox1.setAlignItems("Stretch");
-					oHBox1.setDirection("Row");
-					oHBox1.setFitContainer(false);
-					oHBox1.setWidth("100%");
-					oHBox1.setHeight("100%");
-					oHBox1.setJustifyContent("Center");
-					oHBox1.setRenderType("Div");
-					oHBox1.setVisible(true);
-					oHBox1.setDisplayInline(false);
-					oHBox1.addStyleClass("sapUiTinyMargin");
+					oVBox1.addStyleClass("sapUiTinyMargin");
 
-					vBoxProdutos.addItem(oHBox1);
+					vBoxProdutos.addItem(oVBox1);
 
-					var btnDelete = new sap.m.Button("btnDelete" + idElements);
-					btnDelete.setType("Default");
-					btnDelete.setIcon("sap-icon://delete");
-					btnDelete.setIconFirst(true);
-					btnDelete.setWidth("auto");
-					btnDelete.setEnabled(true);
-					btnDelete.setVisible(true);
-					btnDelete.setIconDensityAware(false);
+					var btnDelete = new sap.m.Button("btnDelete" + idElements, {
+						type: "Default",
+						icon: "sap-icon://delete",
+						iconFirst: true,
+						width: "auto",
+						enabled: true,
+						visible: true,
+						iconDensityAware: false
+					});
 					btnDelete.attachPress(this._deleteItem, this);
+					btnDelete.addStyleClass("sapUiTinyMarginBegin");
 
-					var btnAdd = new sap.m.Button("btnAdd" + idElements);
-					btnAdd.setType("Default");
-					btnAdd.setIcon("sap-icon://add");
-					btnAdd.setIconFirst(true);
-					btnAdd.setWidth("auto");
-					btnAdd.setEnabled(true);
-					btnAdd.setVisible(true);
-					btnAdd.setIconDensityAware(false);
-					btnAdd.addStyleClass("sapUiTinyMarginBegin");
+					var btnAdd = new sap.m.Button("btnAdd" + idElements, {
+						type: "Default",
+						icon: "sap-icon://add",
+						iconFirst: true,
+						width: "auto",
+						enabled: true,
+						visible: true,
+						iconDensityAware: false
+					});
 					btnAdd.attachPress(this._addItem, this);
+					btnAdd.addStyleClass("sapUiTinyMarginBegin");
 
 					var oHBox2 = new sap.m.HBox("hBoxBotoes" + idElements, {
 						items: [
 							btnDelete,
 							btnAdd
-						]
+						],
+						alignItems: "Center",
+						direction: "Row",
+						fitContainer: false,
+						width: "auto",
+						height: "auto",
+						justifyContent: "Center",
+						renderType: "Div",
+						visible: true,
+						displayInline: false
 					});
-					oHBox2.setAlignItems("Center");
-					oHBox2.setDirection("Row");
-					oHBox2.setFitContainer(false);
-					oHBox2.setWidth("100%");
-					oHBox2.setHeight("100%");
-					oHBox2.setJustifyContent("Center");
-					oHBox2.setRenderType("Div");
-					oHBox2.setVisible(true);
-					oHBox2.setDisplayInline(false);
 					oHBox2.addStyleClass("sapUiTinyMargin");
+
 					vBoxBotoes.addItem(oHBox2);
 
 					idElements++;
-					
+
 				} else {
 					MessageBox.alert("É necessário selecionar um item para definir um novo.");
+				}
+			},
+
+			_onContinue: function (oEvent) {
+				var bValidationError = false;
+
+				// // collect input controls
+				// var oView = this.getView();
+				// var aInputs = [
+				// 	oView.byId("tratorInput"),
+				// 	oView.byId("reboque1Input"),
+				// 	oView.byId("reboque2Input"),
+				// 	oView.byId("motoristaInput"),
+				// 	oView.byId("fornecedorInput")
+				// ];
+				// var bValidationError = false;
+				// var rexMail = '[A-Z]{3}\[0-9]{4}';
+
+				// // check that inputs are not empty
+				// // this does not happen during data binding as this is only triggered by changes
+				// jQuery.each(aInputs, function (i, oInput) {
+				// 	// var oBinding = oInput.getBinding("value");
+				// 	// try {
+				// 	// 	oBinding.getType().validateValue(oInput.getValue());
+				// 	// } catch (oException) {
+				// 	// 	oInput.setValueState("Error");
+				// 	// 	bValidationError = true;
+				// 	// }
+				// 	// if (oInput.getValue() == "" && oInput.getId().split("application-BUILD-prototype-component---Identificacao--") !="reboque2Input") {
+				// 	// 	oInput.setValueState("Error");
+				// 	// 	bValidationError = true;
+				// 	// }
+				// 	// if (oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1] == ("tratorInput" || "reboque1Input" ||
+				// 	// 		"reboque2Input") && !oInput.getValue().match('[A-Z]{3}\[0-9]{4}')) {
+				// 	// 	oInput.setValueState("Error");
+				// 	// 	bValidationError = true;
+				// 	// }
+
+				// 	// 		var rexMail = '[A-Z]{3}\[0-9]{4}';
+				// 	// 		if (!oValue.match(rexMail)) {
+				// 	// 			throw new ValidateException("'" + oValue + "' não é uma placa válida.");
+				// 	// 		}
+
+				// 	var id = oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1];
+				// 	if ((id != "reboque1Input") &&
+				// 		(id != "reboque2Input") &&
+				// 		(id != "tratorInput")) {
+				// 		if (oInput.getValue() == "") {
+				// 			oInput.setValueState("Error");
+				// 			bValidationError = true;
+				// 		}
+				// 	} else {
+				// 		if (oInput.getValue() != "" || id == "tratorInput") {
+				// 			if (!oInput.getValue().match(rexMail)) {
+				// 				oInput.setValueState("Error");
+				// 				bValidationError = true;
+				// 			}
+				// 		}
+				// 	}
+				// });
+				// output result
+				
+				var rbCarroceria = this.getView().byId("radioButtonCarroceria");
+				if(rbCarroceria.getSelectedButton() != null){
+					rbCarroceria.setValueState("Error");
+					bValidationError = true;
+				}
+				
+				if (!bValidationError) {
+					this._onButtonPress(oEvent);
+				} else {
+					MessageBox.alert("Alguns campos podem estar vazios, ou as placas não estão no padrão correto (ABC1234)");
 				}
 			},
 
