@@ -69,6 +69,28 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 
+		_testaCPF: function(strCPF) {
+			var Soma;
+			var Resto;
+			Soma = 0;
+			var i;
+			if (strCPF == "00000000000") return false;
+
+			for (i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+			Resto = (Soma * 10) % 11;
+
+			if ((Resto == 10) || (Resto == 11)) Resto = 0;
+			if (Resto != parseInt(strCPF.substring(9, 10))) return false;
+
+			Soma = 0;
+			for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+			Resto = (Soma * 10) % 11;
+
+			if ((Resto == 10) || (Resto == 11)) Resto = 0;
+			if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+			return true;
+		},
+
 		_onContinue: function (oEvent) {
 			// collect input controls
 			var oView = this.getView();
@@ -76,51 +98,35 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				oView.byId("tratorInput"),
 				oView.byId("reboque1Input"),
 				oView.byId("reboque2Input"),
-				oView.byId("motoristaInput"),
-				oView.byId("fornecedorInput")
+				// oView.byId("motoristaInput"),
+				// oView.byId("cpfInput"),
 			];
 			var bValidationError = false;
 			var rexMail = '[A-Z]{3}\[0-9]{4}';
+			
+			if(!this._testaCPF(this.getView().byId("cpfInput").getValue())){
+				bValidationError = true;
+				this.getView().byId("cpfInput").setValueState("Error");
+			}
+			
+			this._testaCPF("");
 
-			// check that inputs are not empty
-			// this does not happen during data binding as this is only triggered by changes
 			jQuery.each(aInputs, function (i, oInput) {
-				// var oBinding = oInput.getBinding("value");
-				// try {
-				// 	oBinding.getType().validateValue(oInput.getValue());
-				// } catch (oException) {
-				// 	oInput.setValueState("Error");
-				// 	bValidationError = true;
-				// }
-				// if (oInput.getValue() == "" && oInput.getId().split("application-BUILD-prototype-component---Identificacao--") !="reboque2Input") {
-				// 	oInput.setValueState("Error");
-				// 	bValidationError = true;
-				// }
-				// if (oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1] == ("tratorInput" || "reboque1Input" ||
-				// 		"reboque2Input") && !oInput.getValue().match('[A-Z]{3}\[0-9]{4}')) {
-				// 	oInput.setValueState("Error");
-				// 	bValidationError = true;
-				// }
-
-				// 		var rexMail = '[A-Z]{3}\[0-9]{4}';
-				// 		if (!oValue.match(rexMail)) {
-				// 			throw new ValidateException("'" + oValue + "' não é uma placa válida.");
-				// 		}
 
 				var id = oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1];
-				if ((id != "reboque1Input") &&
-					(id != "reboque2Input") &&
-					(id != "tratorInput")) {
-					if (oInput.getValue() == "") {
-						oInput.setValueState("Error");
-						bValidationError = true;
-					}
-				} else {
-					if (oInput.getValue() != "" || id == "tratorInput") {
+
+				if ((id == "reboque1Input") || (id == "reboque2Input")) {
+					if (oInput.getValue() != "") {
+						//Campos Reboque 1 e Reboque 2 podem ser vazios, mas caso contrario, devem ser válidados
 						if (!oInput.getValue().match(rexMail)) {
 							oInput.setValueState("Error");
 							bValidationError = true;
 						}
+					}
+				} else if (id == "tratorInput") {
+					if (!oInput.getValue().match(rexMail)) {
+						oInput.setValueState("Error");
+						bValidationError = true;
 					}
 				}
 			});
@@ -130,7 +136,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				//MessageToast.show("The input is validated. You could now continue to the next screen");
 				this._onButtonPress(oEvent);
 			} else {
-				MessageBox.alert("Alguns campos podem estar vazios, ou as placas não estão no padrão correto (ABC1234)");
+				MessageBox.alert("Alguns campos podem estar preenchidos incorretamente. Placas = 'ABC1234' e CPF = '000.000.000-00'");
 			}
 		},
 
@@ -194,7 +200,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			var sInputValue = oEvent.getSource().getValue();
 			this.inputId = oEvent.getSource().getId();
-			this.getView().setModel(gModelHelp);
+
+			// this.getView().setModel(gModelHelp);
 
 			if (this.inputId.toString().indexOf("tratorInput") != -1) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
@@ -208,6 +215,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			} else if (this.inputId.toString().indexOf("fornecedorInput") != -1) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogFornecedor";
 				filtro = "Name1";
+			} else if (this.inputId.toString().indexOf("cpfInput") != -1) {
+				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogCPF";
+				filtro = "Stcd2";
 			}
 
 			this._valueHelpDialog = sap.ui.xmlfragment(caminho, this);
@@ -233,18 +243,28 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		_handleValueHelpClose: function (evt) {
-			var productInput, r1, r2, i1, i2, sValue;
+			var productInput, r1 = "",
+				r2 = "",
+				i1, i2, i3, cpf = "",
+				sValue;
 			var oSelectedItem = evt.getParameter("selectedItem");
 			if (oSelectedItem) {
 				productInput = this.byId(this.inputId);
 				sValue = oSelectedItem.getTitle();
 			}
 			gModelHelp = this.getView().getModel();
+
+			i1 = this.getView().byId("reboque1Input");
+			i2 = this.getView().byId("reboque2Input");
+			i3 = this.getView().byId("cpfInput");
+
 			if (this.inputId.toString().indexOf("tratorInput") != -1 && (oSelectedItem)) {
 				r1 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque1;
 				r2 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque2;
-				i1 = this.getView().byId("reboque1Input");
-				i2 = this.getView().byId("reboque2Input");
+			}
+
+			if (this.inputId.toString().indexOf("motoristaInput") != -1 && (oSelectedItem)) {
+				cpf = gModelHelp.getData("/Motorista('" + sValue + "')").Stcd2;
 			}
 
 			productInput.setValue(sValue.toUpperCase());
@@ -255,8 +275,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			if (r2 != "") {
 				i2.setValue(r2.toUpperCase());
 			}
+			if (cpf != "") {
+				i3.setValue(cpf.toUpperCase());
+			}
+
 			i1.setValueState("None");
 			i2.setValueState("None");
+			i3.setValueState("None");
 
 			evt.getSource().getBinding("items").filter([]);
 		},
@@ -293,6 +318,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		// }),
 
 		handleLiveChange: function (oEvent) {
+
 			// if (this.getView().getModel() != gModelCustom) {
 			// 	var value1 = this.getView().byId("reboque1Input").getValue();
 			// 	var value2 = this.getView().byId("reboque2Input").getValue();
@@ -320,10 +346,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// 	});
 			// }
 
-			if (gModelHelp == null) {
-				var sServiceUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
-				gModelHelp = new sap.ui.model.odata.v2.ODataModel(sServiceUrl, true);
-			}
+			// if (gModelHelp == null) {
+			// 	var sServiceUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+			// 	gModelHelp = new sap.ui.model.odata.v2.ODataModel(sServiceUrl, true);
+			// }
 
 			//this.getView().setModel(gModelCustom);
 			//sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
