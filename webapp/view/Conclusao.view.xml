@@ -10,7 +10,7 @@
                         <form:formElements>
                             <form:FormElement visible="true">
                                 <form:fields>
-                                    <RadioButtonGroup id="sap_Responsive_Page_0-content-build_simple_form_Form-1536262336890-formContainers-build_simple_form_FormContainer-1-formElements-build_simple_form_FormElement-1-fields-sap_m_RadioButtonGroup-1536262370237" columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect">
+                                    <RadioButtonGroup id="resultadoRb" columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect">
                                         <buttons>
                                             <RadioButton text="Aprovado" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
                                             <RadioButton text="Reprovado" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
@@ -25,7 +25,7 @@
                                 <form:fields>
                                    <!-- <DatePicker width="auto" displayFormat="medium" enabled="true" visible="true" value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}" /> -->
                                    <!--	<DatePicker id="DataCarregamento" value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}" class="sapUiSmallMarginBottom"/> -->
-                                	<DatePicker dateValue="{/date}"/>
+                                	<DatePicker dateValue="{/date}" id="dataInput"/>
                                 </form:fields>
                             </form:FormElement>
                             <form:FormElement visible="true">
@@ -33,7 +33,7 @@
                                     <Label text="Observação" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                                 </form:label>
                                 <form:fields>
-                                    <Input placeholder="" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"/>
+                                    <Input placeholder="" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" id="obsInput"/>
                                 </form:fields>
                             </form:FormElement>
                         </form:formElements>

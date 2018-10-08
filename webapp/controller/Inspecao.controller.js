@@ -23,20 +23,20 @@ sap.ui.define([
 					}
 				}
 				this.aRadioButtonGroupIds = [
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536251559036-content-sap_m_RadioButtonGroup-1536251573633",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-1536259558052-content-sap_m_RadioButtonGroup-1536259838771",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-1536259569307-content-sap_m_RadioButtonGroup-1536259889756",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-1536260008355-content-sap_m_RadioButtonGroup-1536260031669",
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536260174884-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
+					"carroceriaRadioButton",
+					"rb01",
+					"rb02",
+					"rb03",
+					"rb04",
+					"rb05",
+					"rb06",
+					"rb07",
+					"rb08",
+					"rb09",
+					"rb10",
+					"rb11",
+					"rb12",
+					"rb13"
 				];
 				this.handleRadioButtonGroupsSelectedIndex();
 			},
@@ -80,7 +80,7 @@ sap.ui.define([
 			},
 			convertTextToIndexFormatter: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536251559036-content-sap_m_RadioButtonGroup-1536251573633"
+					"carroceriaRadioButton"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -100,7 +100,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect: function () {},
 			convertTextToIndexFormatter1: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
+					"rb01"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -120,7 +120,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect1: function () {},
 			convertTextToIndexFormatter2: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2"
+					"rb02"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -140,7 +140,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect2: function () {},
 			convertTextToIndexFormatter3: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2"
+					"rb03"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -160,7 +160,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect3: function () {},
 			convertTextToIndexFormatter4: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-1536259558052-content-sap_m_RadioButtonGroup-1536259838771"
+					"rb04"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -180,7 +180,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect4: function () {},
 			convertTextToIndexFormatter5: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
+					"rb05"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -200,7 +200,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect5: function () {},
 			convertTextToIndexFormatter6: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2"
+					"rb06"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -220,7 +220,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect6: function () {},
 			convertTextToIndexFormatter7: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2"
+					"rb07"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -240,7 +240,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect7: function () {},
 			convertTextToIndexFormatter8: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-1536259569307-content-sap_m_RadioButtonGroup-1536259889756"
+					"rb08"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -260,7 +260,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect8: function () {},
 			convertTextToIndexFormatter9: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
+					"rb09"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -280,7 +280,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect9: function () {},
 			convertTextToIndexFormatter10: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2"
+					"rb10"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -300,7 +300,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect10: function () {},
 			convertTextToIndexFormatter11: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2"
+					"rb11"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -320,7 +320,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect11: function () {},
 			convertTextToIndexFormatter12: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-1536260008355-content-sap_m_RadioButtonGroup-1536260031669"
+					"rb12"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -340,7 +340,7 @@ sap.ui.define([
 			_onRadioButtonGroupSelect12: function () {},
 			convertTextToIndexFormatter13: function (sTextValue) {
 				var oRadioButtonGroup = this.byId(
-					"sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536260174884-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
+					"rb13"
 				);
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 				if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -359,6 +359,7 @@ sap.ui.define([
 			},
 			_onRadioButtonGroupSelect13: function () {},
 			_onButtonPress: function (oEvent) {
+				this._inputDados();
 				var oBindingContext = oEvent.getSource().getBindingContext();
 				return new Promise(function (fnResolve) {
 					this.doNavigate("Conclusao", oBindingContext, fnResolve, "");
@@ -485,7 +486,6 @@ sap.ui.define([
 						displayInline: false,
 					});
 					oVBox1.addStyleClass("sapUiTinyMargin");
-
 					vBoxProdutos.addItem(oVBox1);
 
 					var btnDelete = new sap.m.Button("btnDelete" + idElements, {
@@ -497,8 +497,8 @@ sap.ui.define([
 						visible: true,
 						iconDensityAware: false
 					});
-					btnDelete.attachPress(this._deleteItem, this);
 					btnDelete.addStyleClass("sapUiTinyMarginBegin");
+					btnDelete.attachPress(this._deleteItem, this);
 
 					var btnAdd = new sap.m.Button("btnAdd" + idElements, {
 						type: "Default",
@@ -509,8 +509,8 @@ sap.ui.define([
 						visible: true,
 						iconDensityAware: false
 					});
-					btnAdd.attachPress(this._addItem, this);
 					btnAdd.addStyleClass("sapUiTinyMarginBegin");
+					btnAdd.attachPress(this._addItem, this);
 
 					var oHBox2 = new sap.m.HBox("hBoxBotoes" + idElements, {
 						items: [
@@ -538,77 +538,88 @@ sap.ui.define([
 				}
 			},
 
-			// _onContinue: function (oEvent) {
-			// 	var bValidationError = false;
+			_inputDados: function () {
 
-			// 	// // collect input controls
-			// 	// var oView = this.getView();
-			// 	// var aInputs = [
-			// 	// 	oView.byId("tratorInput"),
-			// 	// 	oView.byId("reboque1Input"),
-			// 	// 	oView.byId("reboque2Input"),
-			// 	// 	oView.byId("motoristaInput"),
-			// 	// 	oView.byId("fornecedorInput")
-			// 	// ];
-			// 	// var bValidationError = false;
-			// 	// var rexMail = '[A-Z]{3}\[0-9]{4}';
+				// item = this.getView().byId("vBoxProdutos").getItems()[0].getItems()[0].getSelectedKey();
 
-			// 	// // check that inputs are not empty
-			// 	// // this does not happen during data binding as this is only triggered by changes
-			// 	// jQuery.each(aInputs, function (i, oInput) {
-			// 	// 	// var oBinding = oInput.getBinding("value");
-			// 	// 	// try {
-			// 	// 	// 	oBinding.getType().validateValue(oInput.getValue());
-			// 	// 	// } catch (oException) {
-			// 	// 	// 	oInput.setValueState("Error");
-			// 	// 	// 	bValidationError = true;
-			// 	// 	// }
-			// 	// 	// if (oInput.getValue() == "" && oInput.getId().split("application-BUILD-prototype-component---Identificacao--") !="reboque2Input") {
-			// 	// 	// 	oInput.setValueState("Error");
-			// 	// 	// 	bValidationError = true;
-			// 	// 	// }
-			// 	// 	// if (oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1] == ("tratorInput" || "reboque1Input" ||
-			// 	// 	// 		"reboque2Input") && !oInput.getValue().match('[A-Z]{3}\[0-9]{4}')) {
-			// 	// 	// 	oInput.setValueState("Error");
-			// 	// 	// 	bValidationError = true;
-			// 	// 	// }
+				var oItem = this.getView().byId("vBoxProdutos").getItems();
+				var produtos = [];
 
-			// 	// 	// 		var rexMail = '[A-Z]{3}\[0-9]{4}';
-			// 	// 	// 		if (!oValue.match(rexMail)) {
-			// 	// 	// 			throw new ValidateException("'" + oValue + "' não é uma placa válida.");
-			// 	// 	// 		}
+				jQuery.each(oItem, function (i, item) {
+					var flag = true;
+					for (var i = 0; i < produtos.length; i++) {
+						if (produtos[i] == item.getItems()[0].getSelectedKey()) {
+							flag = false;
+							break;
+						}
+					}
+					if (flag) {
+						produtos.push(item.getItems()[0].getSelectedKey());
+					}
+				});
 
-			// 	// 	var id = oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1];
-			// 	// 	if ((id != "reboque1Input") &&
-			// 	// 		(id != "reboque2Input") &&
-			// 	// 		(id != "tratorInput")) {
-			// 	// 		if (oInput.getValue() == "") {
-			// 	// 			oInput.setValueState("Error");
-			// 	// 			bValidationError = true;
-			// 	// 		}
-			// 	// 	} else {
-			// 	// 		if (oInput.getValue() != "" || id == "tratorInput") {
-			// 	// 			if (!oInput.getValue().match(rexMail)) {
-			// 	// 				oInput.setValueState("Error");
-			// 	// 				bValidationError = true;
-			// 	// 			}
-			// 	// 		}
-			// 	// 	}
-			// 	// });
-			// 	// output result
-				
-			// 	var rbCarroceria = this.getView().byId("radioButtonCarroceria");
-			// 	if(rbCarroceria.getSelectedButton() != null){
-			// 		rbCarroceria.setValueState("Error");
-			// 		bValidationError = true;
-			// 	}
-				
-			// 	if (!bValidationError) {
-			// 		this._onButtonPress(oEvent);
-			// 	} else {
-			// 		MessageBox.alert("Alguns campos podem estar vazios, ou as placas não estão no padrão correto (ABC1234)");
-			// 	}
-			// },
+				var dados = {
+					carroceria: this.getView().byId("carroceriaRadioButton").getSelectedButton().getText(),
+					ultima_cargas: {
+						compartimento1: {
+							ulti_carga: this.getView().byId("c1UltiCargaInput").getValue(),
+							penu_carga: this.getView().byId("c1PenuCargaInput").getValue(),
+							ante_carga: this.getView().byId("c1AnteCargaInput").getValue()
+						},
+						compartimento2: {
+							ulti_carga: this.getView().byId("c2UltiCargaInput").getValue(),
+							penu_carga: this.getView().byId("c2PenuCargaInput").getValue(),
+							ante_carga: this.getView().byId("c2AnteCargaInput").getValue()
+						}
+					},
+					produtos: {
+						chave: produtos
+					},
+					tipo_limpeza: {
+						tipo_limpeza_01: {
+							compartimento1: this.getView().byId("cb01").getSelected(),
+							compartimento2: this.getView().byId("cb02").getSelected()
+						},
+						tipo_limpeza_02: {
+							compartimento1: this.getView().byId("cb03").getSelected(),
+							compartimento2: this.getView().byId("cb04").getSelected()
+						},
+						tipo_limpeza_03: {
+							compartimento1: this.getView().byId("cb05").getSelected(),
+							compartimento2: this.getView().byId("cb06").getSelected()
+						},
+						tipo_limpeza_04: {
+							compartimento1: this.getView().byId("cb07").getSelected(),
+							compartimento2: this.getView().byId("cb08").getSelected()
+						},
+						tipo_limpeza_05: {
+							compartimento1: this.getView().byId("cb09").getSelected(),
+							compartimento2: this.getView().byId("cb10").getSelected()
+						},
+						tipo_limpeza_06: {
+							compartimento1: this.getView().byId("cb11").getSelected(),
+							compartimento2: this.getView().byId("cb12").getSelected()
+						}
+					},
+					condicao_limpeza: {
+						condicoe01: this.getView().byId("rb01").getSelectedButton().getText(),
+						condicoe02: this.getView().byId("rb02").getSelectedButton().getText(),
+						condicoe03: this.getView().byId("rb03").getSelectedButton().getText(),
+						condicoe04: this.getView().byId("rb04").getSelectedButton().getText(),
+						condicoe05: this.getView().byId("rb05").getSelectedButton().getText(),
+						condicoe06: this.getView().byId("rb06").getSelectedButton().getText(),
+						condicoe07: this.getView().byId("rb07").getSelectedButton().getText(),
+						condicoe08: this.getView().byId("rb08").getSelectedButton().getText(),
+						condicoe09: this.getView().byId("rb09").getSelectedButton().getText(),
+						condicoe10: this.getView().byId("rb10").getSelectedButton().getText(),
+						condicoe11: this.getView().byId("rb11").getSelectedButton().getText(),
+						condicoe12: this.getView().byId("rb12").getSelectedButton().getText(),
+						condicoe13: this.getView().byId("rb13").getSelectedButton().getText()
+					}
+				};
+				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+				oStorage.put("inspecao", dados);
+			},
 
 			onInit: function () {
 				this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);

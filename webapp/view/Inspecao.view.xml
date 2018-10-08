@@ -1,38 +1,30 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout"
-	controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Inspecao">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Inspecao">
 	<Page showHeader="true" title="Inspeção" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
 			<ScrollContainer horizontal="true" vertical="true" width="100%" height="100%" visible="true">
 				<content>
-					<Panel height="auto" width="100%" headerText="Tipo de Carroceria" expandable="true" expanded="true" expandAnimation="true"
-						backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Tipo de Carroceria" expandable="true" expandAnimation="true" backgroundDesign="Solid">
 						<content>
-							<RadioButtonGroup
-								id="radioButtonCarroceria"
-								columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit"
-								select="_onRadioButtonGroupSelect">
+							<RadioButtonGroup id="carroceriaRadioButton" columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect">
 								<buttons>
-									<RadioButton text="Madeira" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-									<RadioButton text="Metal" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-									<RadioButton text="Bazuca" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-									<RadioButton text="Baú" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-									<RadioButton text="Tanque inox ou aço" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+									<RadioButton text="Madeira" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true" id="maderiaBtn"/>
+									<RadioButton text="Metal" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" id="metalBtn"/>
+									<RadioButton text="Bazuca" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" id="bazucaBtn"/>
+									<RadioButton text="Baú" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" id="bauBtn"/>
+									<RadioButton text="Tanque inox ou aço" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false" id="acoBtn"/>
 								</buttons>
 							</RadioButtonGroup>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Produtos" expandable="true" expandAnimation="true" backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Produtos" expandable="true" expandAnimation="true" backgroundDesign="Solid" expanded="true">
 						<content>
-							<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
-								visible="true" displayInline="false">
+							<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 								<items>
-									<VBox id="vBoxProdutos" alignItems="Stretch" direction="Column" fitContainer="false" width="85%" height="auto" justifyContent="Start"
-										renderType="Div" visible="true" displayInline="false">
+									<VBox id="vBoxProdutos" alignItems="Stretch" direction="Column" fitContainer="false" width="85%" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 										<items/>
 										<layoutData/>
 									</VBox>
-									<VBox id="vBoxBotoes" alignItems="Center" direction="Column" fitContainer="false" width="15%" height="auto" justifyContent="Center"
-										renderType="Div" visible="true" displayInline="false">
+									<VBox id="vBoxBotoes" alignItems="Center" direction="Column" fitContainer="false" width="15%" height="auto" justifyContent="Center" renderType="Div" visible="true" displayInline="false">
 										<items/>
 										<layoutData/>
 									</VBox>
@@ -41,8 +33,7 @@
 							</HBox>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Últimas cargas transportadas" expandable="true" expanded="false" expandAnimation="true"
-						backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Últimas cargas transportadas" expandable="true" expandAnimation="true" backgroundDesign="Solid">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>
@@ -51,23 +42,17 @@
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="H6">
 												<layout:content>
 													<Text text="Compartimento 1" width="497px" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													<Input placeholder="Última Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px"
-														valueHelpOnly="false" maxLength="0"/>
-													<Input placeholder="Penúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px"
-														valueHelpOnly="false" maxLength="0"/>
-													<Input placeholder="Antepenúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px"
-														valueHelpOnly="false" maxLength="0"/>
+													<Input placeholder="Última Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px" valueHelpOnly="false" maxLength="0" id="c1UltiCargaInput"/>
+													<Input placeholder="Penúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px" valueHelpOnly="false" maxLength="0" id="c1PenuCargaInput"/>
+													<Input placeholder="Antepenúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px" valueHelpOnly="false" maxLength="0" id="c1AnteCargaInput"/>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="H2">
 												<layout:content>
 													<Text text="Compartimento 2" width="497px" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													<Input placeholder="Última Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px"
-														valueHelpOnly="false" maxLength="0"/>
-													<Input placeholder="Penúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px"
-														valueHelpOnly="false" maxLength="0"/>
-													<Input placeholder="Antepenúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px"
-														valueHelpOnly="false" maxLength="0"/>
+													<Input placeholder="Última Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px" valueHelpOnly="false" maxLength="0" id="c2UltiCargaInput"/>
+													<Input placeholder="Penúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px" valueHelpOnly="false" maxLength="0" id="c2PenuCargaInput"/>
+													<Input placeholder="Antepenúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="250px" valueHelpOnly="false" maxLength="0" id="c2AnteCargaInput"/>
 												</layout:content>
 											</layout:BlockLayoutCell>
 										</layout:content>
@@ -76,8 +61,7 @@
 							</layout:BlockLayout>
 						</content>
 					</Panel>
-					<Panel height="auto" width="auto" headerText="Tipo de limpeza" expandable="true" expanded="false" expandAnimation="true"
-						backgroundDesign="Solid">
+					<Panel height="auto" width="auto" headerText="Tipo de limpeza" expandable="true" expandAnimation="true" backgroundDesign="Solid">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>
@@ -85,14 +69,11 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
-														visible="true" displayInline="false">
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 														<items>
 															<Text text="Sopro com ar comprimido (A)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
-															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb01"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb02"/>
 														</items>
 														<layoutData/>
 													</VBox>
@@ -100,14 +81,11 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="H4">
 												<layout:content>
-													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
-														visible="true" displayInline="false">
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 														<items>
 															<Text text="Varredura (A)" width="180px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
-															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb03"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb04"/>
 														</items>
 														<layoutData/>
 													</VBox>
@@ -115,14 +93,11 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
-														visible="true" displayInline="false">
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 														<items>
 															<Text text="Lavagem com água (B)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
-															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb05"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb06"/>
 														</items>
 														<layoutData/>
 													</VBox>
@@ -134,15 +109,11 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
-														visible="true" displayInline="false">
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 														<items>
-															<Text text="Vaporização (com vapor d'água) (C)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
-																visible="true"/>
-															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
-															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
+															<Text text="Vaporização (com vapor d'água) (C)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb07"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb08"/>
 														</items>
 														<layoutData/>
 													</VBox>
@@ -150,15 +121,11 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
-														visible="true" displayInline="false">
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 														<items>
-															<Text text="Lavagem com água e agente de limpeza (C)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
-																visible="true"/>
-															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
-															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
+															<Text text="Lavagem com água e agente de limpeza (C)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb09"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb10"/>
 														</items>
 														<layoutData/>
 													</VBox>
@@ -166,15 +133,11 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
-														visible="true" displayInline="false">
+													<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 														<items>
-															<Text text="Lavagem com água e agente de desinfecção (D)" width="auto" maxLines="2" wrapping="true" textAlign="Begin"
-																textDirection="Inherit" visible="true"/>
-															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
-															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit"
-																wrapping="false" useEntireWidth="true"/>
+															<Text text="Lavagem com água e agente de desinfecção (D)" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+															<CheckBox text="Compartimento 1" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb11"/>
+															<CheckBox text="Compartimento 2" selected="false" editable="true" enabled="true" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="cb12"/>
 														</items>
 														<layoutData/>
 													</VBox>
@@ -186,8 +149,7 @@
 							</layout:BlockLayout>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Condições do veículo" expandable="true" expanded="false" expandAnimation="true"
-						backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Condições do veículo" expandable="true" expandAnimation="true" backgroundDesign="Solid">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>
@@ -195,64 +157,48 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Resíduos de cargas anteriores / produtos químicos" width="220px" maxLines="2" wrapping="true" textAlign="Begin"
-														textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect1">
+													<Text text="Resíduos de cargas anteriores / produtos químicos" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb01" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect1">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Lona / Forração se furos ou rasgos" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
-														visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect2">
+													<Text text="Lona / Forração se furos ou rasgos" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb02" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect2">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="End" titleLevel="Auto">
 												<layout:content>
-													<Text text="Presença de objetos estranhos / insetos / odores" width="220px" maxLines="2" wrapping="true" textAlign="Begin"
-														textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect3">
+													<Text text="Presença de objetos estranhos / insetos / odores" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb03" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect3">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Tanque - Parte Interna e seca" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
-														visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258163169-content-sap_ui_layout_BlockLayoutCell-1536259558052-content-sap_m_RadioButtonGroup-1536259838771"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect4">
+													<Text text="Tanque - Parte Interna e seca" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb04" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect4">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -263,64 +209,48 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Vazamento de combustíveis / lubrificantes" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
-														visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect5">
+													<Text text="Vazamento de combustíveis / lubrificantes" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb05" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect5">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Carroceria / Tanque limpo, Seco e em Boas Condições" width="220px" maxLines="2" wrapping="true" textAlign="Begin"
-														textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect6">
+													<Text text="Carroceria / Tanque limpo, Seco e em Boas Condições" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb06" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect6">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="End" titleLevel="Auto">
 												<layout:content>
-													<Text text="Identificação para Transporte de Óleo Vegetal" width="220px" maxLines="2" wrapping="true" textAlign="Begin"
-														textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect7">
+													<Text text="Identificação para Transporte de Óleo Vegetal" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb07" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect7">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Tanque - Vedações das tampas superiores em bom estado" width="220px" maxLines="3" wrapping="true" textAlign="Begin"
-														textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258645152-content-sap_ui_layout_BlockLayoutCell-1536259569307-content-sap_m_RadioButtonGroup-1536259889756"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect8">
+													<Text text="Tanque - Vedações das tampas superiores em bom estado" width="220px" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb08" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect8">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -331,64 +261,48 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Aparência externa do veículo é boa e apresenta-se limpa" width="220px" maxLines="2" wrapping="true" textAlign="Begin"
-														textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect9">
+													<Text text="Aparência externa do veículo é boa e apresenta-se limpa" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb09" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect9">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Travas, engates, válvulas de segurança, bocas de inspeção, conexões, mangotes e tampas íntegras e em bom estado de conservação."
-														width="220px" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-2-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect10">
+													<Text text="Travas, engates, válvulas de segurança, bocas de inspeção, conexões, mangotes e tampas íntegras e em bom estado de conservação." width="220px" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb10" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect10">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="End" titleLevel="Auto">
 												<layout:content>
-													<Text text="Inexistência de resíduos (Borra, sebo, ácido graxo, goma, água)" width="220px" maxLines="3" wrapping="true" textAlign="Begin"
-														textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-3-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect11">
+													<Text text="Inexistência de resíduos (Borra, sebo, ácido graxo, goma, água)" width="220px" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb11" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect11">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Tanque - Válvulas de descarga limpas e fechadas. Sistema de colocação de lacres esta perfeito" width="220px" maxLines="4"
-														wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536258828519-content-sap_ui_layout_BlockLayoutCell-1536260008355-content-sap_m_RadioButtonGroup-1536260031669"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect12">
+													<Text text="Tanque - Válvulas de descarga limpas e fechadas. Sistema de colocação de lacres esta perfeito" width="220px" maxLines="4" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb12" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect12">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -399,16 +313,12 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Possui Alvará Sanitário válido?" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit"
-														visible="true"/>
-													<RadioButtonGroup
-														id="sap_Responsive_Page_0-content-sap_m_ScrollContainer-1536251547090-content-sap_m_Panel-1536253615326-content-sap_ui_layout_BlockLayout-1536257480658-content-sap_ui_layout_BlockLayoutRow-1536260174884-content-sap_ui_layout_BlockLayoutCell-1-content-sap_m_RadioButtonGroup-2"
-														columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit"
-														select="_onRadioButtonGroupSelect13">
+													<Text text="Possui Alvará Sanitário válido?" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<RadioButtonGroup id="rb13" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect13">
 														<buttons>
+															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
 															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
-															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -426,8 +336,7 @@
 			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
 				<content>
 					<ToolbarSpacer width=""/>
-					<Button text="" type="Emphasized" icon="sap-icon://navigation-right-arrow" iconFirst="true" width="auto" enabled="true" visible="true"
-						iconDensityAware="false" press="_onButtonPress"/>
+					<Button text="" type="Emphasized" icon="sap-icon://navigation-right-arrow" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
 				</content>
 			</OverflowToolbar>
 		</footer>

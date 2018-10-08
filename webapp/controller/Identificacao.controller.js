@@ -133,7 +133,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			// output result
 			if (!bValidationError) {
-				//MessageToast.show("The input is validated. You could now continue to the next screen");
+				this._inputDados();
 				this._onButtonPress(oEvent);
 			} else {
 				MessageBox.alert("Alguns campos podem estar preenchidos incorretamente. Placas = 'ABC1234' e CPF = '000.000.000-00'");
@@ -286,48 +286,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			evt.getSource().getBinding("items").filter([]);
 		},
 
-		// customPlacaType: SimpleType.extend("placa", {
-
-		// 	//Esse método recebe o valor analisado (valor interno) como um parâmetro e deve retornar um valor formatado 
-		// 	//(ou seja, um valor externo correspondente). Esse valor formatado é exibido na interface do usuário.
-		// 	formatValue: function (oValue) {
-		// 		return oValue;
-		// 	},
-
-		// 	//Este método recebe a entrada do usuário como um parâmetro. 
-		// 	//O trabalho deste método é converter o valor do usuário (valor externo) em
-		// 	//uma representação interna adequada do valor (valor interno).
-		// 	parseValue: function (oValue) {
-		// 		//parsing step takes place before validating step, value could be altered here
-		// 		return oValue;
-		// 	},
-
-		// 	//Esse método recebe o valor analisado (ou seja, a representação interna do valor 
-		// 	//conforme determinado pelo método parseValue ) e deve decidir se o valor é válido ou não. 
-		// 	//Se a entrada for determinada como inválida, uma exceção do tipo 
-		// 	//sap.ui.model.ValidateException deve ser lançada de dentro desse método.
-		// 	validateValue: function (oValue) {
-		// 		// The following Regex is NOT a completely correct one and only used for demonstration purposes.
-		// 		// RFC 5322 cannot even checked by a Regex and the Regex for RFC 822 is very long and complex.
-		// 		oValue = oValue.toUpperCase();
-		// 		var rexMail = '[A-Z]{3}\[0-9]{4}';
-		// 		if (!oValue.match(rexMail)) {
-		// 			throw new ValidateException("'" + oValue + "' não é uma placa válida.");
-		// 		}
-		// 	}
-		// }),
-
 		handleLiveChange: function (oEvent) {
-
-			// if (this.getView().getModel() != gModelCustom) {
-			// 	var value1 = this.getView().byId("reboque1Input").getValue();
-			// 	var value2 = this.getView().byId("reboque2Input").getValue();
-			// 	var value3 = this.getView().byId("tratorInput").getValue();
-			// 	this.getView().setModel(gModelCustom);
-			// 	this.getView().byId("reboque1Input").setValue(value1);
-			// 	this.getView().byId("reboque2Input").setValue(value2);
-			// 	this.getView().byId("tratorInput").setValue(value3);
-			// }
 
 			var id = oEvent.getParameter("id").split("application-BUILD-prototype-component---Identificacao--");
 			var input = this.getView().byId(id[1]);
@@ -339,22 +298,19 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-
-			// if (gModelCustom == null) {
-			// 	gModelCustom = new JSONModel({
-			// 		placa: ""
-			// 	});
-			// }
-
-			// if (gModelHelp == null) {
-			// 	var sServiceUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
-			// 	gModelHelp = new sap.ui.model.odata.v2.ODataModel(sServiceUrl, true);
-			// }
-
-			//this.getView().setModel(gModelCustom);
-			//sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("tratorInput"), true);
-			//sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque1Input"), true);
-			//sap.ui.getCore().getMessageManager().registerObject(this.getView().byId("reboque2Input"), true);
+			
+		},
+		
+		_inputDados: function(){
+			var dados = {
+				veiculo: this.getView().byId("tratorInput").getValue(),
+				reboque1: this.getView().byId("reboque1Input").getValue(),
+				reboque2: this.getView().byId("reboque2Input").getValue(),
+				nome_motorista: this.getView().byId("motoristaInput").getValue(),
+				cpf: this.getView().byId("cpfInput").getValue(),
+			};
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			oStorage.put("identificacao", dados);
 		},
 
 		onMetadataLoaded: function (myODataModel) {
