@@ -168,9 +168,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			};
 
 			var model = this.getView().getModel();
-			model.loadData();
+			// model.loadDataNew("/sap/opu/odata/sap/ZGW_VISTORIA_SRV", dados, true, "POST");
+			model.loadData("/sap/opu/odata/sap/ZGW_VISTORIA_SRV",dados, true, "POST");
 
-			// oStorage.put("identificacao", dados);
 		},
 
 		onInit: function () {
