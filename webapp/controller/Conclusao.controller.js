@@ -23,7 +23,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 			this.aRadioButtonGroupIds = [
-				"sap_Responsive_Page_0-content-build_simple_form_Form-1536262336890-formContainers-build_simple_form_FormContainer-1-formElements-build_simple_form_FormElement-1-fields-sap_m_RadioButtonGroup-1536262370237"
+				"resultadoRb"
 			];
 			this.handleRadioButtonGroupsSelectedIndex();
 
@@ -72,7 +72,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 		convertTextToIndexFormatter: function (sTextValue) {
 			var oRadioButtonGroup = this.byId(
-				"sap_Responsive_Page_0-content-build_simple_form_Form-1536262336890-formContainers-build_simple_form_FormContainer-1-formElements-build_simple_form_FormElement-1-fields-sap_m_RadioButtonGroup-1536262370237"
+				"resultadoRb"
 			);
 			var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");
 			if (oButtonsBindingInfo && oButtonsBindingInfo.binding) {
@@ -93,59 +93,83 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		_onRadioButtonGroupSelect: function () {
 
 		},
-		_onButtonPress: function () {
 
+		_onButtonPress: function (oEvent) {
+			
 			this._inputDados();
 
-			var oView = this.getView();
-			var oController = this;
-			this._cadastrar();
+			oEvent = jQuery.extend(true, {}, oEvent);
+			return new Promise(function (fnResolve) {
+					fnResolve(true);
+				})
+				.then(function (result) {
+					var oView = this.getView();
+					var oController = this;
 
-			return new Promise(function (fnResolve, fnReject) {
-				var oModel = oController.oModel;
+					return new Promise(function (fnResolve, fnReject) {
+						var oModel = oController.oModel;
 
-				var fnResetChangesAndReject = function (sMessage) {
-					oModel.resetChanges();
-					fnReject(new Error(sMessage));
-				};
-				if (oModel && oModel.hasPendingChanges()) {
-					oModel.submitChanges({
-						success: function (oResponse) {
-							var oBatchResponse = oResponse.__batchResponses[0];
-							var oChangeResponse = oBatchResponse.__changeResponses && oBatchResponse.__changeResponses[0];
-							if (oChangeResponse && oChangeResponse.data) {
-								var sNewContext = oModel.getKey(oChangeResponse.data);
-								oView.unbindObject();
-								oView.bindObject({
-									path: "/" + sNewContext
-								});
-								if (window.history && window.history.replaceState) {
-									window.history.replaceState(undefined, undefined, window.location.hash.replace(encodeURIComponent(oController.sContext),
-										encodeURIComponent(sNewContext)));
+						var fnResetChangesAndReject = function (sMessage) {
+							oModel.resetChanges();
+							fnReject(new Error(sMessage));
+						};
+						if (oModel && oModel.hasPendingChanges()) {
+							oModel.submitChanges({
+								success: function (oResponse) {
+									var oBatchResponse = oResponse.__batchResponses[0];
+									var oChangeResponse = oBatchResponse.__changeResponses && oBatchResponse.__changeResponses[0];
+									if (oChangeResponse && oChangeResponse.data) {
+										var sNewContext = oModel.getKey(oChangeResponse.data);
+										oView.unbindObject();
+										oView.bindObject({
+											path: "/" + sNewContext
+										});
+										if (window.history && window.history.replaceState) {
+											window.history.replaceState(undefined, undefined, window.location.hash.replace(encodeURIComponent(oController.sContext),
+												encodeURIComponent(sNewContext)));
+										}
+										oModel.refresh();
+										fnResolve();
+									} else if (oChangeResponse && oChangeResponse.response) {
+										fnResetChangesAndReject(oChangeResponse.message);
+									} else if (!oChangeResponse && oBatchResponse.response) {
+										fnResetChangesAndReject(oBatchResponse.message);
+									} else {
+										oModel.refresh();
+										fnResolve();
+									}
+								},
+								error: function (oError) {
+									fnReject(new Error(oError.message));
 								}
-								oModel.refresh();
-								fnResolve();
-							} else if (oChangeResponse && oChangeResponse.response) {
-								fnResetChangesAndReject(oChangeResponse.message);
-							} else if (!oChangeResponse && oBatchResponse.response) {
-								fnResetChangesAndReject(oBatchResponse.message);
-							} else {
-								oModel.refresh();
-								fnResolve();
-							}
-						},
-						error: function (oError) {
-							fnReject(new Error(oError.message));
+							});
+						} else {
+							fnResolve();
 						}
 					});
-				} else {
-					fnResolve();
-				}
-			}).catch(function (err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
+
+				}.bind(this))
+				.then(function (result) {
+					if (result === false) {
+						return false;
+					} else {
+						var oHistory = History.getInstance();
+						var sPreviousHash = oHistory.getPreviousHash();
+						var oQueryParams = this.getQueryParameters(window.location);
+
+						if (sPreviousHash !== undefined || oQueryParams.navBackToLaunchpad) {
+							window.history.go(-3);
+						} else {
+							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+							oRouter.navTo("default", true);
+						}
+
+					}
+				}.bind(this)).catch(function (err) {
+					if (err !== undefined) {
+						MessageBox.error(err.message);
+					}
+				});
 
 		},
 
@@ -158,18 +182,62 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 
 			var dados = {
-				identificacao: oStorage.get("identificacao"),
-				inspecao: oStorage.get("inspecao"),
-				conclusao: {
-					resultado: this.getView().byId("resultadoRb").getSelectedButton().getText(),
-					data: this.getView().byId("dataInput").getValue(),
-					observacao: this.getView().byId("obsInput").getValue()
-				}
+				Veiculo: oStorage.get("identificacao").veiculo,
+				Reboque1: oStorage.get("identificacao").reboque1,
+				Reboque2: oStorage.get("identificacao").reboque2,
+				NomeMotorista: oStorage.get("identificacao").nome_motorista
+					// Cpf: oStorage.get("identificacao").cpf,
+					// Carroceria: oStorage.get("inspecao").carroceria,
+					// C1ulticarga: oStorage.get("inspecao").ultima_cargas.compartimento1.ulti_carga,
+					// C1penucarga: oStorage.get("inspecao").ultima_cargas.compartimento1.penu_carga,
+					// C1antecarga: oStorage.get("inspecao").ultima_cargas.compartimento1.ante_carga,
+					// C2ulticarga: oStorage.get("inspecao").ultima_cargas.compartimento2.ulti_carga,
+					// C2penucarga: oStorage.get("inspecao").ultima_cargas.compartimento2.penu_carga,
+					// C2antecarga: oStorage.get("inspecao").ultima_cargas.compartimento2.ante_carga,
+					// C1soproar: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_01.compartimento1,
+					// C2soproar: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_01.compartimento2,
+					// C1varredura: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_02.compartimento1,
+					// C2varredura: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_02.compartimento2,
+					// C1lavagem: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_03.compartimento1,
+					// C2lavagem: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_03.compartimento2,
+					// C1vaporizacao: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_04.compartimento1,
+					// C2vaporizacao: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_04.compartimento2,
+					// C1lavagem01: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_05.compartimento1,
+					// C2lavagem01: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_05.compartimento2,
+					// C1lavagem02: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_06.compartimento1,
+					// C2lavagem02: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_06.compartimento2,
+					// Condvei01: oStorage.get("inspecao").condicao_limpeza.condicoe01,
+					// Condvei02: oStorage.get("inspecao").condicao_limpeza.condicoe02,
+					// Condvei03: oStorage.get("inspecao").condicao_limpeza.condicoe03,
+					// Condvei04: oStorage.get("inspecao").condicao_limpeza.condicoe04,
+					// Condvei05: oStorage.get("inspecao").condicao_limpeza.condicoe05,
+					// Condvei06: oStorage.get("inspecao").condicao_limpeza.condicoe06,
+					// Condvei07: oStorage.get("inspecao").condicao_limpeza.condicoe07,
+					// Condvei08: oStorage.get("inspecao").condicao_limpeza.condicoe08,
+					// Condvei09: oStorage.get("inspecao").condicao_limpeza.condicoe09,
+					// Condvei10: oStorage.get("inspecao").condicao_limpeza.condicoe10,
+					// Condvei11: oStorage.get("inspecao").condicao_limpeza.condicoe11,
+					// Condvei12: oStorage.get("inspecao").condicao_limpeza.condicoe12,
+					// Condvei13: oStorage.get("inspecao").condicao_limpeza.condicoe13,
+					// Resultado: this.getView().byId("resultadoRb").getSelectedButton().getText(),
+					// Datacarrega: this.getView().byId("dataInput").getValue(),
+					// Obs: this.getView().byId("obsInput").getValue(),
+					// Produtos: "t"
 			};
 
-			var model = this.getView().getModel();
-			// model.loadDataNew("/sap/opu/odata/sap/ZGW_VISTORIA_SRV", dados, true, "POST");
-			model.loadData("/sap/opu/odata/sap/ZGW_VISTORIA_SRV",dados, true, "POST");
+			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
+
+			oModel.create('/vistoria', dados, null, function () {
+				MessageBox.success(
+					'Cadastrado com sucesso!'
+				);
+
+			}, function () {
+				MessageBox.error(
+					'Erro ao cadastrar o veiculo!'
+				);
+			});
 
 		},
 
