@@ -93,59 +93,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		_onRadioButtonGroupSelect: function () {
 
 		},
-
 		_onButtonPress: function (oEvent) {
-			
-			this._inputDados();
 
 			oEvent = jQuery.extend(true, {}, oEvent);
 			return new Promise(function (fnResolve) {
 					fnResolve(true);
-				})
-				.then(function (result) {
-					var oView = this.getView();
-					var oController = this;
+				}).then(function (result) {
+					return new Promise(function (fnResolve) {
 
-					return new Promise(function (fnResolve, fnReject) {
-						var oModel = oController.oModel;
+						sap.m.MessageBox.confirm("Cadastrado com sucesso!", {
+							title: "Tirar",
+							actions: ["Ok", "Tirar"],
+							onClose: function (sActionClicked) {
+								fnResolve(sActionClicked === "Ok");
+							}
+						});
 
-						var fnResetChangesAndReject = function (sMessage) {
-							oModel.resetChanges();
-							fnReject(new Error(sMessage));
-						};
-						if (oModel && oModel.hasPendingChanges()) {
-							oModel.submitChanges({
-								success: function (oResponse) {
-									var oBatchResponse = oResponse.__batchResponses[0];
-									var oChangeResponse = oBatchResponse.__changeResponses && oBatchResponse.__changeResponses[0];
-									if (oChangeResponse && oChangeResponse.data) {
-										var sNewContext = oModel.getKey(oChangeResponse.data);
-										oView.unbindObject();
-										oView.bindObject({
-											path: "/" + sNewContext
-										});
-										if (window.history && window.history.replaceState) {
-											window.history.replaceState(undefined, undefined, window.location.hash.replace(encodeURIComponent(oController.sContext),
-												encodeURIComponent(sNewContext)));
-										}
-										oModel.refresh();
-										fnResolve();
-									} else if (oChangeResponse && oChangeResponse.response) {
-										fnResetChangesAndReject(oChangeResponse.message);
-									} else if (!oChangeResponse && oBatchResponse.response) {
-										fnResetChangesAndReject(oBatchResponse.message);
-									} else {
-										oModel.refresh();
-										fnResolve();
-									}
-								},
-								error: function (oError) {
-									fnReject(new Error(oError.message));
-								}
-							});
-						} else {
-							fnResolve();
-						}
 					});
 
 				}.bind(this))
@@ -158,7 +121,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						var oQueryParams = this.getQueryParameters(window.location);
 
 						if (sPreviousHash !== undefined || oQueryParams.navBackToLaunchpad) {
-							window.history.go(-3);
+							window.history.go(-1);
 						} else {
 							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 							oRouter.navTo("default", true);
@@ -170,7 +133,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						MessageBox.error(err.message);
 					}
 				});
-
 		},
 
 		_data: {
@@ -228,17 +190,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 
-			oModel.create('/vistoria', dados, null, function () {
-				MessageBox.success(
-					'Cadastrado com sucesso!'
-				);
-
-			}, function () {
-				MessageBox.error(
-					'Erro ao cadastrar o veiculo!'
-				);
-			});
-
+			oModel.create('/vistoria', dados, null,
+				function () {
+					MessageBox.success('Cadastrado com sucesso!', {
+						onClose: function (sActionClicked) {
+							window.history.go(-3);
+						}
+					});
+				},
+				function () {
+					MessageBox.error('Erro ao cadastrar o veiculo!');
+				}
+			);
 		},
 
 		onInit: function () {
