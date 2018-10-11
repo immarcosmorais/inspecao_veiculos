@@ -3,7 +3,7 @@ sap.ui.define([
 	"sap/ui/Device",
 	"com/sap/build/standard/formInspecaoDeVeiculos/model/models",
 	"./model/errorHandling"
-], function(UIComponent, Device, models, errorHandling) {
+], function (UIComponent, Device, models, errorHandling) {
 	"use strict";
 
 	var navigationWithContext = {
@@ -14,6 +14,61 @@ sap.ui.define([
 
 		metadata: {
 			manifest: "json"
+			
+			// ,
+
+			// rootView: {
+			// 	"viewName": "com.sap.build.standard.formInspecaoDeVeiculos.view.App",
+			// 	"type": "XML",
+			// 	"async": true
+			// },
+			// routing: {
+			// 	config: {
+			// 		routerClass: "sap.m.routing.Router",
+			// 		viewPath: "com.sap.build.standard.formInspecaoDeVeiculos.view",
+			// 		controlId: "rootControl",
+			// 		controlAggregation: "pages",
+			// 		viewType: "XML",
+			// 		async: true
+			// 	},
+			// 	routes: [{
+			// 		name: "page1",
+			// 		// empty hash - normally the start page
+			// 		pattern: "",
+			// 		target: "page1"
+			// 	}, {
+			// 		name: "page2",
+			// 		pattern: "Page2",
+			// 		target: "page2"
+			// 	}, {
+			// 		name: "page3",
+			// 		pattern: "Page3",
+			// 		target: "page3"
+			// 	}, {
+			// 		name: "page4",
+			// 		pattern: "Page4",
+			// 		target: "page4"
+			// 	}],
+			// 	targets: {
+			// 		page1: {
+			// 			viewName: "Menu",
+			// 			viewLevel: 0
+			// 		},
+			// 		page2: {
+			// 			viewName: "Identificaco",
+			// 			viewLevel: 1
+			// 		},
+			// 		page3: {
+			// 			viewName: "Inspecacao",
+			// 			viewLevel: 2
+			// 		},
+			// 		page4: {
+			// 			viewName: "Conclusao",
+			// 			viewLevel: 3
+			// 		}
+			// 	}
+			// }
+
 		},
 
 		/**
@@ -21,7 +76,8 @@ sap.ui.define([
 		 * @public
 		 * @override
 		 */
-		init: function() {
+		init: function () {
+
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 			// set the FLP model
@@ -44,7 +100,7 @@ sap.ui.define([
 			this.getRouter().initialize();
 		},
 
-		createContent: function() {
+		createContent: function () {
 			var app = new sap.m.App({
 				id: "App"
 			});
@@ -57,7 +113,7 @@ sap.ui.define([
 			return app;
 		},
 
-		getNavigationPropertyForNavigationWithContext: function(sEntityNameSet, targetPageName) {
+		getNavigationPropertyForNavigationWithContext: function (sEntityNameSet, targetPageName) {
 			var entityNavigations = navigationWithContext[sEntityNameSet];
 			return entityNavigations == null ? null : entityNavigations[targetPageName];
 		}

@@ -1,39 +1,40 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Menu" xmlns="sap.m">
-    <Page showHeader="true" title="Menu" showFooter="true" showNavButton="false">
-        <content>
-            <HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
-                <items>
-                    <GenericTile header="Cadastrar" subheader="Realizar nova vistoria" frameType="OneByOne" class="sapUiTinyMargin" press="_onGenericTilePress">
-                        <tileContent>
-                            <TileContent footer="" unit="">
-                                <content>
-                                    <NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://inspection"/>
-                                </content>
-                            </TileContent>
-                        </tileContent>
-                    </GenericTile>
-                    <GenericTile header="Listar" subheader="Listar veiculos" frameType="OneByOne" class="sapUiTinyMargin" press="_onGenericTilePress1">
-                        <tileContent>
-                            <TileContent footer="" unit="">
-                                <content>
-                                    <NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://list"/>
-                                </content>
-                            </TileContent>
-                        </tileContent>
-                    </GenericTile>
-                </items>
-                <layoutData/>
-            </HBox>
-        </content>
-        <footer>
-            <OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
-                <content>
-                    <ToolbarSpacer width=""/>
-                </content>
-            </OverflowToolbar>
-        </footer>
-        <headerContent/>
-        <subHeader/>
-        <customHeader/>
-    </Page>
+	<Page showHeader="true" title="Menu" showFooter="true" showNavButton="false">
+		<content>
+			<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+				visible="true" displayInline="false">
+				<items>
+					<GenericTile header="Cadastrar" subheader="Realizar nova vistoria" frameType="OneByOne" class="sapUiTinyMargin" press="_onGenericTilePress">
+						<tileContent>
+							<TileContent footer="" unit="">
+								<content>
+									<NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://inspection"/>
+								</content>
+							</TileContent>
+						</tileContent>
+					</GenericTile>
+					<GenericTile header="Listar" subheader="Listar veiculos" frameType="OneByOne" class="sapUiTinyMargin" press="_onGenericTilePress1">
+						<tileContent>
+							<TileContent footer="" unit="">
+								<content>
+									<NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://list"/>
+								</content>
+							</TileContent>
+						</tileContent>
+					</GenericTile>
+				</items>
+				<layoutData/>
+			</HBox>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
 </mvc:View>

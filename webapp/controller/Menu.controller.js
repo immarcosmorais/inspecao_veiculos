@@ -2,11 +2,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
 	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+], function (BaseController, MessageBox, Utilities, History) {
 	"use strict";
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Menu", {
-		handleRouteMatched: function(oEvent) {
+		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 
 			if (oEvent.mParameters.data.context) {
@@ -22,21 +22,19 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		_onGenericTilePress: function(oEvent) {
+		_onGenericTilePress: function (oEvent) {
 
 			var oBindingContext = oEvent.getSource().getBindingContext();
-
-			return new Promise(function(fnResolve) {
-
+			return new Promise(function (fnResolve) {
 				this.doNavigate("Identificacao", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function(err) {
+			}.bind(this)).catch(function (err) {
 				if (err !== undefined) {
 					MessageBox.error(err.message);
 				}
 			});
 
 		},
-		doNavigate: function(sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
+		doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
 			var oModel = (oBindingContext) ? oBindingContext.getModel() : null;
 
@@ -51,7 +49,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sMasterContext = this.sMasterContext ? this.sMasterContext : sPath;
 
 			if (sEntityNameSet !== null) {
-				sNavigationPropertyName = sViaRelation || this.getOwnerComponent().getNavigationPropertyForNavigationWithContext(sEntityNameSet, sRouteName);
+				sNavigationPropertyName = sViaRelation || this.getOwnerComponent().getNavigationPropertyForNavigationWithContext(sEntityNameSet,
+					sRouteName);
 			}
 			if (sNavigationPropertyName !== null && sNavigationPropertyName !== undefined) {
 				if (sNavigationPropertyName === "") {
@@ -60,7 +59,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						masterContext: sMasterContext
 					}, false);
 				} else {
-					oModel.createBindingContext(sNavigationPropertyName, oBindingContext, null, function(bindingContext) {
+					oModel.createBindingContext(sNavigationPropertyName, oBindingContext, null, function (bindingContext) {
 						if (bindingContext) {
 							sPath = bindingContext.getPath();
 							if (sPath.substring(0, 1) === "/") {
@@ -90,21 +89,27 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		_onGenericTilePress1: function(oEvent) {
+		_onGenericTilePress1: function (oEvent) {
 
 			var oBindingContext = oEvent.getSource().getBindingContext();
 
-			return new Promise(function(fnResolve) {
+			return new Promise(function (fnResolve) {
 
 				this.doNavigate("ListarVeiculos", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function(err) {
+			}.bind(this)).catch(function (err) {
 				if (err !== undefined) {
 					MessageBox.error(err.message);
 				}
 			});
 
+			// this.getOwnerComponent().getRouter().navTo("page2");
+
 		},
-		onInit: function() {
+		onInit: function () {
+
+			// var sUrl = "#" + this.getOwnerComponent().getRouter().getURL("page2");
+			// this.byId("link").setHref(sUrl);
+
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Menu").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 

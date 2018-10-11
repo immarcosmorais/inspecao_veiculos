@@ -93,48 +93,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		_onRadioButtonGroupSelect: function () {
 
 		},
-		
-		// _onButtonPress: function (oEvent) {
-
-		// 	oEvent = jQuery.extend(true, {}, oEvent);
-		// 	return new Promise(function (fnResolve) {
-		// 			fnResolve(true);
-		// 		}).then(function (result) {
-		// 			return new Promise(function (fnResolve) {
-
-		// 				sap.m.MessageBox.confirm("Cadastrado com sucesso!", {
-		// 					title: "Tirar",
-		// 					actions: ["Ok", "Tirar"],
-		// 					onClose: function (sActionClicked) {
-		// 						fnResolve(sActionClicked === "Ok");
-		// 					}
-		// 				});
-
-		// 			});
-
-		// 		}.bind(this))
-		// 		.then(function (result) {
-		// 			if (result === false) {
-		// 				return false;
-		// 			} else {
-		// 				var oHistory = History.getInstance();
-		// 				var sPreviousHash = oHistory.getPreviousHash();
-		// 				var oQueryParams = this.getQueryParameters(window.location);
-
-		// 				if (sPreviousHash !== undefined || oQueryParams.navBackToLaunchpad) {
-		// 					window.history.go(-1);
-		// 				} else {
-		// 					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-		// 					oRouter.navTo("default", true);
-		// 				}
-
-		// 			}
-		// 		}.bind(this)).catch(function (err) {
-		// 			if (err !== undefined) {
-		// 				MessageBox.error(err.message);
-		// 			}
-		// 		});
-		// },
 
 		_data: {
 			"date": new Date()
@@ -190,12 +148,17 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
-
+			var rota = this.getOwnerComponent().getRouter();
+			
 			oModel.create('/vistoria', dados, null,
 				function () {
 					MessageBox.success('Cadastrado com sucesso!', {
 						onClose: function (sActionClicked) {
-							window.history.go(-3);
+							oStorage.clear();
+							oStorage.removeAll();
+							oStorage.put("save",{isSave: true})
+							rota.navTo("Menu", false);
+							// window.location.reload(rota.navTo("Menu", false));
 						}
 					});
 				},

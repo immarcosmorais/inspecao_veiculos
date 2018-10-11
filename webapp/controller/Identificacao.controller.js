@@ -252,8 +252,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				productInput = this.byId(this.inputId);
 				sValue = oSelectedItem.getTitle();
 			}
+			
 			gModelHelp = this.getView().getModel();
-
 			i1 = this.getView().byId("reboque1Input");
 			i2 = this.getView().byId("reboque2Input");
 			i3 = this.getView().byId("cpfInput");
@@ -278,16 +278,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			if (cpf != "") {
 				i3.setValue(cpf.toUpperCase());
 			}
-
 			i1.setValueState("None");
 			i2.setValueState("None");
 			i3.setValueState("None");
-
 			evt.getSource().getBinding("items").filter([]);
 		},
 
 		handleLiveChange: function (oEvent) {
-
 			var id = oEvent.getParameter("id").split("application-BUILD-prototype-component---Identificacao--");
 			var input = this.getView().byId(id[1]);
 			input.setValueState("None");
@@ -295,10 +292,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		onInit: function () {
-
+			// var sUrl = "#" + this.getOwnerComponent().getRouter().getURL("page3");
+			// this.byId("link").setHref(sUrl);
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-			
 		},
 		
 		_inputDados: function(){

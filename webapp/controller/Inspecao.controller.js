@@ -622,6 +622,10 @@ sap.ui.define([
 			},
 
 			onInit: function () {
+
+				// var sUrl = "#" + this.getOwnerComponent().getRouter().getURL("page4");
+				// this.byId("link").setHref(sUrl);
+
 				this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				this.oRouter.getTarget("Inspecao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 				this._addItem();
