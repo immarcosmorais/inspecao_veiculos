@@ -14,7 +14,7 @@
 								<form:formElements>
 									<form:FormElement visible="true">
 										<form:label>
-											<Label text="Veiculo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Label text="Veículo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
 											<Input id="tratorInput" placeholder="Ex.: ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"

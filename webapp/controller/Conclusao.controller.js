@@ -93,47 +93,48 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		_onRadioButtonGroupSelect: function () {
 
 		},
-		_onButtonPress: function (oEvent) {
+		
+		// _onButtonPress: function (oEvent) {
 
-			oEvent = jQuery.extend(true, {}, oEvent);
-			return new Promise(function (fnResolve) {
-					fnResolve(true);
-				}).then(function (result) {
-					return new Promise(function (fnResolve) {
+		// 	oEvent = jQuery.extend(true, {}, oEvent);
+		// 	return new Promise(function (fnResolve) {
+		// 			fnResolve(true);
+		// 		}).then(function (result) {
+		// 			return new Promise(function (fnResolve) {
 
-						sap.m.MessageBox.confirm("Cadastrado com sucesso!", {
-							title: "Tirar",
-							actions: ["Ok", "Tirar"],
-							onClose: function (sActionClicked) {
-								fnResolve(sActionClicked === "Ok");
-							}
-						});
+		// 				sap.m.MessageBox.confirm("Cadastrado com sucesso!", {
+		// 					title: "Tirar",
+		// 					actions: ["Ok", "Tirar"],
+		// 					onClose: function (sActionClicked) {
+		// 						fnResolve(sActionClicked === "Ok");
+		// 					}
+		// 				});
 
-					});
+		// 			});
 
-				}.bind(this))
-				.then(function (result) {
-					if (result === false) {
-						return false;
-					} else {
-						var oHistory = History.getInstance();
-						var sPreviousHash = oHistory.getPreviousHash();
-						var oQueryParams = this.getQueryParameters(window.location);
+		// 		}.bind(this))
+		// 		.then(function (result) {
+		// 			if (result === false) {
+		// 				return false;
+		// 			} else {
+		// 				var oHistory = History.getInstance();
+		// 				var sPreviousHash = oHistory.getPreviousHash();
+		// 				var oQueryParams = this.getQueryParameters(window.location);
 
-						if (sPreviousHash !== undefined || oQueryParams.navBackToLaunchpad) {
-							window.history.go(-1);
-						} else {
-							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-							oRouter.navTo("default", true);
-						}
+		// 				if (sPreviousHash !== undefined || oQueryParams.navBackToLaunchpad) {
+		// 					window.history.go(-1);
+		// 				} else {
+		// 					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+		// 					oRouter.navTo("default", true);
+		// 				}
 
-					}
-				}.bind(this)).catch(function (err) {
-					if (err !== undefined) {
-						MessageBox.error(err.message);
-					}
-				});
-		},
+		// 			}
+		// 		}.bind(this)).catch(function (err) {
+		// 			if (err !== undefined) {
+		// 				MessageBox.error(err.message);
+		// 			}
+		// 		});
+		// },
 
 		_data: {
 			"date": new Date()
