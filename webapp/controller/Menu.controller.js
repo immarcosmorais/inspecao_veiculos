@@ -8,7 +8,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Menu", {
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
-
 			if (oEvent.mParameters.data.context) {
 				this.sContext = oEvent.mParameters.data.context;
 				var oPath;
@@ -20,10 +19,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					this.getView().bindObject(oPath);
 				}
 			}
-
 		},
 		_onGenericTilePress: function (oEvent) {
-
 			var oBindingContext = oEvent.getSource().getBindingContext();
 			return new Promise(function (fnResolve) {
 				this.doNavigate("Identificacao", oBindingContext, fnResolve, "");
@@ -32,8 +29,19 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					MessageBox.error(err.message);
 				}
 			});
-
 		},
+
+		_onGenericTilePress1: function (oEvent) {
+			var oBindingContext = oEvent.getSource().getBindingContext();
+			return new Promise(function (fnResolve) {
+				this.doNavigate("ListarVeiculos", oBindingContext, fnResolve, "");
+			}.bind(this)).catch(function (err) {
+				if (err !== undefined) {
+					MessageBox.error(err.message);
+				}
+			});
+		},
+
 		doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
 			var oModel = (oBindingContext) ? oBindingContext.getModel() : null;
@@ -89,26 +97,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		_onGenericTilePress1: function (oEvent) {
 
-			var oBindingContext = oEvent.getSource().getBindingContext();
-
-			return new Promise(function (fnResolve) {
-
-				this.doNavigate("ListarVeiculos", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function (err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
-
-			// this.getOwnerComponent().getRouter().navTo("page2");
-
-		},
 		onInit: function () {
-
-			// var sUrl = "#" + this.getOwnerComponent().getRouter().getURL("page2");
-			// this.byId("link").setHref(sUrl);
 
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Menu").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));

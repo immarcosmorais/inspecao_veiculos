@@ -149,16 +149,23 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 			var rota = this.getOwnerComponent().getRouter();
-			
+			var page = this;
+
 			oModel.create('/vistoria', dados, null,
 				function () {
 					MessageBox.success('Cadastrado com sucesso!', {
 						onClose: function (sActionClicked) {
 							oStorage.clear();
 							oStorage.removeAll();
-							oStorage.put("save",{isSave: true})
+							// oStorage.put("Save", {
+							// 	isSave: true
+							// });
+							page.getView().exit();
+							page.getView().destroy();
+							// oStorage.get("Menu").menu.getModel().refresh(true);            
 							rota.navTo("Menu", false);
-							// window.location.reload(rota.navTo("Menu", false));
+							// window.location.reload(window.history.go(-3));
+							// sap.ui.getCore().byId("Menu").getModel().refresh(true);
 						}
 					});
 				},
@@ -173,4 +180,4 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.getView().setModel(oModel);
 		}
 	});
-}, /* bExport= */ true);
+}, /* bExport= */ true);;

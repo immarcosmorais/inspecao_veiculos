@@ -17,6 +17,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		gModelCustom;
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
+		
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 			if (oEvent.mParameters.data.context) {
@@ -69,7 +70,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 
-		_testaCPF: function(strCPF) {
+		_testaCPF: function (strCPF) {
 			var Soma;
 			var Resto;
 			Soma = 0;
@@ -103,12 +104,12 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			];
 			var bValidationError = false;
 			var rexMail = '[A-Z]{3}\[0-9]{4}';
-			
-			if(!this._testaCPF(this.getView().byId("cpfInput").getValue())){
+
+			if (!this._testaCPF(this.getView().byId("cpfInput").getValue())) {
 				bValidationError = true;
 				this.getView().byId("cpfInput").setValueState("Error");
 			}
-			
+
 			this._testaCPF("");
 
 			jQuery.each(aInputs, function (i, oInput) {
@@ -252,7 +253,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				productInput = this.byId(this.inputId);
 				sValue = oSelectedItem.getTitle();
 			}
-			
+
 			gModelHelp = this.getView().getModel();
 			i1 = this.getView().byId("reboque1Input");
 			i2 = this.getView().byId("reboque2Input");
@@ -292,13 +293,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		onInit: function () {
-			// var sUrl = "#" + this.getOwnerComponent().getRouter().getURL("page3");
-			// this.byId("link").setHref(sUrl);
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		},
-		
-		_inputDados: function(){
+
+		_inputDados: function () {
 			var dados = {
 				veiculo: this.getView().byId("tratorInput").getValue(),
 				reboque1: this.getView().byId("reboque1Input").getValue(),
