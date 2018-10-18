@@ -149,7 +149,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 			var rota = this.getOwnerComponent().getRouter();
-			var page = this;
 
 			oModel.create('/vistoria', dados, null,
 				function () {
@@ -160,8 +159,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 							// oStorage.put("Save", {
 							// 	isSave: true
 							// });
-							page.getView().exit();
-							page.getView().destroy();
 							// oStorage.get("Menu").menu.getModel().refresh(true);            
 							rota.navTo("Menu", false);
 							// window.location.reload(window.history.go(-3));

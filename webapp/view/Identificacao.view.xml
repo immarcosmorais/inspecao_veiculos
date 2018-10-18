@@ -26,20 +26,6 @@
 											</Input>
 										</form:fields>
 									</form:FormElement>
-									<!--<form:FormElement visible="true">-->
-									<!--	<form:label>-->
-									<!--		<Label text="Transportador" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
-									<!--	</form:label>-->
-									<!--	<form:fields>-->
-									<!--		<Input id="fornecedorInput" placeholder="Ex.: Nome do transportador" type="Text" showValueHelp="true" enabled="true" visible="true"-->
-									<!--			width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Fornecedor}"-->
-									<!--			valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange">-->
-									<!--			<suggestionItems>-->
-									<!--				<core:Item text="{Name1}"/>-->
-									<!--			</suggestionItems>-->
-									<!--		</Input>-->
-									<!--	</form:fields>-->
-									<!--</form:FormElement>-->
 									<form:FormElement visible="true">
 										<form:label>
 											<Label text="Reboque(1)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
@@ -82,7 +68,6 @@
 											</Input>
 										</form:fields>
 									</form:FormElement>
-									
 									<form:FormElement visible="true">
 										<form:label>
 											<Label text="CPF" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
@@ -90,14 +75,13 @@
 										<form:fields>
 											<Input id="cpfInput" placeholder="Ex.: 00000000000" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
 												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Motorista}" valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange" >
+												liveChange="handleLiveChange">
 												<suggestionItems>
 													<core:Item text="{Stcd2}"/>
 												</suggestionItems>
 											</Input>
 										</form:fields>
 									</form:FormElement>
-									
 								</form:formElements>
 								<form:title/>
 							</form:FormContainer>

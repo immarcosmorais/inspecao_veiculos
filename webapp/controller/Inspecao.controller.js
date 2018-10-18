@@ -534,7 +534,7 @@ sap.ui.define([
 					idElements++;
 
 				} else {
-					MessageBox.alert("É necessário selecionar um item para definir um novo.");
+					MessageBox.warning("É necessário selecionar um item para definir um novo.");
 				}
 			},
 

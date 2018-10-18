@@ -17,7 +17,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		gModelCustom;
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
-		
+
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 			if (oEvent.mParameters.data.context) {
@@ -103,14 +103,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// oView.byId("cpfInput"),
 			];
 			var bValidationError = false;
-			var rexMail = '[A-Z]{3}\[0-9]{4}';
+			var regex = new RegExp("[a-zA-Z]{3}[0-9]{4}");
 
 			if (!this._testaCPF(this.getView().byId("cpfInput").getValue())) {
 				bValidationError = true;
 				this.getView().byId("cpfInput").setValueState("Error");
 			}
 
-			this._testaCPF("");
+			//this._testaCPF("");
 
 			jQuery.each(aInputs, function (i, oInput) {
 
@@ -119,13 +119,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				if ((id == "reboque1Input") || (id == "reboque2Input")) {
 					if (oInput.getValue() != "") {
 						//Campos Reboque 1 e Reboque 2 podem ser vazios, mas caso contrario, devem ser válidados
-						if (!oInput.getValue().match(rexMail)) {
+						if (!regex.test(oInput.getValue())) {
 							oInput.setValueState("Error");
 							bValidationError = true;
 						}
 					}
 				} else if (id == "tratorInput") {
-					if (!oInput.getValue().match(rexMail)) {
+					if (!regex.test(oInput.getValue())) {
 						oInput.setValueState("Error");
 						bValidationError = true;
 					}
@@ -137,7 +137,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this._inputDados();
 				this._onButtonPress(oEvent);
 			} else {
-				MessageBox.alert("Alguns campos podem estar preenchidos incorretamente. Placas = 'ABC1234' e CPF = '000.000.000-00'");
+				MessageBox.warning("Alguns campos podem estar preenchidos incorretamente. Placas = 'ABC1234' e CPF = '000.000.000-00'");
 			}
 		},
 
@@ -201,8 +201,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			var sInputValue = oEvent.getSource().getValue();
 			this.inputId = oEvent.getSource().getId();
-
-			// this.getView().setModel(gModelHelp);
 
 			if (this.inputId.toString().indexOf("tratorInput") != -1) {
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogVeiculo";
