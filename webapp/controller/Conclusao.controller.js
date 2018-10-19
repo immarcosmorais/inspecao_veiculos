@@ -10,6 +10,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			if (oStorage.get("Save").isSave) {
+				if (oStorage.get("Reset").page3) {
+					this.resetPage();
+					oStorage.put("Reset", {
+						page1: false,
+						page2: false,
+						page3: false
+					});
+				}
+			}
+
 			if (oEvent.mParameters.data.context) {
 				this.sContext = oEvent.mParameters.data.context;
 				var oPath;
@@ -28,6 +40,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.handleRadioButtonGroupsSelectedIndex();
 
 		},
+
+		resetPage: function () {
+			this.getView().byId("obsInput").setValue("");
+		},
+
 		handleRadioButtonGroupsSelectedIndex: function () {
 			var that = this;
 			this.aRadioButtonGroupIds.forEach(function (sRadioButtonGroupId) {
@@ -149,6 +166,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 			var rota = this.getOwnerComponent().getRouter();
+			var page = this;
 
 			oModel.create('/vistoria', dados, null,
 				function () {
@@ -156,10 +174,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						onClose: function (sActionClicked) {
 							oStorage.clear();
 							oStorage.removeAll();
-							// oStorage.put("Save", {
-							// 	isSave: true
-							// });
-							// oStorage.get("Menu").menu.getModel().refresh(true);            
+							oStorage.put("Save", {
+								isSave: true
+							});
+							// oStorage.get("Menu").menu.getModel().refresh(true);
 							rota.navTo("Menu", false);
 							// window.location.reload(window.history.go(-3));
 							// sap.ui.getCore().byId("Menu").getModel().refresh(true);

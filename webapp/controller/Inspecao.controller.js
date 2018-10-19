@@ -7,9 +7,23 @@ sap.ui.define([
 		"use strict";
 
 		var idElements = 0;
+		var reset = false;
 
 		return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Inspecao", {
 			handleRouteMatched: function (oEvent) {
+
+				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+				if (oStorage.get("Save").isSave) {
+					if (oStorage.get("Reset").page2) {
+						this.resetPage();
+						oStorage.put("Reset", {
+							page1: false,
+							page2: false,
+							page3: true
+						});
+					}
+				}
+
 				var oParams = {};
 				if (oEvent.mParameters.data.context) {
 					this.sContext = oEvent.mParameters.data.context;
@@ -40,6 +54,45 @@ sap.ui.define([
 				];
 				this.handleRadioButtonGroupsSelectedIndex();
 			},
+
+			resetPage: function () {
+				this.getView().byId("panel01").setExpanded(true);
+
+				//Produtos
+				this.getView().byId("panel02").setExpanded(false);
+				this.getView().byId("vBoxProdutos").removeAllItems();
+				this.getView().byId("vBoxBotoes").removeAllItems();
+				reset = true;
+				this._addItem();
+
+				//Últimas cargas transportadas
+				this.getView().byId("panel03").setExpanded(false);
+				this.getView().byId("c1UltiCargaInput").setValue("");
+				this.getView().byId("c1PenuCargaInput").setValue("");
+				this.getView().byId("c1AnteCargaInput").setValue("");
+				this.getView().byId("c2UltiCargaInput").setValue("");
+				this.getView().byId("c2PenuCargaInput").setValue("");
+				this.getView().byId("c2AnteCargaInput").setValue("");
+
+				//Tipo de limpeza
+				this.getView().byId("panel04").setExpanded(false);
+				this.getView().byId("cb01").setSelected(false);
+				this.getView().byId("cb02").setSelected(false);
+				this.getView().byId("cb03").setSelected(false);
+				this.getView().byId("cb04").setSelected(false);
+				this.getView().byId("cb05").setSelected(false);
+				this.getView().byId("cb06").setSelected(false);
+				this.getView().byId("cb07").setSelected(false);
+				this.getView().byId("cb08").setSelected(false);
+				this.getView().byId("cb09").setSelected(false);
+				this.getView().byId("cb10").setSelected(false);
+				this.getView().byId("cb11").setSelected(false);
+				this.getView().byId("cb12").setSelected(false);
+
+				//Condições do veículo
+				this.getView().byId("panel05").setExpanded(false);
+			},
+
 			handleRadioButtonGroupsSelectedIndex: function () {
 				var that = this;
 				this.aRadioButtonGroupIds.forEach(function (sRadioButtonGroupId) {
@@ -448,7 +501,7 @@ sap.ui.define([
 
 				}
 
-				if (value != "" || idElements == 0) {
+				if (value != "" || idElements == 0 || reset) {
 
 					var itemTemplate = new sap.ui.core.ListItem({
 						key: "{Id}",
@@ -527,12 +580,10 @@ sap.ui.define([
 						visible: true,
 						displayInline: false
 					});
+					reset = false;
 					oHBox2.addStyleClass("sapUiTinyMargin");
-
 					vBoxBotoes.addItem(oHBox2);
-
 					idElements++;
-
 				} else {
 					MessageBox.warning("É necessário selecionar um item para definir um novo.");
 				}

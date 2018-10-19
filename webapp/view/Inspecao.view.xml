@@ -3,7 +3,7 @@
 		<content>
 			<ScrollContainer horizontal="true" vertical="true" width="100%" height="100%" visible="true">
 				<content>
-					<Panel height="auto" width="100%" headerText="Tipo de Carroceria" expandable="true" expandAnimation="true" backgroundDesign="Solid" expanded="true">
+					<Panel height="auto" width="100%" headerText="Tipo de Carroceria" expandable="true" expandAnimation="true" backgroundDesign="Solid" expanded="true" id="panel01">
 						<content>
 							<RadioButtonGroup id="carroceriaRadioButton" columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect">
 								<buttons>
@@ -16,7 +16,7 @@
 							</RadioButtonGroup>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Produtos" expandable="true" expandAnimation="true" backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Produtos" expandable="true" expandAnimation="true" backgroundDesign="Solid" id="panel02">
 						<content>
 							<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 								<items>
@@ -33,7 +33,7 @@
 							</HBox>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Últimas cargas transportadas" expandable="true" expandAnimation="true" backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Últimas cargas transportadas" expandable="true" expandAnimation="true" backgroundDesign="Solid" id="panel03">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>
@@ -61,7 +61,7 @@
 							</layout:BlockLayout>
 						</content>
 					</Panel>
-					<Panel height="auto" width="auto" headerText="Tipo de limpeza" expandable="true" expandAnimation="true" backgroundDesign="Solid">
+					<Panel height="auto" width="auto" headerText="Tipo de limpeza" expandable="true" expandAnimation="true" backgroundDesign="Solid" id="panel04">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>
@@ -149,7 +149,7 @@
 							</layout:BlockLayout>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Condições do veículo" expandable="true" expandAnimation="true" backgroundDesign="Solid">
+					<Panel height="auto" width="100%" headerText="Condições do veículo" expandable="true" expandAnimation="true" backgroundDesign="Solid" id="panel05">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>

@@ -14,61 +14,6 @@ sap.ui.define([
 
 		metadata: {
 			manifest: "json"
-			
-			// ,
-
-			// rootView: {
-			// 	"viewName": "com.sap.build.standard.formInspecaoDeVeiculos.view.App",
-			// 	"type": "XML",
-			// 	"async": true
-			// },
-			// routing: {
-			// 	config: {
-			// 		routerClass: "sap.m.routing.Router",
-			// 		viewPath: "com.sap.build.standard.formInspecaoDeVeiculos.view",
-			// 		controlId: "rootControl",
-			// 		controlAggregation: "pages",
-			// 		viewType: "XML",
-			// 		async: true
-			// 	},
-			// 	routes: [{
-			// 		name: "page1",
-			// 		// empty hash - normally the start page
-			// 		pattern: "",
-			// 		target: "page1"
-			// 	}, {
-			// 		name: "page2",
-			// 		pattern: "Page2",
-			// 		target: "page2"
-			// 	}, {
-			// 		name: "page3",
-			// 		pattern: "Page3",
-			// 		target: "page3"
-			// 	}, {
-			// 		name: "page4",
-			// 		pattern: "Page4",
-			// 		target: "page4"
-			// 	}],
-			// 	targets: {
-			// 		page1: {
-			// 			viewName: "Menu",
-			// 			viewLevel: 0
-			// 		},
-			// 		page2: {
-			// 			viewName: "Identificaco",
-			// 			viewLevel: 1
-			// 		},
-			// 		page3: {
-			// 			viewName: "Inspecacao",
-			// 			viewLevel: 2
-			// 		},
-			// 		page4: {
-			// 			viewName: "Conclusao",
-			// 			viewLevel: 3
-			// 		}
-			// 	}
-			// }
-
 		},
 
 		/**
@@ -88,7 +33,7 @@ sap.ui.define([
 
 			// set application model
 			var oApplicationModel = new sap.ui.model.json.JSONModel({});
-			this.setModel(oApplicationModel, "applicationModel");
+			this.setModel(oApplicationModel, "appModel");
 
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);

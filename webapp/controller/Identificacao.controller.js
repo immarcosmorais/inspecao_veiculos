@@ -13,13 +13,26 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 	var caminho,
 		filtro,
-		gModelHelp,
-		gModelCustom;
+		isReset = false,
+		gModelHelp;
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
 
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
+			
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			if (oStorage.get("Save").isSave) {
+				if (oStorage.get("Reset").page1) {
+					this.resetPage();
+					oStorage.put("Reset", {
+						page1: false,
+						page2: true,
+						page3: true
+					});
+				}
+			}
+			
 			if (oEvent.mParameters.data.context) {
 				this.sContext = oEvent.mParameters.data.context;
 				var oPath;
@@ -31,6 +44,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					this.getView().bindObject(oPath);
 				}
 			}
+		},
+
+		resetPage: function () {
+			this.getView().byId("tratorInput").setValue("");
+			this.getView().byId("motoristaInput").setValue("");
+			this.getView().byId("reboque1Input").setValue("");
+			this.getView().byId("reboque2Input").setValue("");
+			this.getView().byId("cpfInput").setValue("");
 		},
 
 		_onPageNavButtonPress: function () {
@@ -291,6 +312,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		onInit: function () {
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			oStorage.put("Save", {
+				isSave: false
+			});
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		},

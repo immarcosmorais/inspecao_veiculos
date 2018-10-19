@@ -6,8 +6,25 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"use strict";
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Menu", {
+
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
+
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			try {
+				if (oStorage.get("Save").isSave) {
+					oStorage.put("Reset", {
+						page1: true,
+						page2: true,
+						page3: true
+					});
+				}
+			} catch (e) {
+				oStorage.put("Save", {
+					isSave: false
+				});
+			}
+
 			if (oEvent.mParameters.data.context) {
 				this.sContext = oEvent.mParameters.data.context;
 				var oPath;
@@ -19,6 +36,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					this.getView().bindObject(oPath);
 				}
 			}
+
 		},
 		_onGenericTilePress: function (oEvent) {
 			var oBindingContext = oEvent.getSource().getBindingContext();
@@ -99,7 +117,20 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		onInit: function () {
-
+			// var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			// try {
+			// 	if (oStorage.get("Save").isSave) {
+			// 		oStorage.put("Reset", {
+			// 			page1: true,
+			// 			page2: true,
+			// 			page3: true
+			// 		});
+			// 	}
+			// } catch (e) {
+			// 	oStorage.put("Save", {
+			// 		isSave: false
+			// 	});
+			// }
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Menu").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 

@@ -19,7 +19,7 @@
 										<form:fields>
 											<Input id="tratorInput" placeholder="Ex.: ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
 												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Veiculo}"
-												value="{ path : '/placa', type : '.customPlacaType' }" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange">
+												value="{ path : '/placa'}" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
