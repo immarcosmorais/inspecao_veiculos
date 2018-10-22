@@ -43,6 +43,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		resetPage: function () {
 			this.getView().byId("obsInput").setValue("");
+			this.getView().byId("dataInput").setValue("");
 		},
 
 		handleRadioButtonGroupsSelectedIndex: function () {
@@ -166,7 +167,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 			var rota = this.getOwnerComponent().getRouter();
-			var page = this;
+			this.resetPage();
 
 			oModel.create('/vistoria', dados, null,
 				function () {

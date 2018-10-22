@@ -91,6 +91,22 @@ sap.ui.define([
 
 				//Condições do veículo
 				this.getView().byId("panel05").setExpanded(false);
+
+				this.getView().byId("carroceriaRadioButton").setSelectedIndex(0);
+				this.getView().byId("rb01").setSelectedIndex(0);
+				this.getView().byId("rb02").setSelectedIndex(0);
+				this.getView().byId("rb03").setSelectedIndex(0);
+				this.getView().byId("rb04").setSelectedIndex(0);
+				this.getView().byId("rb05").setSelectedIndex(0);
+				this.getView().byId("rb06").setSelectedIndex(0);
+				this.getView().byId("rb07").setSelectedIndex(0);
+				this.getView().byId("rb08").setSelectedIndex(0);
+				this.getView().byId("rb09").setSelectedIndex(0);
+				this.getView().byId("rb10").setSelectedIndex(0);
+				this.getView().byId("rb11").setSelectedIndex(0);
+				this.getView().byId("rb12").setSelectedIndex(0);
+				this.getView().byId("rb13").setSelectedIndex(0);
+
 			},
 
 			handleRadioButtonGroupsSelectedIndex: function () {

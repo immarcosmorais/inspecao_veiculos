@@ -124,7 +124,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				// oView.byId("cpfInput"),
 			];
 			var bValidationError = false;
-			var regex = new RegExp("^[a-zA-Z]{3}[0-9]{4}$");
+			var regex = new RegExp("^[a-zA-Z]{3}[0-9]{4}|[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}$");
 
 			if (!this._testaCPF(this.getView().byId("cpfInput").getValue())) {
 				bValidationError = true;
