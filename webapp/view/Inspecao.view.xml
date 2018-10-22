@@ -157,7 +157,7 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Resíduos de cargas anteriores / produtos químicos" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Resíduos de cargas anteriores/produtos químicos" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb01" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect1">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -169,7 +169,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Lona / Forração se furos ou rasgos" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Lona/Forração se furos ou rasgos" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb02" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect2">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -181,7 +181,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="End" titleLevel="Auto">
 												<layout:content>
-													<Text text="Presença de objetos estranhos / insetos / odores" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Presença de objetos estranhos/insetos/odores" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb03" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect3">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -209,7 +209,7 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Vazamento de combustíveis / lubrificantes" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Vazamento de combustíveis/lubrificantes" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb05" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect5">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -221,7 +221,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Carroceria / Tanque limpo, Seco e em Boas Condições" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Carroceria/Tanque limpo, Seco e em Boas Condições" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb06" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect6">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -233,7 +233,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="End" titleLevel="Auto">
 												<layout:content>
-													<Text text="Identificação para Transporte de Óleo Vegetal" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Identificação para 'Transporte de Óleo Vegetal'" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb07" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect7">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -261,7 +261,7 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Aparência externa do veículo é boa e apresenta-se limpa" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Tanque - Aparência externa do veículo é boa e apresenta-se limpa" width="220px" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb09" columns="8" selectedIndex="0" valueState="None" width="296px" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect9">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
