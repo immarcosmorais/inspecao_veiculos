@@ -116,79 +116,86 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			"date": new Date()
 		},
 
+		handleLiveChange: function (oEvent) {
+			var id = oEvent.getParameter("id").split("application-BUILD-prototype-component---Conclusao--");
+			var input = this.getView().byId(id[1]);
+			input.setValueState("None");
+			input.setValue(input.getValue().toUpperCase());
+		},
+
 		_inputDados: function () {
 
-			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			if (this.getView().byId("dataInput").getValue() != "") {
+				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+				var dados = {
+					Veiculo: oStorage.get("identificacao").veiculo,
+					Reboque1: oStorage.get("identificacao").reboque1,
+					Reboque2: oStorage.get("identificacao").reboque2,
+					NomeMotorista: oStorage.get("identificacao").nome_motorista
+						// Cpf: oStorage.get("identificacao").cpf,
+						// Carroceria: oStorage.get("inspecao").carroceria,
+						// C1ulticarga: oStorage.get("inspecao").ultima_cargas.compartimento1.ulti_carga,
+						// C1penucarga: oStorage.get("inspecao").ultima_cargas.compartimento1.penu_carga,
+						// C1antecarga: oStorage.get("inspecao").ultima_cargas.compartimento1.ante_carga,
+						// C2ulticarga: oStorage.get("inspecao").ultima_cargas.compartimento2.ulti_carga,
+						// C2penucarga: oStorage.get("inspecao").ultima_cargas.compartimento2.penu_carga,
+						// C2antecarga: oStorage.get("inspecao").ultima_cargas.compartimento2.ante_carga,
+						// C1soproar: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_01.compartimento1,
+						// C2soproar: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_01.compartimento2,
+						// C1varredura: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_02.compartimento1,
+						// C2varredura: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_02.compartimento2,
+						// C1lavagem: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_03.compartimento1,
+						// C2lavagem: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_03.compartimento2,
+						// C1vaporizacao: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_04.compartimento1,
+						// C2vaporizacao: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_04.compartimento2,
+						// C1lavagem01: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_05.compartimento1,
+						// C2lavagem01: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_05.compartimento2,
+						// C1lavagem02: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_06.compartimento1,
+						// C2lavagem02: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_06.compartimento2,
+						// Condvei01: oStorage.get("inspecao").condicao_limpeza.condicoe01,
+						// Condvei02: oStorage.get("inspecao").condicao_limpeza.condicoe02,
+						// Condvei03: oStorage.get("inspecao").condicao_limpeza.condicoe03,
+						// Condvei04: oStorage.get("inspecao").condicao_limpeza.condicoe04,
+						// Condvei05: oStorage.get("inspecao").condicao_limpeza.condicoe05,
+						// Condvei06: oStorage.get("inspecao").condicao_limpeza.condicoe06,
+						// Condvei07: oStorage.get("inspecao").condicao_limpeza.condicoe07,
+						// Condvei08: oStorage.get("inspecao").condicao_limpeza.condicoe08,
+						// Condvei09: oStorage.get("inspecao").condicao_limpeza.condicoe09,
+						// Condvei10: oStorage.get("inspecao").condicao_limpeza.condicoe10,
+						// Condvei11: oStorage.get("inspecao").condicao_limpeza.condicoe11,
+						// Condvei12: oStorage.get("inspecao").condicao_limpeza.condicoe12,
+						// Condvei13: oStorage.get("inspecao").condicao_limpeza.condicoe13,
+						// Resultado: this.getView().byId("resultadoRb").getSelectedButton().getText(),
+						// Datacarrega: this.getView().byId("dataInput").getValue(),
+						// Obs: this.getView().byId("obsInput").getValue(),
+						// Produtos: "t"
+				};
 
-			var dados = {
-				Veiculo: oStorage.get("identificacao").veiculo,
-				Reboque1: oStorage.get("identificacao").reboque1,
-				Reboque2: oStorage.get("identificacao").reboque2,
-				NomeMotorista: oStorage.get("identificacao").nome_motorista
-					// Cpf: oStorage.get("identificacao").cpf,
-					// Carroceria: oStorage.get("inspecao").carroceria,
-					// C1ulticarga: oStorage.get("inspecao").ultima_cargas.compartimento1.ulti_carga,
-					// C1penucarga: oStorage.get("inspecao").ultima_cargas.compartimento1.penu_carga,
-					// C1antecarga: oStorage.get("inspecao").ultima_cargas.compartimento1.ante_carga,
-					// C2ulticarga: oStorage.get("inspecao").ultima_cargas.compartimento2.ulti_carga,
-					// C2penucarga: oStorage.get("inspecao").ultima_cargas.compartimento2.penu_carga,
-					// C2antecarga: oStorage.get("inspecao").ultima_cargas.compartimento2.ante_carga,
-					// C1soproar: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_01.compartimento1,
-					// C2soproar: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_01.compartimento2,
-					// C1varredura: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_02.compartimento1,
-					// C2varredura: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_02.compartimento2,
-					// C1lavagem: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_03.compartimento1,
-					// C2lavagem: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_03.compartimento2,
-					// C1vaporizacao: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_04.compartimento1,
-					// C2vaporizacao: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_04.compartimento2,
-					// C1lavagem01: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_05.compartimento1,
-					// C2lavagem01: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_05.compartimento2,
-					// C1lavagem02: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_06.compartimento1,
-					// C2lavagem02: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_06.compartimento2,
-					// Condvei01: oStorage.get("inspecao").condicao_limpeza.condicoe01,
-					// Condvei02: oStorage.get("inspecao").condicao_limpeza.condicoe02,
-					// Condvei03: oStorage.get("inspecao").condicao_limpeza.condicoe03,
-					// Condvei04: oStorage.get("inspecao").condicao_limpeza.condicoe04,
-					// Condvei05: oStorage.get("inspecao").condicao_limpeza.condicoe05,
-					// Condvei06: oStorage.get("inspecao").condicao_limpeza.condicoe06,
-					// Condvei07: oStorage.get("inspecao").condicao_limpeza.condicoe07,
-					// Condvei08: oStorage.get("inspecao").condicao_limpeza.condicoe08,
-					// Condvei09: oStorage.get("inspecao").condicao_limpeza.condicoe09,
-					// Condvei10: oStorage.get("inspecao").condicao_limpeza.condicoe10,
-					// Condvei11: oStorage.get("inspecao").condicao_limpeza.condicoe11,
-					// Condvei12: oStorage.get("inspecao").condicao_limpeza.condicoe12,
-					// Condvei13: oStorage.get("inspecao").condicao_limpeza.condicoe13,
-					// Resultado: this.getView().byId("resultadoRb").getSelectedButton().getText(),
-					// Datacarrega: this.getView().byId("dataInput").getValue(),
-					// Obs: this.getView().byId("obsInput").getValue(),
-					// Produtos: "t"
-			};
+				var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+				var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
+				var rota = this.getOwnerComponent().getRouter();
+				this.resetPage();
 
-			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
-			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
-			var rota = this.getOwnerComponent().getRouter();
-			this.resetPage();
-
-			oModel.create('/vistoria', dados, null,
-				function () {
-					MessageBox.success('Cadastrado com sucesso!', {
-						onClose: function (sActionClicked) {
-							oStorage.clear();
-							oStorage.removeAll();
-							oStorage.put("Save", {
-								isSave: true
-							});
-							// oStorage.get("Menu").menu.getModel().refresh(true);
-							rota.navTo("Menu", false);
-							// window.location.reload(window.history.go(-3));
-							// sap.ui.getCore().byId("Menu").getModel().refresh(true);
-						}
-					});
-				},
-				function () {
-					MessageBox.error('Erro ao cadastrar o veiculo!');
-				}
-			);
+				oModel.create('/vistoria', dados, null,
+					function () {
+						MessageBox.success('Cadastrado com sucesso!', {
+							onClose: function (sActionClicked) {
+								oStorage.clear();
+								oStorage.removeAll();
+								oStorage.put("Save", {
+									isSave: true
+								});
+								rota.navTo("Menu", false);
+							}
+						});
+					},
+					function () {
+						MessageBox.error('Erro ao cadastrar o veiculo!');
+					}
+				);
+			} else {
+				MessageBox.warning("É Necessário definir uma data para salvar.");
+			}
 		},
 
 		onInit: function () {

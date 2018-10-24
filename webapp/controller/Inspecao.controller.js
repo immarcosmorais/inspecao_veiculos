@@ -511,6 +511,9 @@ sap.ui.define([
 				try {
 					var arrayItems = vBoxProdutos.getItems();
 					var item = arrayItems[arrayItems.length - 1];
+					if (arrayItems.length == 0) {
+						value = "*";
+					}
 					var sp = item.getItems();
 					value = sp[0].getProperty("value");
 				} catch (e) {
@@ -600,9 +603,17 @@ sap.ui.define([
 					oHBox2.addStyleClass("sapUiTinyMargin");
 					vBoxBotoes.addItem(oHBox2);
 					idElements++;
+
 				} else {
 					MessageBox.warning("É necessário selecionar um item para definir um novo.");
 				}
+			},
+
+			handleLiveChange: function (oEvent) {
+				var id = oEvent.getParameter("id").split("application-BUILD-prototype-component---Inspecao--");
+				var input = this.getView().byId(id[1]);
+				input.setValueState("None");
+				input.setValue(input.getValue().toUpperCase());
 			},
 
 			_inputDados: function () {
