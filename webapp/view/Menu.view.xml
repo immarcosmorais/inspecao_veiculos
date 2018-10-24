@@ -6,7 +6,7 @@
 				<items>
 					<GenericTile header="Cadastrar" subheader="Realizar nova vistoria" frameType="OneByOne" class="sapUiTinyMargin" press="_onGenericTilePress">
 						<tileContent>
-							<TileContent footer="" unit="">
+							<TileContent footer=" " unit="">
 								<content>
 									<NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://inspection"/>
 								</content>

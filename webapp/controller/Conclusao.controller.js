@@ -10,6 +10,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 
+			// Julio Grobel
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			if (oStorage.get("Save").isSave) {
 				if (oStorage.get("Reset").page3) {
@@ -63,7 +64,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					});
 				}
 			});
-
 		},
 		_onPageNavButtonPress: function () {
 			var oHistory = History.getInstance();
@@ -125,7 +125,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		_inputDados: function () {
 
-			if (this.getView().byId("dataInput").getValue() != "") {
+			if (this.getView().byId("dataInput").getValue() !== "") {
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var dados = {
 					Veiculo: oStorage.get("identificacao").veiculo,

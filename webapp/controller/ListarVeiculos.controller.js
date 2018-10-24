@@ -22,6 +22,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
+		
 		_onPageNavButtonPress: function() {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
@@ -35,6 +36,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
+		
 		getQueryParameters: function(oLocation) {
 			var oQuery = {};
 			var aParams = oLocation.search.substring(1).split("&");
@@ -45,6 +47,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			return oQuery;
 
 		},
+		
 		_onStandardListDelete: function(oEvent) {
 
 			var sDialogName = "Dialog2";
@@ -95,10 +98,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			});
 
 		},
+		
 		onInit: function() {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("ListarVeiculos").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-
 		}
 	});
 }, /* bExport= */ true);

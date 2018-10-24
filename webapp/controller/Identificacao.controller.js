@@ -13,14 +13,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 	var caminho,
 		filtro,
-		isReset = false,
 		gModelHelp;
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
 
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
-			
+
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			if (oStorage.get("Save").isSave) {
 				if (oStorage.get("Reset").page1) {
@@ -32,7 +31,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					});
 				}
 			}
-			
+
 			if (oEvent.mParameters.data.context) {
 				this.sContext = oEvent.mParameters.data.context;
 				var oPath;
@@ -77,11 +76,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		_onButtonPress: function (oEvent) {
-
 			var oBindingContext = oEvent.getSource().getBindingContext();
-
 			return new Promise(function (fnResolve) {
-
 				this.doNavigate("Inspecao", oBindingContext, fnResolve, "");
 			}.bind(this)).catch(function (err) {
 				if (err !== undefined) {
@@ -90,7 +86,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			});
 
 		},
-
 		_testaCPF: function (strCPF) {
 			var Soma;
 			var Resto;
@@ -119,7 +114,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var aInputs = [
 				oView.byId("tratorInput"),
 				oView.byId("reboque1Input"),
-				oView.byId("reboque2Input"),
+				oView.byId("reboque2Input")
 				// oView.byId("motoristaInput"),
 				// oView.byId("cpfInput"),
 			];
@@ -130,8 +125,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				bValidationError = true;
 				this.getView().byId("cpfInput").setValueState("Error");
 			}
-
-			//this._testaCPF("");
 
 			jQuery.each(aInputs, function (i, oInput) {
 
@@ -217,7 +210,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 
-		//Auxiliar de pesquisa
+		//Auxiliar de pesquisa                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 		handleValueHelp: function (oEvent) {
 
 			var sInputValue = oEvent.getSource().getValue();
@@ -272,21 +265,17 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				productInput = this.byId(this.inputId);
 				sValue = oSelectedItem.getTitle();
 			}
-
 			gModelHelp = this.getView().getModel();
 			i1 = this.getView().byId("reboque1Input");
 			i2 = this.getView().byId("reboque2Input");
 			i3 = this.getView().byId("cpfInput");
-
 			if (this.inputId.toString().indexOf("tratorInput") != -1 && (oSelectedItem)) {
 				r1 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque1;
 				r2 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque2;
 			}
-
 			if (this.inputId.toString().indexOf("motoristaInput") != -1 && (oSelectedItem)) {
 				cpf = gModelHelp.getData("/Motorista('" + sValue + "')").Stcd2;
 			}
-
 			productInput.setValue(sValue.toUpperCase());
 			productInput.setValueState("None");
 			if (r1 != "") {

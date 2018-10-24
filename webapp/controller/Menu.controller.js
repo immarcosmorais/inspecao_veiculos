@@ -117,23 +117,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		onInit: function () {
-			// var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-			// try {
-			// 	if (oStorage.get("Save").isSave) {
-			// 		oStorage.put("Reset", {
-			// 			page1: true,
-			// 			page2: true,
-			// 			page3: true
-			// 		});
-			// 	}
-			// } catch (e) {
-			// 	oStorage.put("Save", {
-			// 		isSave: false
-			// 	});
-			// }
+			
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Menu").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-
+			
 		}
 	});
 }, /* bExport= */ true);
