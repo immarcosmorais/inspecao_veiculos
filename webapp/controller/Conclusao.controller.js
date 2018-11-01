@@ -10,7 +10,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 
-			// Julio Grobel
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			if (oStorage.get("Save").isSave) {
 				if (oStorage.get("Reset").page3) {
@@ -76,8 +75,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("default", true);
 			}
-
 		},
+		
 		getQueryParameters: function (oLocation) {
 			var oQuery = {};
 			var aParams = oLocation.search.substring(1).split("&");
@@ -124,7 +123,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		_inputDados: function () {
-
 			if (this.getView().byId("dataInput").getValue() !== "") {
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var dados = {
