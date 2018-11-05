@@ -76,11 +76,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		resetPage: function () {
+
 			this.getView().byId("panel01").setExpanded(true);
 
 			//Produtos
 			this.getView().byId("panel02").setExpanded(false);
-			this.getView().byId("selectProdutos").removeAllSelectedItems();
 
 			//Últimas cargas transportadas
 			this.getView().byId("panel03").setExpanded(false);
@@ -512,7 +512,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 							sPath = "undefined";
 						}
 
-						// If the navigation is a 1-n, sPath would be "undefined" as this is not supported in Build
+						//  If the navigation is a 1-n, sPath would be "undefined" as this is not supported in Build
 						if (sPath === "undefined") {
 							this.oRouter.navTo(sRouteName);
 						} else {
@@ -542,11 +542,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				state = " retirado";
 			}
 
-			// MessageToast.show("Event 'selectionChange': " + state + " '" + changedItem.getText() + "'", {
-			// 	width: "auto"
-			// });
-
-			MessageToast.show("Produto " + changedItem.getText() + state, {
+			MessageToast.show(changedItem.getText() + state, {
 				width: "auto"
 			});
 
@@ -554,41 +550,23 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		handleSelectionFinish: function (oEvent) {
 			var selectedItems = oEvent.getParameter("selectedItems");
-			var messageText = "Produto(s) selecionado(s): [";
+			var messageText = "Produto(s) selecionado(s): [ ";
 
 			for (var i = 0; i < selectedItems.length; i++) {
 				messageText += "'" + selectedItems[i].getText() + "'";
-				if (i != selectedItems.length - 1) {
-					messageText += ",";
+				if (i !== selectedItems.length - 1) {
+					messageText += ", ";
 				}
 			}
-
-			messageText += "]";
-
+			
+			messageText += " ]";
 			MessageToast.show(messageText, {
 				width: "auto"
 			});
+			
 		},
 
 		_inputDados: function () {
-
-			// item = this.getView().byId("vBoxProdutos").getItems()[0].getItems()[0].getSelectedKey();
-
-			// var oItem = this.getView().byId("vBoxProdutos").getItems();
-			// var produtos = [];
-
-			// jQuery.each(oItem, function (i, item) {
-			// 	var flag = true;
-			// 	for (var i = 0; i < produtos.length; i++) {
-			// 		if (produtos[i] == item.getItems()[0].getSelectedKey()) {
-			// 			flag = false;
-			// 			break;
-			// 		}
-			// 	}
-			// 	if (flag) {
-			// 		produtos.push(item.getItems()[0].getSelectedKey());
-			// 	}
-			// });
 
 			var dados = {
 				carroceria: this.getView().byId("carroceriaRadioButton").getSelectedButton().getText(),
@@ -605,7 +583,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					}
 				},
 				produtos: {
-					// chave: produtos
+					chaves: this.getView().byId("selectProdutos").getSelectedKeys()
 				},
 				tipo_limpeza: {
 					tipo_limpeza_01: {
@@ -656,7 +634,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Inspecao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-
 		}
 	});
 }, /* bExport= */ true);
