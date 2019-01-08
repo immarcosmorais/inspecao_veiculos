@@ -1,8 +1,9 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
+	"./Dialog",
 	"./utilities",
 	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+], function(BaseController, MessageBox, Dialog, Utilities, History) {
 	"use strict";
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos", {
@@ -49,53 +50,67 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 		
 		_onStandardListDelete: function(oEvent) {
-
-			var sDialogName = "Dialog2";
+			
+			var sDialogName = "Dialog";
 			this.mDialogs = this.mDialogs || {};
 			var oDialog = this.mDialogs[sDialogName];
-			var oSource = oEvent.getParameter("listItem");
-			var oBindingContext = oSource.getBindingContext();
-			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
-			var oView;
+
 			if (!oDialog) {
-				this.getOwnerComponent().runAsOwner(function() {
-					oView = sap.ui.xmlview({
-						viewName: "com.sap.build.standard.formInspecaoDeVeiculos.view." + sDialogName
-					});
-					this.getView().addDependent(oView);
-					oView.getController().setRouter(this.oRouter);
-					oDialog = oView.getContent()[0];
-					this.mDialogs[sDialogName] = oDialog;
-				}.bind(this));
+				oDialog = new Dialog(this.getView());
+				this.mDialogs[sDialogName] = oDialog;
+
+				// For navigation.
+				oDialog.setRouter(this.oRouter);
 			}
+			oDialog.open();
+			
 
-			return new Promise(function(fnResolve) {
-				oDialog.attachEventOnce("afterOpen", null, fnResolve);
-				oDialog.open();
-				if (oView) {
-					oDialog.attachAfterOpen(function() {
-						oDialog.rerender();
-					});
-				} else {
-					oView = oDialog.getParent();
-				}
+			// var sDialogName = "Dialog";
+			// this.mDialogs = this.mDialogs || {};
+			// var oDialog = this.mDialogs[sDialogName];
+			// var oSource = oEvent.getParameter("listItem");
+			// var oBindingContext = oSource.getBindingContext();
+			// var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
+			// var oView;
+			// if (!oDialog) {
+			// 	this.getOwnerComponent().runAsOwner(function() {
+			// 		oView = sap.ui.xmlview({
+			// 			viewName: "com.sap.build.standard.formInspecaoDeVeiculos.view." + sDialogName
+			// 		});
+			// 		this.getView().addDependent(oView);
+			// 		oView.getController().setRouter(this.oRouter);
+			// 		oDialog = oView.getContent()[0];
+			// 		this.mDialogs[sDialogName] = oDialog;
+			// 	}.bind(this));
+			// }
 
-				var oModel = this.getView().getModel();
-				if (oModel) {
-					oView.setModel(oModel);
-				}
-				if (sPath) {
-					var oParams = oView.getController().getBindingParameters();
-					oView.bindObject({
-						path: sPath,
-						parameters: oParams
-					});
-				}
-			}.bind(this)).catch(function(err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
+			// return new Promise(function(fnResolve) {
+			// 	oDialog.attachEventOnce("afterOpen", null, fnResolve);
+			// 	oDialog.open();
+			// 	if (oView) {
+			// 		oDialog.attachAfterOpen(function() {
+			// 			oDialog.rerender();
+			// 		});
+			// 	} else {
+			// 		oView = oDialog.getParent();
+			// 	}
+
+			// 	var oModel = this.getView().getModel();
+			// 	if (oModel) {
+			// 		oView.setModel(oModel);
+			// 	}
+			// 	if (sPath) {
+			// 		var oParams = oView.getController().getBindingParameters();
+			// 		oView.bindObject({
+			// 			path: sPath,
+			// 			parameters: oParams
+			// 		});
+			// 	}
+			// }.bind(this)).catch(function(err) {
+			// 	if (err !== undefined) {
+			// 		MessageBox.error(err.message);
+			// 	}
+			// });
 
 		},
 		
