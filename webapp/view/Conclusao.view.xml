@@ -35,8 +35,12 @@
 									<Label text="Observação" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<Input placeholder="" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"
-										id="obsInput" liveChange="handleLiveChange"/>
+									
+									<!--<Input placeholder="" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"-->
+									<!--	id="obsInput" liveChange="handleLiveChange"/>-->
+									
+									<TextArea id="obsInput" growing="true" visible="true" width="100%" maxLength="300"/>
+										
 								</form:fields>
 							</form:FormElement>
 						</form:formElements>
