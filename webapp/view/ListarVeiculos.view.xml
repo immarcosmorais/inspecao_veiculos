@@ -1,29 +1,8 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos" xmlns="sap.m">
 	<Page showHeader="true" title="Veículos" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
-			
-			<!--<List id="list" mode="Delete" delete="handleDelete" enableBusyIndicator="true" headerText="Products" growing="true"-->
-			<!--	items="{ path: '/ProductCollection' }">-->
-			<!--	<StandardListItem title="{Name}" description="{ProductId}" icon="{ProductPicUrl}" iconDensityAware="false" iconInset="false"/>-->
-			<!--</List>-->
-			
-			<List
-			
-				items="{ path: '/Veiculo' }"
-				
-				id="listaVeiculos" 
-				mode="Delete" 
-				width="100%" 
-				headerText="Header" 
-				footerText="" 
-				backgroundDesign="Solid" 
-				showSeparators="All"
-				growing="true" 
-				growingThreshold="20" 
-				growingScrollToLoad="true" 
-				visible="true" 
-				delete="_onStandardListDelete">
-				
+			<List items="{ path: '/Veiculo' }" id="listaVeiculos" mode="Delete" width="100%" headerText="Header" footerText="" backgroundDesign="Solid"
+				showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true" delete="_onStandardListDelete">
 				<infoToolbar>
 					<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
 						<content>
@@ -34,21 +13,15 @@
 				<headerToolbar>
 					<Toolbar enabled="true" visible="true" width="" design="Solid">
 						<content>
-							<SearchField placeholder="Search" showSearchButton="true" visible="true" width="100%"/>
+							<SearchField search="handleSearch" placeholder="Search" showSearchButton="true" visible="true" width="100%"/>
 						</content>
 					</Toolbar>
 				</headerToolbar>
-				
 				<items>
-					<StandardListItem icon="sap-icon://shipping-status" title="{Placa}" description="{Descricao}" info="Ok" infoState="Success" type="Inactive" selected="false" visible="true"/>
+					<StandardListItem icon="sap-icon://shipping-status" title="{Placa}" description="{Descricao}" info="Ok" infoState="Success" type="Inactive"
+						selected="false" visible="true"/>
 				</items>
-				
-				<!--<items>-->
-				<!--	<StandardListItem icon="sap-icon://shipping-status" title="ABC1234" description="Carreta" info="Ok" infoState="Success" type="Inactive" selected="false" visible="true"/>-->
-				<!--</items>-->
-				
 			</List>
-			
 		</content>
 		<footer>
 			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
