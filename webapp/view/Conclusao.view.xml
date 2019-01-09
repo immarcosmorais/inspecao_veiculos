@@ -25,22 +25,15 @@
 									<Label text="Carregamento" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<!-- <DatePicker width="auto" displayFormat="medium" enabled="true" visible="true" value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}" /> -->
-									<!-- <DatePicker id="DataCarregamento" value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true}}" class="sapUiSmallMarginBottom"/> -->
 									<DatePicker dateValue="{/date}" id="dataInput"/>
 								</form:fields>
 							</form:FormElement>
 							<form:FormElement visible="true">
 								<form:label>
-									<Label text="Observação" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+									<Label text="Observações" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									
-									<!--<Input placeholder="" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"-->
-									<!--	id="obsInput" liveChange="handleLiveChange"/>-->
-									
 									<TextArea id="obsInput" growing="true" visible="true" width="100%" maxLength="300"/>
-										
 								</form:fields>
 							</form:FormElement>
 						</form:formElements>
