@@ -20,20 +20,23 @@
 									</RadioButtonGroup>
 								</form:fields>
 							</form:FormElement>
+							
 							<form:FormElement visible="true">
 								<form:label>
 									<Label text="Carregamento" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<DatePicker dateValue="{/date}" id="dataInput"/>
+									<DatePicker dateValue="{/date}" id="dataInput" valueFormat="yyyyMMdd"/>
+									<!--<DatePicker dateValue="{/date}" id="dataInput"/>-->
 								</form:fields>
 							</form:FormElement>
+						
 							<form:FormElement visible="true">
 								<form:label>
 									<Label text="Observações" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 								</form:label>
 								<form:fields>
-									<TextArea id="obsInput" growing="true" visible="true" width="100%" maxLength="300"/>
+									<TextArea id="obsInput" growing="true" visible="true" width="100%" maxLength="130"/>
 								</form:fields>
 							</form:FormElement>
 						</form:formElements>

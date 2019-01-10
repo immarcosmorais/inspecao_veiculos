@@ -193,8 +193,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect1">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -207,8 +207,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect2">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -221,8 +221,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect3">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -235,8 +235,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect4">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -253,8 +253,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect5">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -267,8 +267,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect6">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -281,8 +281,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect7">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -295,8 +295,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect8">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -313,8 +313,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect9">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -327,8 +327,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect10">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -341,8 +341,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect11">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -355,8 +355,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect12">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>
@@ -373,8 +373,8 @@
 														textDirection="Inherit" select="_onRadioButtonGroupSelect13">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
-															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 															<RadioButton text="Não" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
+															<RadioButton text="Sim" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 														</buttons>
 													</RadioButtonGroup>
 												</layout:content>

@@ -558,19 +558,19 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					messageText += ", ";
 				}
 			}
-			
+
 			messageText += " ]";
 			MessageToast.show(messageText, {
 				width: "auto"
 			});
-			
+
 		},
 
 		_inputDados: function () {
 
 			var dados = {
-				carroceria: this.getView().byId("carroceriaRadioButton").getSelectedButton().getText(),
-				ultima_cargas: {
+				carroceria: this.getView().byId("carroceriaRadioButton").getSelectedIndex() + "",
+				ultimas_cargas: {
 					compartimento1: {
 						ulti_carga: this.getView().byId("c1UltiCargaInput").getValue(),
 						penu_carga: this.getView().byId("c1PenuCargaInput").getValue(),
@@ -612,19 +612,19 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					}
 				},
 				condicao_limpeza: {
-					condicoe01: this.getView().byId("rb01").getSelectedButton().getText(),
-					condicoe02: this.getView().byId("rb02").getSelectedButton().getText(),
-					condicoe03: this.getView().byId("rb03").getSelectedButton().getText(),
-					condicoe04: this.getView().byId("rb04").getSelectedButton().getText(),
-					condicoe05: this.getView().byId("rb05").getSelectedButton().getText(),
-					condicoe06: this.getView().byId("rb06").getSelectedButton().getText(),
-					condicoe07: this.getView().byId("rb07").getSelectedButton().getText(),
-					condicoe08: this.getView().byId("rb08").getSelectedButton().getText(),
-					condicoe09: this.getView().byId("rb09").getSelectedButton().getText(),
-					condicoe10: this.getView().byId("rb10").getSelectedButton().getText(),
-					condicoe11: this.getView().byId("rb11").getSelectedButton().getText(),
-					condicoe12: this.getView().byId("rb12").getSelectedButton().getText(),
-					condicoe13: this.getView().byId("rb13").getSelectedButton().getText()
+					condicoe01: this.getView().byId("rb01").getSelectedIndex() - 1 + "",
+					condicoe02: this.getView().byId("rb02").getSelectedIndex() - 1 + "",
+					condicoe03: this.getView().byId("rb03").getSelectedIndex() - 1 + "",
+					condicoe04: this.getView().byId("rb04").getSelectedIndex() - 1 + "",
+					condicoe05: this.getView().byId("rb05").getSelectedIndex() - 1 + "",
+					condicoe06: this.getView().byId("rb06").getSelectedIndex() - 1 + "",
+					condicoe07: this.getView().byId("rb07").getSelectedIndex() - 1 + "",
+					condicoe08: this.getView().byId("rb08").getSelectedIndex() - 1 + "",
+					condicoe09: this.getView().byId("rb09").getSelectedIndex() - 1 + "",
+					condicoe10: this.getView().byId("rb10").getSelectedIndex() - 1 + "",
+					condicoe11: this.getView().byId("rb11").getSelectedIndex() - 1 + "",
+					condicoe12: this.getView().byId("rb12").getSelectedIndex() - 1 + "",
+					condicoe13: this.getView().byId("rb13").getSelectedIndex() - 1 + ""
 				}
 			};
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
