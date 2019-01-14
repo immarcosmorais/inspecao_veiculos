@@ -5,6 +5,7 @@
 		title="Reboque"
 		class="sapUiPopupWithPadding"
 		items="{/Reboque}"
+		liveChange="_handleLiveChange"
 		search="_handleValueHelpSearch"
 		confirm="_handleValueHelpClose"
 		cancel="_handleValueHelpClose">

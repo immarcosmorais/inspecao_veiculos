@@ -244,8 +244,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
+		
+		
 
 		_handleValueHelpSearch: function (evt) {
+			//Aqui - 
 			var sValue = evt.getParameter("value");
 			sValue = sValue.toUpperCase();
 			var oFilter = new Filter(
@@ -291,6 +294,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			i2.setValueState("None");
 			i3.setValueState("None");
 			evt.getSource().getBinding("items").filter([]);
+		},
+		
+		_handleLiveChange: function(oEvent){
+			this._handleValueHelpSearch(oEvent);
 		},
 
 		handleLiveChange: function (oEvent) {

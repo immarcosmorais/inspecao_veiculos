@@ -81,6 +81,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			//Produtos
 			this.getView().byId("panel02").setExpanded(false);
+			this.getView().byId("selectProdutos").removeAllSelectedItems();
 
 			//Últimas cargas transportadas
 			this.getView().byId("panel03").setExpanded(false);

@@ -44,6 +44,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		resetPage: function () {
 			this.getView().byId("obsInput").setValue("");
 			this.getView().byId("dataInput").setValue("");
+			// this.onInit();
 		},
 
 		handleRadioButtonGroupsSelectedIndex: function () {
@@ -185,52 +186,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					Obs: this.getView().byId("obsInput").getValue(),
 					Produtos: "123456789123456789"
 				};
-
-				// var dados = {
-				// Cod: "-1",
-				// Veiculo: oStorage.get("identificacao").veiculo,
-				// Reboque1: oStorage.get("identificacao").reboque1,
-				// Reboque2: oStorage.get("identificacao").reboque2,
-				// NomeMotorista: oStorage.get("identificacao").nome_motorista,
-				// Cpf: oStorage.get("identificacao").cpf,
-				// Carroceria: oStorage.get("inspecao").carroceria,
-				// C1ulticarga: oStorage.get("inspecao").ultima_cargas.compartimento1.ulti_carga,
-
-				// C1penucarga: oStorage.get("inspecao").ultima_cargas.compartimento1.penu_carga,
-				// C1antecarga: oStorage.get("inspecao").ultima_cargas.compartimento1.ante_carga,
-				// C2ulticarga: oStorage.get("inspecao").ultima_cargas.compartimento2.ulti_carga,
-				// C2penucarga: oStorage.get("inspecao").ultima_cargas.compartimento2.penu_carga,
-				// C2antecarga: oStorage.get("inspecao").ultima_cargas.compartimento2.ante_carga,
-				// C1soproar: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_01.compartimento1,
-				// C2soproar: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_01.compartimento2,
-				// C1varredura: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_02.compartimento1,
-				// C2varredura: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_02.compartimento2,
-				// C1lavagem: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_03.compartimento1,
-				// C2lavagem: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_03.compartimento2,
-				// C1vaporizacao: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_04.compartimento1,
-				// C2vaporizacao: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_04.compartimento2,
-				// C1lavagem01: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_05.compartimento1,
-				// C2lavagem01: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_05.compartimento2,
-				// C1lavagem02: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_06.compartimento1,
-				// C2lavagem02: oStorage.get("inspecao").tipo_limpeza.tipo_limpeza_06.compartimento2,
-				// Condvei01: oStorage.get("inspecao").condicao_limpeza.condicoe01,
-				// Condvei02: oStorage.get("inspecao").condicao_limpeza.condicoe02,
-				// Condvei03: oStorage.get("inspecao").condicao_limpeza.condicoe03,
-				// Condvei04: oStorage.get("inspecao").condicao_limpeza.condicoe04,
-				// Condvei05: oStorage.get("inspecao").condicao_limpeza.condicoe05,
-				// Condvei06: oStorage.get("inspecao").condicao_limpeza.condicoe06,
-				// Condvei07: oStorage.get("inspecao").condicao_limpeza.condicoe07,
-				// Condvei08: oStorage.get("inspecao").condicao_limpeza.condicoe08,
-				// Condvei09: oStorage.get("inspecao").condicao_limpeza.condicoe09,
-				// Condvei10: oStorage.get("inspecao").condicao_limpeza.condicoe10,
-				// Condvei11: oStorage.get("inspecao").condicao_limpeza.condicoe11,
-				// Condvei12: oStorage.get("inspecao").condicao_limpeza.condicoe12,
-				// Condvei13: oStorage.get("inspecao").condicao_limpeza.condicoe13,
-				// Resultado: this.getView().byId("resultadoRb").getSelectedButton().getText(),
-				// Datacarrega: this.getView().byId("dataInput").getValue(),
-				// Obs: this.getView().byId("obsInput").getValue(),
-				// Produtos: "t"
-				// };
 
 				var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
 				var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
