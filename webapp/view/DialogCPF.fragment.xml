@@ -5,6 +5,7 @@
 		title="CPFs"
 		class="sapUiPopupWithPadding"
 		items="{/Motorista}"
+		liveChange="_handleLiveChange"
 		search="_handleValueHelpSearch"
 		confirm="_handleValueHelpClose"
 		cancel="_handleValueHelpClose">
