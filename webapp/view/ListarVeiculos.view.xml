@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos" xmlns="sap.m">
 	<Page showHeader="true" title="Veículos" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
-			<List items="{ path: '/Veiculo' }" id="listaVeiculos" mode="Delete" width="100%" headerText="Header" footerText="" backgroundDesign="Solid"
+			<List items="{ path: '/Vistoria' }" id="listaVeiculos" mode="Delete" width="100%" headerText="Header" footerText="" backgroundDesign="Solid"
 				showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true" delete="_onStandardListDelete">
 				<infoToolbar>
 					<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
@@ -18,8 +18,8 @@
 					</Toolbar>
 				</headerToolbar>
 				<items>
-					<StandardListItem icon="sap-icon://shipping-status" title="{Placa}" description="{Descricao}" info="Ok" infoState="Success" type="Inactive"
-						selected="false" visible="true"/>
+					<!--<StandardListItem icon="sap-icon://shipping-status" title="{Placa}" description="{Descricao}" info="Ok" infoState="Success" type="Inactive" selected="false" visible="true"/>-->
+					<StandardListItem icon="sap-icon://shipping-status" title="{Cod}" description="{Veiculo}" info="Ok" infoState="Success" type="Inactive" selected="false" visible="true"/>
 				</items>
 			</List>
 		</content>

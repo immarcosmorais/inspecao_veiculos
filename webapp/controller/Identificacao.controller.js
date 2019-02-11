@@ -12,6 +12,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"use strict";
 
 	var caminho,
+		cod,
 		filtro,
 		gModelHelp;
 
@@ -244,11 +245,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
-		
-		
 
 		_handleValueHelpSearch: function (evt) {
-			//Aqui - 
 			var sValue = evt.getParameter("value");
 			sValue = sValue.toUpperCase();
 			var oFilter = new Filter(
@@ -278,6 +276,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 			if (this.inputId.toString().indexOf("motoristaInput") != -1 && (oSelectedItem)) {
 				cpf = gModelHelp.getData("/Motorista('" + sValue + "')").Stcd2;
+				this.cod = gModelHelp.getData("/Motorista('" + sValue + "')").Lifnr;
 			}
 			productInput.setValue(sValue.toUpperCase());
 			productInput.setValueState("None");
@@ -295,8 +294,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			i3.setValueState("None");
 			evt.getSource().getBinding("items").filter([]);
 		},
-		
-		_handleLiveChange: function(oEvent){
+
+		_handleLiveChange: function (oEvent) {
 			this._handleValueHelpSearch(oEvent);
 		},
 
@@ -323,6 +322,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				reboque2: this.getView().byId("reboque2Input").getValue(),
 				nome_motorista: this.getView().byId("motoristaInput").getValue(),
 				cpf: this.getView().byId("cpfInput").getValue(),
+				lifnr: this.cod
 			};
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			oStorage.put("identificacao", dados);

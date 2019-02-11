@@ -133,50 +133,43 @@
 					"transition": "slide"
 				}
 			},
-			"routes": [
-				{
-					"pattern": "Menu/:context:",
-					"name": "Menu",
-					"target": [
-						"Menu"
-					]
-				},
-				{
-					"pattern": "",
-					"name": "default",
-					"target": [
-						"Menu"
-					]
-				},
-				{
-					"pattern": "Identificacao/:context:",
-					"name": "Identificacao",
-					"target": [
-						"Identificacao"
-					]
-				},
-				{
-					"pattern": "Inspecao/:context:",
-					"name": "Inspecao",
-					"target": [
-						"Inspecao"
-					]
-				},
-				{
-					"pattern": "Conclusao/:context:",
-					"name": "Conclusao",
-					"target": [
-						"Conclusao"
-					]
-				},
-				{
-					"pattern": "ListarVeiculos/:context:",
-					"name": "ListarVeiculos",
-					"target": [
-						"ListarVeiculos"
-					]
-				}
-			]
+			"routes": [{
+				"pattern": "Menu/:context:",
+				"name": "Menu",
+				"target": [
+					"Menu"
+				]
+			}, {
+				"pattern": "",
+				"name": "default",
+				"target": [
+					"Menu"
+				]
+			}, {
+				"pattern": "Identificacao/:context:",
+				"name": "Identificacao",
+				"target": [
+					"Identificacao"
+				]
+			}, {
+				"pattern": "Inspecao/:context:",
+				"name": "Inspecao",
+				"target": [
+					"Inspecao"
+				]
+			}, {
+				"pattern": "Conclusao/:context:",
+				"name": "Conclusao",
+				"target": [
+					"Conclusao"
+				]
+			}, {
+				"pattern": "ListarVeiculos/:context:",
+				"name": "ListarVeiculos",
+				"target": [
+					"ListarVeiculos"
+				]
+			}]
 		}
 	},
 	"sap.platform.hcp": {

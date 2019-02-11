@@ -44,7 +44,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		resetPage: function () {
 			this.getView().byId("obsInput").setValue("");
 			this.getView().byId("dataInput").setValue("");
-			// this.onInit();
 		},
 
 		handleRadioButtonGroupsSelectedIndex: function () {
@@ -135,55 +134,61 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					inspecao = oStorage.get("inspecao");
 
 				var dados = {
+					Mandt: "010",
 					Cod: "-1",
 					Veiculo: identificacao.veiculo,
 					Reboque1: identificacao.reboque1,
 					Reboque2: identificacao.reboque2,
-					NomeMotorista: identificacao.nome_motorista,
-					Cpf: identificacao.cpf,
+					// NomeMotorista: identificacao.nome_motorista,
+					// CpfMotorista: identificacao.cpf,
+					Motorista: identificacao.lifnr,
 					Carroceria: inspecao.carroceria,
-					C1ulticarga: inspecao.ultimas_cargas.compartimento1.ulti_carga,
-					C1penucarga: inspecao.ultimas_cargas.compartimento1.penu_carga,
-					C1antecarga: inspecao.ultimas_cargas.compartimento1.ante_carga,
-					C2ulticarga: inspecao.ultimas_cargas.compartimento2.ulti_carga,
-					C2penucarga: inspecao.ultimas_cargas.compartimento2.penu_carga,
-					C2antecarga: inspecao.ultimas_cargas.compartimento2.ante_carga,
+					C1UltimaCarga: inspecao.ultimas_cargas.compartimento1.ulti_carga,
+					C1PenultimaCarga: inspecao.ultimas_cargas.compartimento1.penu_carga,
+					C1AntepeultCarga: inspecao.ultimas_cargas.compartimento1.ante_carga,
+					C2UltimaCarga: inspecao.ultimas_cargas.compartimento2.ulti_carga,
+					C2PenultimaCarga: inspecao.ultimas_cargas.compartimento2.penu_carga,
+					C2AntepeultCarga: inspecao.ultimas_cargas.compartimento2.ante_carga,
 					// Sopro com ar comprimido (A)
-					C1soproar: inspecao.tipo_limpeza.tipo_limpeza_01.compartimento1,
-					C2soproar: inspecao.tipo_limpeza.tipo_limpeza_01.compartimento2,
+					C1SoproAr: inspecao.tipo_limpeza.tipo_limpeza_01.compartimento1,
+					C2SoproAr: inspecao.tipo_limpeza.tipo_limpeza_01.compartimento2,
 					// Varredura (A)
-					C1varredura: inspecao.tipo_limpeza.tipo_limpeza_02.compartimento1,
-					C2varredura: inspecao.tipo_limpeza.tipo_limpeza_02.compartimento2,
+					C1Varredura: inspecao.tipo_limpeza.tipo_limpeza_02.compartimento1,
+					C2Varredura: inspecao.tipo_limpeza.tipo_limpeza_02.compartimento2,
 					// Lavagem com água (B)
-					C1lavagem: inspecao.tipo_limpeza.tipo_limpeza_03.compartimento1,
-					C2lavagem: inspecao.tipo_limpeza.tipo_limpeza_03.compartimento2,
+					C1Lavagem: inspecao.tipo_limpeza.tipo_limpeza_03.compartimento1,
+					C2Lavagem: inspecao.tipo_limpeza.tipo_limpeza_03.compartimento2,
 					// Vaporização (com vapor d'água) (C)
-					C1vaporizacao: inspecao.tipo_limpeza.tipo_limpeza_04.compartimento1,
-					C2vaporizacao: inspecao.tipo_limpeza.tipo_limpeza_04.compartimento2,
+					C1Vaporizacao: inspecao.tipo_limpeza.tipo_limpeza_04.compartimento1,
+					C2Vaporizacao: inspecao.tipo_limpeza.tipo_limpeza_04.compartimento2,
 					// Lavagem com água e agente de limpeza (C)
-					C1lavagem01: inspecao.tipo_limpeza.tipo_limpeza_05.compartimento1,
-					C2lavagem01: inspecao.tipo_limpeza.tipo_limpeza_05.compartimento2,
+					C1Lavagem02: inspecao.tipo_limpeza.tipo_limpeza_05.compartimento1,
+					C2Lavagem02: inspecao.tipo_limpeza.tipo_limpeza_05.compartimento2,
 					// Lavagem com água e agente de desinfecção (D)
-					C1lavagem02: inspecao.tipo_limpeza.tipo_limpeza_06.compartimento1,
-					C2lavagem02: inspecao.tipo_limpeza.tipo_limpeza_06.compartimento2,
+					C1Lavagem03: inspecao.tipo_limpeza.tipo_limpeza_06.compartimento1,
+					C2Lavagem03: inspecao.tipo_limpeza.tipo_limpeza_06.compartimento2,
 
-					Condvei01: inspecao.condicao_limpeza.condicoe01,
-					Condvei02: inspecao.condicao_limpeza.condicoe02,
-					Condvei03: inspecao.condicao_limpeza.condicoe03,
-					Condvei04: inspecao.condicao_limpeza.condicoe04,
-					Condvei05: inspecao.condicao_limpeza.condicoe05,
-					Condvei06: inspecao.condicao_limpeza.condicoe06,
-					Condvei07: inspecao.condicao_limpeza.condicoe07,
-					Condvei08: inspecao.condicao_limpeza.condicoe08,
-					Condvei09: inspecao.condicao_limpeza.condicoe09,
-					Condvei10: inspecao.condicao_limpeza.condicoe10,
-					Condvei11: inspecao.condicao_limpeza.condicoe11,
-					Condvei12: inspecao.condicao_limpeza.condicoe12,
-					Condvei13: inspecao.condicao_limpeza.condicoe13,
-
+					CondicaoVeiculo01: inspecao.condicao_limpeza.condicoe01,
+					CondicaoVeiculo02: inspecao.condicao_limpeza.condicoe02,
+					CondicaoVeiculo03: inspecao.condicao_limpeza.condicoe03,
+					CondicaoVeiculo04: inspecao.condicao_limpeza.condicoe04,
+					CondicaoVeiculo05: inspecao.condicao_limpeza.condicoe05,
+					CondicaoVeiculo06: inspecao.condicao_limpeza.condicoe06,
+					CondicaoVeiculo07: inspecao.condicao_limpeza.condicoe07,
+					CondicaoVeiculo08: inspecao.condicao_limpeza.condicoe08,
+					CondicaoVeiculo09: inspecao.condicao_limpeza.condicoe09,
+					CondicaoVeiculo10: inspecao.condicao_limpeza.condicoe10,
+					CondicaoVeiculo11: inspecao.condicao_limpeza.condicoe11,
+					CondicaoVeiculo12: inspecao.condicao_limpeza.condicoe12,
+					CondicaoVeiculo13: inspecao.condicao_limpeza.condicoe13,
+					
+					Usuario: sap.ushell.Container.getUser().getFirstName(),
+					// DataCriacao: this.getView().byId("dataInput").getProperty("dateValue"),
+					// dataHora: "00:00:00",
+					
 					Resultado: this.getView().byId("resultadoRb").getSelectedIndex() === 0 ? true : false,
-					Datacarrega: this.getView().byId("dataInput").getProperty("dateValue"),
-					Obs: this.getView().byId("obsInput").getValue(),
+					DataCarregamento: this.getView().byId("dataInput").getProperty("dateValue"),
+					Observacoes: this.getView().byId("obsInput").getValue(),
 					Produtos: "123456789123456789"
 				};
 
@@ -191,6 +196,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 				var rota = this.getOwnerComponent().getRouter();
 				this.resetPage();
+				var that = this;
 
 				oModel.create('/Vistoria', dados, null,
 					function () {
@@ -201,6 +207,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 								oStorage.put("Save", {
 									isSave: true
 								});
+								// that.getView().destroy();
 								rota.navTo("Menu", false);
 							}
 						});
