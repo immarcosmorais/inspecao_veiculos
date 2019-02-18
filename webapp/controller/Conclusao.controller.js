@@ -118,13 +118,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			input.setValue(input.getValue().toUpperCase());
 		},
 
-		getODataDateFromDatePicker: function (datePickerInstance) {
-			var yyyymmdd = datePickerInstance.getValue();
-			var splitDateArray = yyyymmdd.match(/(\d{4})(\d{2})(\d{2})/);
-			var yyyySlashMMSlashDD = splitDateArray[1] + '/' + splitDateArray[2] + '/' + splitDateArray[3];
-			var jsDateObject = new Date(yyyySlashMMSlashDD);
-			return jsDateObject;
-		},
+		// getODataDateFromDatePicker: function (datePickerInstance) {
+		// 	var yyyymmdd = datePickerInstance.getValue();
+		// 	var splitDateArray = yyyymmdd.match(/(\d{4})(\d{2})(\d{2})/);
+		// 	var yyyySlashMMSlashDD = splitDateArray[1] + '/' + splitDateArray[2] + '/' + splitDateArray[3];
+		// 	var jsDateObject = new Date(yyyySlashMMSlashDD);
+		// 	return jsDateObject;
+		// },
 
 		_inputDados: function () {
 			if (this.getView().byId("dataInput").getValue() !== "") {
@@ -134,15 +134,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					inspecao = oStorage.get("inspecao");
 
 				var dados = {
-					Mandt: "010",
-					Cod: "-1",
+					// Mandt: "010",
+					Id: "-1",
+
 					Veiculo: identificacao.veiculo,
 					Reboque1: identificacao.reboque1,
 					Reboque2: identificacao.reboque2,
-					// NomeMotorista: identificacao.nome_motorista,
-					// CpfMotorista: identificacao.cpf,
-					Motorista: identificacao.lifnr,
 					Carroceria: inspecao.carroceria,
+
+					Motorista: identificacao.lifnr,
+					Nome: identificacao.nome_motorista,
+					Cpf: identificacao.cpf,
+
 					C1UltimaCarga: inspecao.ultimas_cargas.compartimento1.ulti_carga,
 					C1PenultimaCarga: inspecao.ultimas_cargas.compartimento1.penu_carga,
 					C1AntepeultCarga: inspecao.ultimas_cargas.compartimento1.ante_carga,
@@ -181,15 +184,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					CondicaoVeiculo11: inspecao.condicao_limpeza.condicoe11,
 					CondicaoVeiculo12: inspecao.condicao_limpeza.condicoe12,
 					CondicaoVeiculo13: inspecao.condicao_limpeza.condicoe13,
-					
+
 					Usuario: sap.ushell.Container.getUser().getFirstName(),
+
 					// DataCriacao: this.getView().byId("dataInput").getProperty("dateValue"),
 					// dataHora: "00:00:00",
-					
+
+					Status: "A",
+
 					Resultado: this.getView().byId("resultadoRb").getSelectedIndex() === 0 ? true : false,
 					DataCarregamento: this.getView().byId("dataInput").getProperty("dateValue"),
-					Observacoes: this.getView().byId("obsInput").getValue(),
-					Produtos: "123456789123456789"
+					Observacoes: this.getView().byId("obsInput").getValue()
+						// Produtos: "123456789123456789"
 				};
 
 				var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
@@ -198,26 +204,95 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.resetPage();
 				var that = this;
 
-				oModel.create('/Vistoria', dados, null,
-					function () {
-						MessageBox.success('Cadastrado com sucesso!', {
-							onClose: function (sActionClicked) {
-								oStorage.clear();
-								oStorage.removeAll();
-								oStorage.put("Save", {
-									isSave: true
+				//Chamando fragment
+				var caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog";
+				var oDialog = sap.ui.xmlfragment(caminho, this);
+				oDialog.open();
+
+				jQuery.sap.delayedCall(1000, this, function () {
+
+					oModel.create('/Vistoria', dados, null,
+						function (oData, oResponse) {
+
+							jQuery.each(inspecao.produtos.chaves, function (i, produto) {
+								dados = {
+									IdVistoria: oData.Id,
+									IdProduto: produto
+								};
+								oModel.create("/AuxVistoria", dados, {
+									success: function () {
+
+									},
+									error: function (oError) {
+
+									}
 								});
-								// that.getView().destroy();
-								rota.navTo("Menu", false);
-							}
-						});
-					},
-					function () {
-						MessageBox.error('Erro ao cadastrar o veiculo!');
-					}
-				);
+							});
+
+							MessageBox.success('Cadastrado com sucesso!', {
+								busy: true,
+								onClose: function (sActionClicked) {
+									oDialog.close();
+									oStorage.clear();
+									oStorage.removeAll();
+									oStorage.put("Save", {
+										isSave: true
+									});
+									rota.navTo("Menu", false);
+								}
+							});
+						},
+						function () {
+							oDialog.close();
+							MessageBox.error('Erro ao cadastrar o veiculo!');
+						}
+					);
+
+				});
+
+				// oModel.create("/Vistoria", dados, {
+				// 	success: function (oData, oResponse) {
+				// 		// Success
+				// 		// sap.m.MessageToast.show("Cadastrado com sucesso!");
+
+				// 		// jQuery.each(inspecao.produtos.chaves, function (i, produto){
+				// 		// 	oData.id
+				// 		// });
+				// 		// this.salvaProdutos(this.inspecao.produtos.chaves, oData.id);
+				// 		// var teste =  this.inspecao.produtos.chaves;
+				// 		// return oData.id;
+				// 	},
+				// 	error: function (oError) {
+
+				// 		// Error
+				// 		sap.m.MessageToast.show("Erro ao cadastrar o veiculo!");
+				// 		// return null;
+				// 	}
+				// });
+
 			} else {
 				MessageBox.warning("É Necessário definir uma data para salvar.");
+			}
+		},
+
+		salvaProdutos: function (produtos, id) {
+			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
+
+			for (var i = 0; i < produtos.length; i++) {
+				var dados = {
+					IdVistoria: id,
+					IdProduto: produtos[i]
+				};
+				oModel.create("/AuxVistoria", dados, {
+					success: function (oData, oResponse) {
+
+					},
+					error: function (oError) {
+
+						// sap.m.MessageToast.show("Erro ao cadastrar o veiculo!");
+					}
+				});
 			}
 		},
 

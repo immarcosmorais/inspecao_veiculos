@@ -1,7 +1,7 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos" xmlns="sap.m">
-	<Page showHeader="true" title="Veículos" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos">
+	<Page showHeader="true" title="Vistorias" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
-			<List items="{ path: '/Vistoria' }" id="listaVeiculos" mode="Delete" width="100%" headerText="Header" footerText="" backgroundDesign="Solid"
+			<List items="{path: '/Vistoria'}" id="listaVistoria" mode="Delete" width="100%" headerText="Header" footerText="" backgroundDesign="Solid"
 				showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true" delete="_onStandardListDelete">
 				<infoToolbar>
 					<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
@@ -13,13 +13,16 @@
 				<headerToolbar>
 					<Toolbar enabled="true" visible="true" width="" design="Solid">
 						<content>
-							<SearchField search="handleSearch" placeholder="Search" showSearchButton="true" visible="true" width="100%"/>
+							<SearchField liveChange="handleSearch" placeholder="Buscar" showSearchButton="true" visible="true" width="100%"/>
 						</content>
 					</Toolbar>
 				</headerToolbar>
 				<items>
-					<!--<StandardListItem icon="sap-icon://shipping-status" title="{Placa}" description="{Descricao}" info="Ok" infoState="Success" type="Inactive" selected="false" visible="true"/>-->
-					<StandardListItem icon="sap-icon://shipping-status" title="{Cod}" description="{Veiculo}" info="Ok" infoState="Success" type="Inactive" selected="false" visible="true"/>
+					<StandardListItem icon="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.icon'}"
+						info="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.info'}"
+						infoState="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}"
+						selected="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.selected'}" title="{Id}"
+						description="{Veiculo}" type="Navigation" press="_onStandardListItemPress" visible="true"/>
 				</items>
 			</List>
 		</content>

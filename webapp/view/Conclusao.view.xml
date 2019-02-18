@@ -1,5 +1,4 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
-	controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Conclusao">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Conclusao">
 	<Page showHeader="true" title="Conclusão" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
 			<form:Form width="100%" editable="true" visible="true">
@@ -11,8 +10,7 @@
 						<form:formElements>
 							<form:FormElement visible="true">
 								<form:fields>
-									<RadioButtonGroup id="resultadoRb" columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true"
-										textDirection="Inherit" select="_onRadioButtonGroupSelect">
+									<RadioButtonGroup id="resultadoRb" columns="1" selectedIndex="0" valueState="None" width="auto" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect">
 										<buttons>
 											<RadioButton text="Aprovado" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
 											<RadioButton text="Reprovado" editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="false"/>
@@ -45,12 +43,15 @@
 				</form:layout>
 			</form:Form>
 		</content>
+		<!--<dependents>-->
+		<!--	<core:Fragment fragmentName="sap.m.sample.BusyDialogLight.BusyDialog" type="XML">-->
+		<!--	</core:Fragment>-->
+		<!--</dependents>-->
 		<footer>
 			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
 				<content>
 					<ToolbarSpacer width=""/>
-					<Button text="Salvar" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
-						press="_inputDados"/>
+					<Button text="Salvar" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_inputDados"/>
 				</content>
 			</OverflowToolbar>
 		</footer>

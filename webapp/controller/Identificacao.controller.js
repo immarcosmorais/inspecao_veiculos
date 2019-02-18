@@ -115,9 +115,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var aInputs = [
 				oView.byId("tratorInput"),
 				oView.byId("reboque1Input"),
-				oView.byId("reboque2Input")
-				// oView.byId("motoristaInput"),
-				// oView.byId("cpfInput"),
+				oView.byId("reboque2Input"),
+				oView.byId("motoristaInput"),
+				oView.byId("cpfInput")
 			];
 			var bValidationError = false;
 			var regex = new RegExp("^[a-zA-Z]{3}[0-9]{4}|[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}$");
@@ -130,20 +130,47 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			jQuery.each(aInputs, function (i, oInput) {
 
 				var id = oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1];
-
-				if ((id == "reboque1Input") || (id == "reboque2Input")) {
-					if (oInput.getValue() != "") {
-						//Campos Reboque 1 e Reboque 2 podem ser vazios, mas caso contrario, devem ser válidados
+				
+				switch(id){
+					case "tratorInput":
 						if (!regex.test(oInput.getValue())) {
 							oInput.setValueState("Error");
 							bValidationError = true;
 						}
-					}
-				} else if (id == "tratorInput") {
-					if (!regex.test(oInput.getValue())) {
-						oInput.setValueState("Error");
-						bValidationError = true;
-					}
+						break;
+					//Campos Reboque 1 e Reboque 2 podem ser vazios, mas caso contrario, devem ser válidados
+					case "reboque1Input":
+						if (oInput.getValue() !== "") {
+							if (!regex.test(oInput.getValue())) {
+								oInput.setValueState("Error");
+								bValidationError = true;
+							}
+						}
+						break;
+						
+					case "reboque2Input":
+						if (oInput.getValue() !== "") {
+							if (!regex.test(oInput.getValue())) {
+								oInput.setValueState("Error");
+								bValidationError = true;
+							}
+						}
+						break;
+						
+					case "motoristaInput":
+						if (oInput.getValue() === "") {
+							oInput.setValueState("Error");
+							bValidationError = true;
+						}
+						break;
+						
+					case "cpfInput":
+						if (oInput.getValue() === "") {
+							oInput.setValueState("Error");
+							bValidationError = true;
+						}
+						break;
+					default:
 				}
 			});
 
@@ -152,7 +179,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this._inputDados();
 				this._onButtonPress(oEvent);
 			} else {
-				MessageBox.warning("Alguns campos podem estar preenchidos incorretamente. Placas = 'ABC1234' e CPF = '000.000.000-00'");
+				MessageBox.warning("Os campos em destaquem precisam ser preenchidos, ou estão preenchidos incorretamente.\nAtente-se ao padrão: Placas = 'ABC1234' e CPF = '000.000.000-00'");
 			}
 		},
 
@@ -211,7 +238,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 
-		//Auxiliar de pesquisa                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+		//Auxiliar de busca de itens dentro do sistema                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 		handleValueHelp: function (oEvent) {
 
 			var sInputValue = oEvent.getSource().getValue();
@@ -245,7 +272,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
-
+		
+		//Tornando a letra maiuscula
 		_handleValueHelpSearch: function (evt) {
 			var sValue = evt.getParameter("value");
 			sValue = sValue.toUpperCase();
