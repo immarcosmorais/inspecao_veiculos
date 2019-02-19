@@ -141,14 +141,20 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		_onStandardListDelete: function (oEvent) {
-
-			var that = this;
+			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
 
 			var oList = oEvent.getSource(),
 				oItem = oEvent.getParameter("listItem"),
+				// sPath = oItem.getBindingContext().getPath().split("(")[1].split(")")[0];
 				sPath = oItem.getBindingContext().getPath();
 
 			oList.attachEventOnce("updateFinished", oList.focus, oList);
+
+			//Chamando fragment
+			var caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog";
+			var oDialog = sap.ui.xmlfragment(caminho, this);
+			// oDialog.open();
 
 			var dialog = new Dialog({
 				title: "Confirmar",
@@ -157,7 +163,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				verticalScrolling: true,
 				showHeader: true,
 				content: new Text({
-					text: "Deseja deletar este cadastro de veículo?",
+					text: "Deseja deletar este cadastro de vistoria?",
 					width: "100%",
 					maxLines: 1,
 					textAlign: "Center",
@@ -174,8 +180,23 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					visible: true,
 					addStyleClass: "sapUiTinyMargin",
 					press: function () {
-						MessageToast.show("Veículo deletado com sucesso!");
-						dialog.close();
+						oDialog.open();
+						jQuery.sap.delayedCall(500, this, function () {
+							oModel.remove(sPath, {
+								// groupId: "group1",
+								method: "DELETE",
+								success: function (data) {
+									oDialog.close();
+									dialog.close();
+									MessageToast.show("Vistoria deletado com sucesso!");
+								},
+								error: function (e) {
+									oDialog.close();
+									dialog.close();
+									MessageBox.error('Erro ao deletar o vistoria!');
+								}
+							});
+						});
 					}
 				}),
 				endButton: new Button({
@@ -196,7 +217,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}
 			});
 			dialog.open();
-
+			jQuery.sap.delayedCall(500, this, function () {
+				oEvent.getSource().getModel().refresh(true);
+			});
+			
 		},
 
 		onInit: function () {

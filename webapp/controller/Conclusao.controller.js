@@ -203,6 +203,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var rota = this.getOwnerComponent().getRouter();
 				this.resetPage();
 				var that = this;
+				// this.onExit();
 
 				//Chamando fragment
 				var caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog";
@@ -230,7 +231,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 							});
 
 							MessageBox.success('Cadastrado com sucesso!', {
-								busy: true,
 								onClose: function (sActionClicked) {
 									oDialog.close();
 									oStorage.clear();
@@ -273,7 +273,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			} else {
 				MessageBox.warning("É Necessário definir uma data para salvar.");
 			}
+			
+			
 		},
+		
+		// onExit: function(){
+		// 	this.getView().destroy(true);	
+		// },
 
 		salvaProdutos: function (produtos, id) {
 			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
