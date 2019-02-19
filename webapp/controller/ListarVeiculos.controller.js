@@ -217,10 +217,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}
 			});
 			dialog.open();
-			jQuery.sap.delayedCall(500, this, function () {
-				oEvent.getSource().getModel().refresh(true);
-			});
-			
+			// jQuery.sap.delayedCall(500, this, function () {
+			oEvent.getSource().getModel().refresh(true);
+			// });
 		},
 
 		onInit: function () {

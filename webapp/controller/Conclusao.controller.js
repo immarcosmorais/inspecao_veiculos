@@ -210,7 +210,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var oDialog = sap.ui.xmlfragment(caminho, this);
 				oDialog.open();
 
-				jQuery.sap.delayedCall(1000, this, function () {
+				jQuery.sap.delayedCall(500, this, function () {
 
 					oModel.create('/Vistoria', dados, null,
 						function (oData, oResponse) {
