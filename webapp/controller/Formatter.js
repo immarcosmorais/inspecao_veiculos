@@ -26,6 +26,18 @@ sap.ui.define(function () {
 				return "None";
 			}
 		},
+		
+		color: function (status) {
+			if (status === "A") {
+				return "#e78c07";
+			} else if (status === "C") {
+				return "#2b7c2b";
+			} else if (status === "E") {
+				return "#bb0000";
+			} else {
+				return "None";
+			}
+		},
 
 		selected: function (status) {
 			return status === "A" ? true : false;
@@ -33,7 +45,6 @@ sap.ui.define(function () {
 
 		blocked: function (status) {
 			return status === "A" ? false : true;
-			// return !!this.selected(status);
 		},
 
 		icon: function (status) {

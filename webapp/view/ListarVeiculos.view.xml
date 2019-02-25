@@ -1,35 +1,39 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos">
-	<Page showHeader="true" title="Vistorias" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos">
+	<Page showHeader="false" enableScrolling="true" class="sapUiContentPadding" showNavButton="false">
 		<content>
-			<List items="{path: '/Vistoria'}" id="listaVistoria" mode="Delete" width="100%" headerText="Header" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true" delete="_onStandardListDelete">
-				<infoToolbar>
-					<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
-						<content>
-							<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-						</content>
-					</Toolbar>
-				</infoToolbar>
+			<Table id="listaVistorias" items="{/Vistoria}" mode="MultiSelect">
 				<headerToolbar>
-					<Toolbar enabled="true" visible="true" width="" design="Solid">
-						<content>
-							<SearchField liveChange="handleSearch" placeholder="Buscar" showSearchButton="true" visible="true" width="100%"/>
-						</content>
-					</Toolbar>
+					<OverflowToolbar id="otbSubheader">
+						<ToolbarSpacer/>
+						<SearchField id="idPesquisa">
+							<layoutData><OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/></layoutData>
+						</SearchField>
+						
+						<OverflowToolbarButton type="Transparent" text="Filter" icon="sap-icon://filter" press="onFilter"/>
+						<OverflowToolbarButton type="Transparent" text="Sort" icon="sap-icon://sort" press="onSort"/>
+						<OverflowToolbarButton type="Transparent" text="Group" icon="sap-icon://group-2" press="onGroup"/>
+						<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" press="onRefresh"/>
+						<!--<Button text="Reset" type="Transparent" press="onReset"/>-->
+						<OverflowToolbarButton type="Transparent" text="Delete" icon="sap-icon://delete" press="onDelete"/>
+					</OverflowToolbar>
 				</headerToolbar>
+				<columns>
+					<Column width="12em"><Text/></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Vistoria"/></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End"><Text text="Motorista"/></Column>
+					<Column hAlign="End"><Text text="Status"/></Column>
+				</columns>
 				<items>
-					<StandardListItem icon="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.icon'}" info="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.info'}" infoState="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}" selected="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.selected'}" title="{Id}" description="{Veiculo}" type="Navigation" press="_onStandardListItemPress" visible="true" blocked="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.blocked'}"/>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" ariaLabelledBy="__text0" src="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.icon'}" size="2em" id="icon0" color="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.color'}"/>
+							<ObjectIdentifier title="{Id}" text="{Veiculo}"/>
+							<Text text="{Nome}"/>
+							<ObjectStatus class="sapUiSmallMarginBottom" text="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.info'}" state="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}"/>
+						</cells>
+					</ColumnListItem>
 				</items>
-			</List>
+			</Table>
 		</content>
-		<footer>
-			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
-				<content>
-					<ToolbarSpacer width=""/>
-				</content>
-			</OverflowToolbar>
-		</footer>
-		<headerContent/>
-		<subHeader/>
-		<customHeader/>
 	</Page>
 </mvc:View>

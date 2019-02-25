@@ -7,8 +7,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	'sap/m/Text',
 	'sap/m/MessageToast',
 	"./utilities",
-	"sap/ui/core/routing/History"
-], function (BaseController, Formatter, MessageBox, Button, Dialog, Text, MessageToast, Utilities, History) {
+	"sap/ui/core/routing/History",
+	'sap/ui/model/Sorter',
+	'sap/ui/model/Filter',
+	'sap/ui/model/json/JSONModel',
+	'sap/ui/Device'
+], function (BaseController, Formatter, MessageBox, Button, Dialog, Text, MessageToast, Utilities, History, Sorter, Filter, JSONModel,
+	Device) {
 	"use strict";
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos", {
@@ -125,21 +130,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 
-		handleSearch: function (evt) {
-			// create model filter
-			var filters = [];
-			var query = evt.getSource().getValue();
-			query = query.toUpperCase();
-			if (query && query.length > 0) {
-				var filter = new sap.ui.model.Filter("Veiculo", sap.ui.model.FilterOperator.Contains, query);
-				filters.push(filter);
-			}
-			// update list binding
-			var list = this.getView().byId("listaVistoria");
-			var binding = list.getBinding("items");
-			binding.filter(filters, "Application");
-		},
-
 		_onStandardListDelete: function (oEvent) {
 			var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
 			var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
@@ -222,7 +212,201 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// });
 		},
 
+		// onSliderMoved: function (oEvent) {
+		// 	var iValue = oEvent.getParameter("value");
+		// 	this.byId("otbSubheader").setWidth(iValue + "%");
+		// 	this.byId("otbFooter").setWidth(iValue + "%");
+		// },
+
+		// _fnGroup: function (oContext) {
+		// 	var sSupplierName = oContext.getProperty("SupplierName");
+		// 	return {
+		// 		key: sSupplierName,
+		// 		text: sSupplierName
+		// 	};
+		// },
+
+		// onReset: function (oEvent) {
+		// 	this.bGrouped = false;
+		// 	this.bDescending = false;
+		// 	this.sSearchQuery = 0;
+		// 	this.byId("maxPrice").setValue("");
+
+		// 	this.fnApplyFiltersAndOrdering();
+		// },
+
+		// onGroup: function (oEvent) {
+		// 	this.bGrouped = !this.bGrouped;
+		// 	this.fnApplyFiltersAndOrdering();
+		// },
+
+		// onSort: function (oEvent) {
+		// 	this.bDescending = !this.bDescending;
+		// 	this.fnApplyFiltersAndOrdering();
+		// },
+
+		// onFilter: function (oEvent) {
+		// 	this.sSearchQuery = oEvent.getSource().getValue().toUpperCase();
+		// 	this.fnApplyFiltersAndOrdering();
+		// },
+
+		// onTogglePress: function (oEvent) {
+		// 	var oButton = oEvent.getSource(),
+		// 		bPressedState = oButton.getPressed(),
+		// 		sStateToDisplay = bPressedState ? "Pressed" : "Unpressed";
+
+		// 	MessageToast.show(oButton.getId() + " " + sStateToDisplay);
+		// },
+
+		// handleSearch: function (evt) {
+		// 	// create model filter
+		// 	var filters = [];
+		// 	var query = evt.getSource().getValue();
+		// 	query = query.toUpperCase();
+		// 	if (query && query.length > 0) {
+		// 		var filter = new sap.ui.model.Filter("Veiculo", sap.ui.model.FilterOperator.Contains, query);
+		// 		filters.push(filter);
+		// 	}
+		// 	// update list binding
+		// 	var list = this.getView().byId("listaVistoria");
+		// 	var binding = list.getBinding("items");
+		// 	binding.filter(filters, "Application");
+		// },
+
+		// handleFilterButtonPressed: function () {
+		// 	// this.createViewSettingsDialog("com.sap.build.standard.formInspecaoDeVeiculos.view.FilterDialog").open();
+		// 	var caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.FilterDialog";
+		// 	var oDialog = sap.ui.xmlfragment(caminho, this);
+		// 	oDialog.open();
+		// },
+
+		// fnApplyFiltersAndOrdering: function (oEvent) {
+		// 	// var aFilters = [],
+		// 	// 	aSorters = [];
+		// 	// if (this.bGrouped) {
+		// 	// 	aSorters.push(new Sorter("Status", this.bDescending, this._fnGroup));
+		// 	// } else {
+		// 	// 	aSorters.push(new Sorter("Veiculo", this.bDescending));
+		// 	// }
+		// 	// if (this.sSearchQuery) {
+		// 	// 	var oFilter = new Filter("Veiculo", sap.ui.model.FilterOperator.Contains, this.sSearchQuery);
+		// 	// 	aFilters.push(oFilter);
+		// 	// }
+		// 	// this.byId("listaVistorias").getBinding("items").filter(aFilters).sort(aSorters);
+
+		// },
+
+		onSort: function (onEvent) {
+			this.createViewSettingsDialog("com.sap.build.standard.formInspecaoDeVeiculos.view.SortDialog").open();
+		},
+
+		handleSortDialogConfirm: function (oEvent) {
+			var oTable = this.byId("listaVistorias"),
+				mParams = oEvent.getParameters(),
+				oBinding = oTable.getBinding("items"),
+				sPath,
+				bDescending,
+				aSorters = [];
+
+			sPath = mParams.sortItem.getKey();
+			bDescending = mParams.sortDescending;
+			aSorters.push(new Sorter(sPath, bDescending));
+			// oBinding.sort(aSorters);
+			
+			var dialog = this.createViewSettingsDialog("com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog");
+			dialog.open();
+			jQuery.sap.delayedCall(200, this, function () {
+				oBinding.sort(null);
+				oBinding.sort(aSorters);
+				dialog.close();
+			});
+
+		},
+
+		onRefresh: function (onEvent) {
+			this.byId("listaVistorias").getBinding("items").refresh();
+		},
+
+		onFilter: function (onEvent) {
+			this.createViewSettingsDialog("com.sap.build.standard.formInspecaoDeVeiculos.view.FilterDialog").open();
+		},
+
+		createViewSettingsDialog: function (sDialogFragmentName) {
+			var oDialog = this._mViewSettingsDialogs[sDialogFragmentName];
+			if (!oDialog) {
+				oDialog = sap.ui.xmlfragment(sDialogFragmentName, this);
+				this._mViewSettingsDialogs[sDialogFragmentName] = oDialog;
+
+				if (Device.system.desktop) {
+					oDialog.addStyleClass("sapUiSizeCompact");
+				}
+			}
+			return oDialog;
+		},
+
+		onExit: function () {
+			var oDialogKey,
+				oDialogValue;
+
+			for (oDialogKey in this._mViewSettingsDialogs) {
+				oDialogValue = this._mViewSettingsDialogs[oDialogKey];
+
+				if (oDialogValue) {
+					oDialogValue.destroy();
+				}
+			}
+		},
+
 		onInit: function () {
+			
+			// var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+			// var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
+			
+			// var jModel = new sap.ui.model.json.JSONModel();
+			// jModel.loadData(oModel.getModel().loadData());
+			// // var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+			// // var oModel = new sap.ui.model.json.JSONModel();
+			// // oModel.loadData(sUrl);
+			// this.getView().setModel(jModel);
+			
+			// ui5.utils.getData = function (ojson) {
+			// 	var sServiceUrl = "/sap/opu/odata/sap/ZGW_REST_SRV";
+			// 	// create OData model instance with service URL and JSON format
+			// 	var oModel = new sap.ui.model.odata.ODataModel(sServiceUrl, true);
+			// 	try {
+			// 		oAbort = oModel.read("/AGREEMENT('')",
+			// 			undefined,
+			// 			undefined,
+			// 			false,
+			// 			function _OnSuccess(oData, response) {
+			// 				window.ojson = oData;
+			// 			},
+			// 			function _OnError(oError) {}
+			// 		);
+			// 	} catch (ex) {
+			// 		alert(ex);
+			// 	}
+			// }
+
+			// var sUrl = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV";
+			// var oModel = new sap.ui.model.odata.ODataModel(sUrl, true);
+			// var aFilters = [];
+
+			// oModel.remove("/Vistoria",{
+			// 	filters: aFilters,
+			// 	success: function (odata, response) {
+			// 		MessageToast.show("Vistoria deletado com sucesso!");
+			// 	},
+			// 	error: function (e) {
+			// 		MessageBox.error('Erro ao deletar o vistoria!');
+			// 	}
+			// });
+
+			// var oData = this.getView().getModel().getProperty("/");
+			// var oModel = new JSONModel(oData);
+			// this.getView().setModel(oModel);
+
+			this._mViewSettingsDialogs = {};
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("ListarVeiculos").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		}
