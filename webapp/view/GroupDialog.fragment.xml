@@ -4,8 +4,11 @@
 	<ViewSettingsDialog
 		confirm="handleGroupDialogConfirm">
 		<groupItems>
-			<ViewSettingsItem text="Supplier" key="SupplierName" />
-			<ViewSettingsItem text="Price" key="Price" />
+			<!--<ViewSettingsItem text="Numero da Vistoria" key="Id" selected="true" />-->
+			<ViewSettingsItem text="Placa do veiculo" key="Veiculo" />
+			<ViewSettingsItem text="Nome do Motorista" key="Nome" />
+			<ViewSettingsItem text="Data de carregamento" key="DataCarregamento" />
+			<ViewSettingsItem text="Status" key="Status" />
 		</groupItems>
 	</ViewSettingsDialog>
 </core:FragmentDefinition>

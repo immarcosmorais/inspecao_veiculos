@@ -14,6 +14,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	var caminho,
 		cod,
 		filtro,
+		oStorage,
 		gModelHelp;
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
@@ -21,15 +22,26 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 
-			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-			if (oStorage.get("Save").isSave) {
-				if (oStorage.get("Reset").page1) {
-					this.resetPage();
-					oStorage.put("Reset", {
-						page1: false,
-						page2: true,
-						page3: true
-					});
+			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			if (oStorage.get("Crud") !== null) {
+				if (oStorage.get("Crud").operacao == "create") {
+					if (oStorage.get("Crud").pageReset == "identificacao") {
+						this.resetPage();
+						oStorage.put("Crud", {
+							operacao: "create",
+							pageReset: "inspecao"
+						});
+					}
+				} else if (oStorage.get("Crud").operacao == "update") {
+					if (oStorage.get("Crud").pageReset == "identificacao") {
+						var sPath = oStorage.get("Crud").sPath;
+						this.preenchePage(sPath);
+						oStorage.put("Crud", {
+							operacao: "update",
+							pageReset: "inspecao",
+							sPath: sPath
+						});
+					}
 				}
 			}
 
@@ -44,6 +56,46 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					this.getView().bindObject(oPath);
 				}
 			}
+		},
+
+		// getData: function (sPath) {
+		// 	var oModel = this.oView.getModel(),
+		// 		data = {};
+		// 	oModel.read(sPath, {
+		// 		success: function (oRetrievedResult, oView) {
+		// 			data = oRetrievedResult;
+		// 		},
+		// 		error: function (oError) {
+		// 			MessageBox.error("erro ao consultar a opera\xE7\xE3o!");
+		// 		}
+		// 	});
+		// 	return data;
+		// },
+
+		preenchePage: function (sPath) {
+			var oView = this.getView(),
+				oModel = this.oView.getModel();
+
+			var caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog";
+			var oDialog = sap.ui.xmlfragment(caminho, this);
+			oDialog.open();
+
+			oModel.read(sPath, {
+				success: function (oData) {
+					oView.byId("tratorInput").setValue(oData.Veiculo);
+					oView.byId("motoristaInput").setValue(oData.Nome);
+					oView.byId("reboque1Input").setValue(oData.Reboque1);
+					oView.byId("reboque2Input").setValue(oData.Reboque2);
+					oView.byId("cpfInput").setValue(oData.Cpf);
+					oDialog.close();
+				},
+				error: function (oError) {
+					oDialog.close();
+					MessageBox.error("erro ao prencheer campos");
+					var rota = this.getOwnerComponent().getRouter();
+					rota.navTo("Menu", false);
+				}
+			});
 		},
 
 		resetPage: function () {
@@ -129,49 +181,39 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			jQuery.each(aInputs, function (i, oInput) {
 
-				var id = oInput.getId().split("application-BUILD-prototype-component---Identificacao--")[1];
-				
-				switch(id){
-					case "tratorInput":
+				var id = oInput.getId();
+
+				if (id.search("tratorInput") !== -1) {
+					if (!regex.test(oInput.getValue())) {
+						oInput.setValueState("Error");
+						bValidationError = true;
+					}
+				} else if (id.search("reboque1Input") !== -1) {
+					if (oInput.getValue() !== "") {
 						if (!regex.test(oInput.getValue())) {
 							oInput.setValueState("Error");
 							bValidationError = true;
 						}
-						break;
-					//Campos Reboque 1 e Reboque 2 podem ser vazios, mas caso contrario, devem ser válidados
-					case "reboque1Input":
-						if (oInput.getValue() !== "") {
-							if (!regex.test(oInput.getValue())) {
-								oInput.setValueState("Error");
-								bValidationError = true;
-							}
-						}
-						break;
-						
-					case "reboque2Input":
-						if (oInput.getValue() !== "") {
-							if (!regex.test(oInput.getValue())) {
-								oInput.setValueState("Error");
-								bValidationError = true;
-							}
-						}
-						break;
-						
-					case "motoristaInput":
-						if (oInput.getValue() === "") {
+					}
+				} else if (id.search("reboque2Input") !== -1) {
+					if (oInput.getValue() !== "") {
+						if (!regex.test(oInput.getValue())) {
 							oInput.setValueState("Error");
 							bValidationError = true;
 						}
-						break;
-						
-					case "cpfInput":
-						if (oInput.getValue() === "") {
-							oInput.setValueState("Error");
-							bValidationError = true;
-						}
-						break;
-					default:
+					}
+				} else if (id.search("motoristaInput") !== -1) {
+					if (oInput.getValue() === "") {
+						oInput.setValueState("Error");
+						bValidationError = true;
+					}
+				} else if (id.search("cpfInput") !== -1) {
+					if (oInput.getValue() === "") {
+						oInput.setValueState("Error");
+						bValidationError = true;
+					}
 				}
+
 			});
 
 			// output result
@@ -179,7 +221,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this._inputDados();
 				this._onButtonPress(oEvent);
 			} else {
-				MessageBox.warning("Os campos em destaquem precisam ser preenchidos, ou estão preenchidos incorretamente.\nAtente-se ao padrão: Placas = 'ABC1234' e CPF = '000.000.000-00'");
+				MessageBox.warning(
+					"Os campos em destaquem precisam ser preenchidos, ou estão preenchidos incorretamente.\nAtente-se ao padrão: Placas = 'ABC1234' e CPF = '000.000.000-00'"
+				);
 			}
 		},
 
@@ -272,7 +316,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			// open value help dialog filtered by the input value
 			this._valueHelpDialog.open(sInputValue);
 		},
-		
+
 		//Tornando a letra maiuscula
 		_handleValueHelpSearch: function (evt) {
 			var sValue = evt.getParameter("value");
@@ -328,17 +372,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		handleLiveChange: function (oEvent) {
-			var id = oEvent.getParameter("id").split("application-BUILD-prototype-component---Identificacao--");
-			var input = this.getView().byId(id[1]);
+			var id = oEvent.getParameter("id");
+			var input = this.getView().byId(id);
 			input.setValueState("None");
 			input.setValue(input.getValue().toUpperCase());
 		},
 
 		onInit: function () {
-			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-			oStorage.put("Save", {
-				isSave: false
-			});
+			// this.oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		},
@@ -352,7 +393,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				cpf: this.getView().byId("cpfInput").getValue(),
 				lifnr: this.cod
 			};
-			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			oStorage.put("identificacao", dados);
 		},
 

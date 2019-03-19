@@ -5,24 +5,26 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 ], function (BaseController, MessageBox, Utilities, History) {
 	"use strict";
 
+	var oStorage;
+
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Menu", {
 
 		handleRouteMatched: function (oEvent) {
 			var oParams = {};
 
-			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-			try {
-				if (oStorage.get("Save").isSave) {
-					oStorage.put("Reset", {
-						page1: true,
-						page2: true,
-						page3: true
+			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+
+			if (oStorage.get("Crud") !== null) {
+				if (oStorage.get("Crud").operacao !== "create") {
+					oStorage.clear();
+					oStorage.removeAll();
+
+					oStorage.put("Crud", {
+						operacao: "create",
+						pageReset: "identificacao"
 					});
+
 				}
-			} catch (e) {
-				oStorage.put("Save", {
-					isSave: false
-				});
 			}
 
 			if (oEvent.mParameters.data.context) {
@@ -117,10 +119,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		onInit: function () {
-			
+			// this.oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Menu").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
-			
+
 		}
 	});
 }, /* bExport= */ true);

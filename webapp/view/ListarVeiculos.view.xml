@@ -1,35 +1,36 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos">
-	<Page showHeader="false" enableScrolling="true" class="sapUiContentPadding" showNavButton="false">
+	<Page showHeader="false" enableScrolling="true" class="sapUiContentPadding" showNavButton="false" backgroundDesign="List">
 		<content>
-			<Table id="listaVistorias" items="{/Vistoria}" mode="MultiSelect">
+			<Table id="listaVistorias" items="{/Vistoria}" mode="Delete" delete="onDelete">
 				<headerToolbar>
 					<OverflowToolbar id="otbSubheader">
 						<ToolbarSpacer/>
-						<SearchField id="idPesquisa">
+						<SearchField id="idPesquisa" liveChange="onSearch">
 							<layoutData><OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/></layoutData>
 						</SearchField>
-						
 						<OverflowToolbarButton type="Transparent" text="Filter" icon="sap-icon://filter" press="onFilter"/>
 						<OverflowToolbarButton type="Transparent" text="Sort" icon="sap-icon://sort" press="onSort"/>
 						<OverflowToolbarButton type="Transparent" text="Group" icon="sap-icon://group-2" press="onGroup"/>
 						<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" press="onRefresh"/>
-						<!--<Button text="Reset" type="Transparent" press="onReset"/>-->
-						<OverflowToolbarButton type="Transparent" text="Delete" icon="sap-icon://delete" press="onDelete"/>
+						<!--<OverflowToolbarButton type="Transparent" text="Delete" icon="sap-icon://delete" press="onDelete"/>-->
 					</OverflowToolbar>
 				</headerToolbar>
 				<columns>
-					<Column width="12em"><Text/></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Vistoria"/></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End"><Text text="Motorista"/></Column>
+					<Column width="4em"/>
+					<!--<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Vistoria"/></Column>-->
+					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Vistoria"/></Column>
+					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Motorista"/></Column>
+					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Data de Carregamento"/></Column>
 					<Column hAlign="End"><Text text="Status"/></Column>
 				</columns>
 				<items>
-					<ColumnListItem type="Navigation">
+					<ColumnListItem highlight="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}" type="Navigation" press="_onStandardListItemPress">
 						<cells>
-							<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" ariaLabelledBy="__text0" src="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.icon'}" size="2em" id="icon0" color="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.color'}"/>
+							<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" ariaLabelledBy="__text0" src="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.icon'}" size="2em" id="icon0" color="{path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.color'}"/>
 							<ObjectIdentifier title="{Id}" text="{Veiculo}"/>
 							<Text text="{Nome}"/>
-							<ObjectStatus class="sapUiSmallMarginBottom" text="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.info'}" state="{parts: [{path: 'Status'}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}"/>
+							<Text text="{ path: 'DataCarregamento', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+							<ObjectStatus class="sapUiSmallMarginBottom" text="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.info'}" state="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

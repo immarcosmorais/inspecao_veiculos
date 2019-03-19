@@ -3,21 +3,35 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"./utilities",
 	"sap/ui/core/routing/History",
 	'sap/m/MessageToast',
-], function (BaseController, MessageBox, Utilities, History, MessageToast) {
+	'sap/ui/model/Filter'
+], function (BaseController, MessageBox, Utilities, History, MessageToast, Filter) {
 	"use strict";
+
+	var oStorage;
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Inspecao", {
 		handleRouteMatched: function (oEvent) {
 
-			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-			if (oStorage.get("Save").isSave) {
-				if (oStorage.get("Reset").page2) {
-					this.resetPage();
-					oStorage.put("Reset", {
-						page1: false,
-						page2: false,
-						page3: true
-					});
+			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			if (oStorage.get("Crud") !== null) {
+				if (oStorage.get("Crud").operacao == "create") {
+					if (oStorage.get("Crud").pageReset == "inspecao") {
+						this.resetPage();
+						oStorage.put("Crud", {
+							operacao: "create",
+							pageReset: "conclusao"
+						});
+					}
+				} else if (oStorage.get("Crud").operacao == "update") {
+					if (oStorage.get("Crud").pageReset == "inspecao") {
+						var sPath = oStorage.get("Crud").sPath;
+						this.preenchePage(sPath);
+						oStorage.put("Crud", {
+							operacao: "update",
+							pageReset: "conclusao",
+							sPath: sPath
+						});
+					}
 				}
 			}
 
@@ -72,6 +86,128 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				"rb13"
 			];
 			this.handleRadioButtonGroupsSelectedIndex();
+
+		},
+
+		preenchePage: function (sPath) {
+			var oView = this.getView(),
+				oModel = this.oView.getModel();
+
+			var caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog";
+			var oDialog = sap.ui.xmlfragment(caminho, this);
+			oDialog.open();
+
+			oModel.read(sPath, {
+				success: function (oData) {
+					// Tipo de carroceria
+					oView.byId("panel01").setExpanded(true);
+					oView.byId("carroceriaRadioButton").setSelectedIndex(parseInt(oData.Carroceria));
+
+					// Produtos
+					oView.byId("panel02").setExpanded(true);
+					// Set produtos
+
+					// Últimas cargas transportadas
+					oView.byId("panel03").setExpanded(true);
+					oView.byId("c1UltiCargaInput").setValue(oData.C1UltimaCarga);
+					oView.byId("c1PenuCargaInput").setValue(oData.C1PenultimaCarga);
+					oView.byId("c1AnteCargaInput").setValue(oData.C1AntepeultCarga);
+					oView.byId("c2UltiCargaInput").setValue(oData.C2UltimaCarga);
+					oView.byId("c2PenuCargaInput").setValue(oData.C2PenultimaCarga);
+					oView.byId("c2AnteCargaInput").setValue(oData.C2AntepeultCarga);
+
+					// Tipo de limpeza
+					oView.byId("panel04").setExpanded(true);
+					// Sopro com ar comprimido (A)
+					oView.byId("cb01").setSelected(oData.C1SoproAr);
+					oView.byId("cb02").setSelected(oData.C2SoproAr);
+					// Varredura (A)
+					oView.byId("cb03").setSelected(oData.C1Varredura);
+					oView.byId("cb04").setSelected(oData.C2Varredura);
+					// Lavagem com água (B)
+					oView.byId("cb05").setSelected(oData.C1Lavagem);
+					oView.byId("cb06").setSelected(oData.C2Lavagem);
+					// Vaporização (com vapor d'água) (C)
+					oView.byId("cb07").setSelected(oData.C1Vaporizacao);
+					oView.byId("cb08").setSelected(oData.C2Vaporizacao);
+					// Lavagem com água e agente de limpeza (C)
+					oView.byId("cb09").setSelected(oData.C1Lavagem02);
+					oView.byId("cb10").setSelected(oData.C2Lavagem02);
+					// Lavagem com água e agente de desinfecção (D)
+					oView.byId("cb11").setSelected(oData.C1Lavagem03);
+					oView.byId("cb12").setSelected(oData.C2Lavagem03);
+
+					// Condições do veículo
+					oView.byId("panel05").setExpanded(true);
+					if (oData.CondicaoVeiculo01 !== null) {
+						oView.byId("rb01").setSelectedIndex(parseInt(oData.CondicaoVeiculo01) + 1);
+					}
+					if (oData.CondicaoVeiculo02 !== null) {
+						oView.byId("rb02").setSelectedIndex(parseInt(oData.CondicaoVeiculo02) + 1);
+					}
+					if (oData.CondicaoVeiculo03 !== null) {
+						oView.byId("rb03").setSelectedIndex(parseInt(oData.CondicaoVeiculo03) + 1);
+					}
+					if (oData.CondicaoVeiculo04 !== null) {
+						oView.byId("rb04").setSelectedIndex(parseInt(oData.CondicaoVeiculo04) + 1);
+					}
+					if (oData.CondicaoVeiculo05 !== null) {
+						oView.byId("rb05").setSelectedIndex(parseInt(oData.CondicaoVeiculo05) + 1);
+					}
+					if (oData.CondicaoVeiculo06 !== null) {
+						oView.byId("rb06").setSelectedIndex(parseInt(oData.CondicaoVeiculo06) + 1);
+					}
+					if (oData.CondicaoVeiculo07 !== null) {
+						oView.byId("rb07").setSelectedIndex(parseInt(oData.CondicaoVeiculo07) + 1);
+					}
+					if (oData.CondicaoVeiculo08 !== null) {
+						oView.byId("rb08").setSelectedIndex(parseInt(oData.CondicaoVeiculo08) + 1);
+					}
+					if (oData.CondicaoVeiculo09 !== null) {
+						oView.byId("rb09").setSelectedIndex(parseInt(oData.CondicaoVeiculo09) + 1);
+					}
+					if (oData.CondicaoVeiculo10 !== null) {
+						oView.byId("rb10").setSelectedIndex(parseInt(oData.CondicaoVeiculo10) + 1);
+					}
+					if (oData.CondicaoVeiculo11 !== null) {
+						oView.byId("rb11").setSelectedIndex(parseInt(oData.CondicaoVeiculo11) + 1);
+					}
+					if (oData.CondicaoVeiculo12 !== null) {
+						oView.byId("rb12").setSelectedIndex(parseInt(oData.CondicaoVeiculo12) + 1);
+					}
+					if (oData.CondicaoVeiculo13 !== null) {
+						oView.byId("rb13").setSelectedIndex(parseInt(oData.CondicaoVeiculo13) + 1);
+					}
+					oDialog.close();
+				},
+				error: function (oError) {
+					oDialog.close();
+					MessageBox.error("erro ao prencheer campos");
+					var rota = this.getOwnerComponent().getRouter();
+					rota.navTo("Menu", false);
+				}
+			});
+
+			var param = sPath.split("'")[1],
+				url = "/sap/opu/odata/sap/ZGW_VISTORIA_SRV/Produto?$filter=Text%20eq%20%27" + param + "%27",
+				idProdutos = [],
+				produtos = oView.byId("selectProdutos");
+			var rota = this.getOwnerComponent().getRouter();
+
+			jQuery.ajax({
+				url: url,
+				dataType: "json",
+				success: function (data, textStatus, jqXHR) {
+					for (var i = 0; i < data.d.results.length; i++) {
+						idProdutos.push(data.d.results[i].Id);
+					}
+					produtos.setSelectedKeys(idProdutos);
+				},
+				error: function (e) {
+					MessageBox.error("erro ao prencheer campos");
+					rota.navTo("Menu", false);
+				}
+			});
 
 		},
 
@@ -628,7 +764,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					condicoe13: this.getView().byId("rb13").getSelectedIndex() - 1 + ""
 				}
 			};
-			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			oStorage.put("inspecao", dados);
 		},
 

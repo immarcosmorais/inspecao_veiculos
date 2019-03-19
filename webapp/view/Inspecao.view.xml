@@ -144,7 +144,7 @@
 							</layout:BlockLayout>
 						</content>
 					</Panel>
-					<Panel height="auto" width="100%" headerText="Condições do veículo" expandable="true" expandAnimation="true" backgroundDesign="Solid" id="panel05">
+					<Panel height="auto" width="100%" headerText="Condições do veículo" expandAnimation="true" backgroundDesign="Solid" id="panel05" expandable="true">
 						<content>
 							<layout:BlockLayout background="Default" visible="true">
 								<layout:content>
