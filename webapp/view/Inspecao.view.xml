@@ -37,17 +37,17 @@
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="H6">
 												<layout:content>
 													<Text text="Compartimento 1" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													<Input placeholder="Última Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="0" id="c1UltiCargaInput"/>
-													<Input placeholder="Penúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="0" id="c1PenuCargaInput"/>
-													<Input placeholder="Antepenúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="0" id="c1AnteCargaInput"/>
+													<Input placeholder="Última Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="40" id="c1UltiCargaInput"/>
+													<Input placeholder="Penúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="40" id="c1PenuCargaInput"/>
+													<Input placeholder="Antepenúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="40" id="c1AnteCargaInput"/>
 												</layout:content>
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="H2">
 												<layout:content>
 													<Text text="Compartimento 2" width="100%" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-													<Input placeholder="Última Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="0" id="c2UltiCargaInput"/>
-													<Input placeholder="Penúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="0" id="c2PenuCargaInput"/>
-													<Input placeholder="Antepenúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="0" id="c2AnteCargaInput"/>
+													<Input placeholder="Última Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="40" id="c2UltiCargaInput"/>
+													<Input placeholder="Penúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="40" id="c2PenuCargaInput"/>
+													<Input placeholder="Antepenúltima Carga" type="Text" description="" showValueHelp="false" enabled="true" visible="true" width="100%" valueHelpOnly="false" maxLength="40" id="c2AnteCargaInput"/>
 												</layout:content>
 											</layout:BlockLayoutCell>
 										</layout:content>
@@ -152,7 +152,7 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Resíduos de cargas anteriores/produtos químicos" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Resíduos de cargas anteriores/produtos químicos?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb01" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect1">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -164,7 +164,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Lona/Forração se furos ou rasgos" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Lona/Forração se furos ou rasgos?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb02" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect2">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -176,7 +176,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="End" titleLevel="Auto">
 												<layout:content>
-													<Text text="Presença de objetos estranhos/insetos/odores" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Presença de objetos estranhos/insetos/odores?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb03" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect3">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -188,7 +188,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Tanque - Parte Interna e seca" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Tanque - Parte Interna está seca?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb04" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect4">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -204,7 +204,7 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Vazamento de combustíveis/lubrificantes" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Vazamento de combustíveis/lubrificantes?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb05" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect5">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -216,7 +216,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Carroceria/Tanque limpo, Seco e em Boas Condições" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Carroceria/Tanque limpo, Seco e em Boas Condições?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb06" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect6">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -228,7 +228,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="End" titleLevel="Auto">
 												<layout:content>
-													<Text text="Identificação para 'Transporte de Óleo Vegetal'" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Identificação para 'Transporte de Óleo Vegetal?'" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb07" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect7">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -240,7 +240,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Tanque - Vedações das tampas superiores em bom estado" width="100%" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Tanque - Vedações das tampas superiores em bom estado?" width="100%" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb08" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect8">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -256,7 +256,7 @@
 										<layout:content>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Tanque - Aparência externa do veículo é boa e apresenta-se limpa" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Tanque - Aparência externa do veículo é boa e apresenta-se limpa?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb09" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect9">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -268,7 +268,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Travas, engates, válvulas de segurança, bocas de inspeção, conexões, mangotes e tampas íntegras e em bom estado de conservação." width="100%" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Travas, engates, válvulas de segurança, bocas de inspeção, conexões, mangotes e tampas íntegras e em bom estado de conservação?." width="100%" maxLines="5" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb10" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect10">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -280,7 +280,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="End" titleLevel="Auto">
 												<layout:content>
-													<Text text="Inexistência de resíduos (Borra, sebo, ácido graxo, goma, água)" width="100%" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Inexistência de resíduos (Borra, sebo, ácido graxo, goma, água)?" width="100%" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb11" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect11">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>
@@ -292,7 +292,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Tanque - Válvulas de descarga limpas e fechadas. Sistema de colocação de lacres esta perfeito" width="100%" maxLines="4" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Tanque - Válvulas de descarga limpas e fechadas. Sistema de colocação de lacres esta perfeito?" width="100%" maxLines="4" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb12" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect12">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>

@@ -340,46 +340,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.fnApplyFiltersAndOrdering();
 		},
 
+		// convertData: function () {
+		// 	var oTable = this.byId("listaVistorias"),
+		// 		oBinding = oTable.getBinding("items"),
+		// 		oModel = oBinding.getModel(),
+		// 		oData = oModel.oData;
+		// 	jQuery.each(oData, function (i, data) {
+		// 		data.DataCarregamento.setTime(data.DataCarregamento.getTime() + (3 * 60 * 60 * 1000));
+		// 	});
+		// 	oModel.oData = oData;
+		// 	oTable.setModel(oModel);
+		// },
+
 		onRefresh: function (onEvent) {
-
-			// var oModel = new sap.ui.model.json.JSONModel();
-			// var oView = this.getView().byId("listaVistorias");
-
-			// //Setando o model com JSON
-			// var aData = jQuery.ajax({
-			// 	type: "GET",
-			// 	contentType: "application/json",
-			// 	url: "/sap/opu/odata/sap/ZGW_VISTORIA_SRV/Vistoria",
-			// 	dataType: "json",
-			// 	success: function (data, textStatus, jqXHR) {
-			// 		for (var i = 0; i < data.d.results.length; i++) {
-			// 			var dataCarr = data.d.results[i].DataCarregamento;
-			// 			dataCarr = dataCarr.split('(')[1].split(')')[0];
-			// 			var numb = parseInt(dataCarr);
-			// 			var jsDateObject = new Date(numb);
-			// 			jsDateObject.setDate(jsDateObject.getDate() + 1);
-
-			// 			// data.d.results[i].DataCarregamento = jsDateObject;
-
-			// 			var dia = jsDateObject.getDate().toString(),
-			// 				diaF = (dia.length == 1) ? '0' + dia : dia,
-			// 				mes = (jsDateObject.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
-			// 				mesF = (mes.length == 1) ? '0' + mes : mes,
-			// 				anoF = jsDateObject.getFullYear();
-			// 			data.d.results[i].DataCarregamento = diaF + "/" + mesF + "/" + anoF;
-			// 		}
-			// 		oModel.setData({
-			// 			Vistoria: data.d.results
-			// 		});
-			// 		oView.setModel(oModel);
-			// 	},
-			// 	error: function (e) {
-			// 		MessageToast.show("Erro");
-			// 	}
-			// });
-
 			this.iniciaVariaveis();
 			this.fnApplyFiltersAndOrdering();
+			// this.convertData();
 		},
 
 		iniciaVariaveis: function () {

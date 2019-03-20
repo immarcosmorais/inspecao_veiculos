@@ -12,12 +12,10 @@
 						<OverflowToolbarButton type="Transparent" text="Sort" icon="sap-icon://sort" press="onSort"/>
 						<OverflowToolbarButton type="Transparent" text="Group" icon="sap-icon://group-2" press="onGroup"/>
 						<OverflowToolbarButton type="Transparent" text="Refresh" icon="sap-icon://refresh" press="onRefresh"/>
-						<!--<OverflowToolbarButton type="Transparent" text="Delete" icon="sap-icon://delete" press="onDelete"/>-->
 					</OverflowToolbar>
 				</headerToolbar>
 				<columns>
 					<Column width="4em"/>
-					<!--<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Vistoria"/></Column>-->
 					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Vistoria"/></Column>
 					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Motorista"/></Column>
 					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Data de Carregamento"/></Column>
