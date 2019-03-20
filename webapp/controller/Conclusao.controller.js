@@ -56,7 +56,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		resetPage: function () {
 			this.getView().byId("obsInput").setValue("");
 			this.getView().byId("dataInput").setValue("");
-			this.getView().byId("dataInput").setValue(new Date());
+			this.getView().byId("dataInput").setDateValue(new Date());
 		},
 
 		preenchePage: function (sPath) {
@@ -75,6 +75,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					} else {
 						oView.byId("resultadoRb").setSelectedIndex(1);
 					}
+					oData.DataCarregamento.setTime(oData.DataCarregamento.getTime() + (3*60*60*1000));
 					oView.byId("dataInput").setValue(oData.DataCarregamento);
 					oView.byId("dataInput").setDateValue(oData.DataCarregamento);
 					oView.byId("obsInput").setValue(oData.Observacoes);

@@ -58,20 +58,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 		},
 
-		// getData: function (sPath) {
-		// 	var oModel = this.oView.getModel(),
-		// 		data = {};
-		// 	oModel.read(sPath, {
-		// 		success: function (oRetrievedResult, oView) {
-		// 			data = oRetrievedResult;
-		// 		},
-		// 		error: function (oError) {
-		// 			MessageBox.error("erro ao consultar a opera\xE7\xE3o!");
-		// 		}
-		// 	});
-		// 	return data;
-		// },
-
 		preenchePage: function (sPath) {
 			var oView = this.getView(),
 				oModel = this.oView.getModel();
@@ -162,7 +148,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		_onContinue: function (oEvent) {
-			// collect input controls
 			var oView = this.getView();
 			var aInputs = [
 				oView.byId("tratorInput"),
@@ -379,7 +364,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		onInit: function () {
-			// this.oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		},

@@ -53,9 +53,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 							}
 						}
 					};
-
 					this.sContext = patternConvert(this.getOwnerComponent().getComponentData().startupParameters);
-
 				}
 			}
 
@@ -600,19 +598,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		_onButtonPress: function (oEvent) {
-			this._inputDados();
+			if (this.getView().byId("selectProdutos").getSelectedKeys().length > 0) {
+				this._inputDados();
+				var oBindingContext = oEvent.getSource().getBindingContext();
 
-			var oBindingContext = oEvent.getSource().getBindingContext();
+				return new Promise(function (fnResolve) {
 
-			return new Promise(function (fnResolve) {
-
-				this.doNavigate("Conclusao", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function (err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
-
+					this.doNavigate("Conclusao", oBindingContext, fnResolve, "");
+				}.bind(this)).catch(function (err) {
+					if (err !== undefined) {
+						MessageBox.error(err.message);
+					}
+				});
+			} else {
+				this.getView().byId("panel02").setExpanded(true);
+				MessageBox.warning("Necessário definir pelo menos 1 (um) produto para a inspeção");
+			}
 		},
 		doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
@@ -703,8 +704,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 
-		_inputDados: function () {
-
+		getDados: function () {
 			var dados = {
 				carroceria: this.getView().byId("carroceriaRadioButton").getSelectedIndex() + "",
 				ultimas_cargas: {
@@ -764,8 +764,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					condicoe13: this.getView().byId("rb13").getSelectedIndex() - 1 + ""
 				}
 			};
+			return dados;
+		},
+
+		_inputDados: function () {
+
 			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-			oStorage.put("inspecao", dados);
+			oStorage.put("inspecao", this.getDados());
 		},
 
 		onInit: function () {

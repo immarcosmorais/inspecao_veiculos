@@ -60,14 +60,15 @@ sap.ui.define(function () {
 		// 	}
 		// },
 
-		// dataAtualFormatada: function (data) {
-		// 	var dia = data.getDate().toString(),
-		// 		diaF = (dia.length == 1) ? '0' + dia : dia,
-		// 		mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
-		// 		mesF = (mes.length == 1) ? '0' + mes : mes,
-		// 		anoF = data.getFullYear();
-		// 	return diaF + "/" + mesF + "/" + anoF;
-		// },
+		dataAtualFormatada: function (data) {
+			data.setTime(data.getTime() + (3*60*60*1000)); 
+			var dia = data.getDate().toString(),
+				diaF = (dia.length == 1) ? '0' + dia : dia,
+				mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+				mesF = (mes.length == 1) ? '0' + mes : mes,
+				anoF = data.getFullYear();
+			return diaF + "/" + mesF + "/" + anoF;
+		},
 
 		// retornaFormatoData: function (algumaCoisa) {
 		// 	var formatoData = new sap.ui.model.type.Date({
