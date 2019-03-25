@@ -45,7 +45,7 @@ sap.ui.define(function () {
 		// 		data = data.substring(0, data.length - 3);
 		// 		var int = parseInt(data);
 		// 		var jsDateObject = new Date(int * 1000);
-				
+
 		// 		// return jsDateObject;
 
 		// 		var dia = jsDateObject.getDate().toString(),
@@ -61,7 +61,7 @@ sap.ui.define(function () {
 		// },
 
 		dataAtualFormatada: function (data) {
-			data.setTime(data.getTime() + (3*60*60*1000)); 
+			data.setTime(data.getTime() + (3 * 60 * 60 * 1000));
 			var dia = data.getDate().toString(),
 				diaF = (dia.length == 1) ? '0' + dia : dia,
 				mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.

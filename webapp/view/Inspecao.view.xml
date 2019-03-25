@@ -164,7 +164,7 @@
 											</layout:BlockLayoutCell>
 											<layout:BlockLayoutCell width="1" title="" titleAlignment="Begin" titleLevel="Auto">
 												<layout:content>
-													<Text text="Lona/Forração se furos ou rasgos?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+													<Text text="Lona/Forração sem furos ou rasgos?" width="100%" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
 													<RadioButtonGroup id="rb02" columns="8" selectedIndex="0" valueState="None" width="120%" editable="true" enabled="true" textDirection="Inherit" select="_onRadioButtonGroupSelect2">
 														<buttons>
 															<RadioButton text="N.A." editable="true" enabled="true" visible="true" width="auto" valueState="None" selected="true"/>

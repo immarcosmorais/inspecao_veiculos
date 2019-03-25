@@ -3,11 +3,12 @@
 		<content>
 			<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
 				<items>
-					<GenericTile header="Cadastrar" subheader="Realizar nova vistoria" frameType="OneByOne" class="sapUiTinyMargin" press="_onGenericTilePress">
+					<GenericTile header="Inspecionar" subheader="Realizar nova vistoria" frameType="OneByOne" class="sapUiTinyMargin" press="_onGenericTilePress">
 						<tileContent>
 							<TileContent footer=" " unit="">
 								<content>
-									<NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://inspection"/>
+									<!--<NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://inspection"/>-->
+									<ImageContent src="sap-icon://add-document"/>
 								</content>
 							</TileContent>
 						</tileContent>
@@ -16,7 +17,8 @@
 						<tileContent>
 							<TileContent footer="" unit="">
 								<content>
-									<NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://list"/>
+									<!--<NumericContent value=" " valueColor="Neutral" indicator="None" icon="sap-icon://list"/>-->
+									<ImageContent src="sap-icon://list"/>
 								</content>
 							</TileContent>
 						</tileContent>

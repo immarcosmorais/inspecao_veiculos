@@ -1,11 +1,13 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos">
-	<Page showHeader="false" enableScrolling="true" class="sapUiContentPadding" showNavButton="false" backgroundDesign="List">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" height="100%"
+	controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.ListarVeiculos">
+	<!--<Page showHeader="false" enableScrolling="true" class="sapUiContentPadding" showNavButton="false" backgroundDesign="List">-->
+	<Page showHeader="true" title="Vistorias" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
 			<Table id="listaVistorias" items="{/Vistoria}" mode="Delete" delete="onDelete">
 				<headerToolbar>
 					<OverflowToolbar id="otbSubheader">
 						<ToolbarSpacer/>
-						<SearchField id="idPesquisa" liveChange="onSearch">
+						<SearchField placeholder="Placa do Veiculo" id="idPesquisa" liveChange="onSearch">
 							<layoutData><OverflowToolbarLayoutData minWidth="200px" maxWidth="300px" shrinkable="true"/></layoutData>
 						</SearchField>
 						<OverflowToolbarButton type="Transparent" text="Filter" icon="sap-icon://filter" press="onFilter"/>
@@ -22,14 +24,20 @@
 					<Column hAlign="End"><Text text="Status"/></Column>
 				</columns>
 				<items>
-					<ColumnListItem highlight="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}" type="Navigation" press="_onStandardListItemPress">
+					<ColumnListItem highlight="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}"
+						type="Navigation" press="_onStandardListItemPress">
 						<cells>
-							<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" ariaLabelledBy="__text0" src="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.icon'}" size="2em" id="icon0" color="{path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.color'}"/>
+							<sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" ariaLabelledBy="__text0"
+								src="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.icon'}" size="2em" id="icon0"
+								color="{path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.color'}"/>
 							<ObjectIdentifier title="{Id}" text="{Veiculo}"/>
 							<Text text="{Nome}"/>
 							<!--<Text text="{ path: 'DataCarregamento', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>-->
 							<Text text="{ path: 'DataCarregamento', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.dataAtualFormatada'}"/>
-							<ObjectStatus class="sapUiSmallMarginBottom" text="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.info'}" state="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}"/>
+							<!--<Text text="{ parts:[{path:'Id'},{path:'DataCarregamento'}, {/Vistoria}], formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.dataAtualFormatada'}"/>-->
+							<ObjectStatus class="sapUiSmallMarginBottom"
+								text="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.info'}"
+								state="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.infoState'}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

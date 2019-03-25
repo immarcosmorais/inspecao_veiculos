@@ -32,6 +32,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}
 			}
 
+			this.onRefresh();
+
 		},
 
 		doNavigate: function (sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
@@ -155,7 +157,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 				oRouter.navTo("default", true);
 			}
-
 		},
 
 		getQueryParameters: function (oLocation) {
@@ -266,11 +267,25 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		handleFilterDialogConfirm: function (oEvent) {
 			var mParams = oEvent.getParameters(),
 				filter = [],
+				oSearch = this.getView().byId("idPesquisa"),
 				query = this.sSearchQuery;
 			mParams.filterItems.forEach(function (oItem) {
 				var aSplit = oItem.getKey().split("-"),
 					sPath = aSplit[0],
 					sValue = aSplit[1];
+
+				if (sPath == "Veiculo") {
+					oSearch.setPlaceholder("Placa do Veiculo");
+				}
+
+				if (sPath == "Id") {
+					oSearch.setPlaceholder("Nº da Vistoria");
+				}
+
+				if (sPath == "Nome") {
+					oSearch.setPlaceholder("Nome do Motorista");
+				}
+
 				if (sPath !== "Status") {
 					var oFilter = new Filter(sPath, sap.ui.model.FilterOperator.Contains, query);
 				} else {
@@ -355,7 +370,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		onRefresh: function (onEvent) {
 			this.iniciaVariaveis();
 			this.fnApplyFiltersAndOrdering();
-			// this.convertData();
+			this.getView().byId("idPesquisa").setPlaceholder("Placa do Veiculo");
 		},
 
 		iniciaVariaveis: function () {

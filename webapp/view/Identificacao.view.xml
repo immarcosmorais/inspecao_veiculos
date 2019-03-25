@@ -17,40 +17,13 @@
 											<Label text="Veículo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											
-											<Input 
-												id="tratorInput" 
-												placeholder="ABC1234" 
-												type="Text" 
-												showValueHelp="true" 
-												enabled="true" 
-												visible="true" 
-												width="auto"
-												valueHelpOnly="false" 
-												maxLength="0" 
-												valueHelpRequest="handleValueHelp" 
-												suggestionItems="{/Veiculo}" 
-												valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange"
-												value="{ path : '/Placa'}">
+											<Input id="tratorInput" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
+												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Veiculo}" valueLiveUpdate="{/ValueLiveUpdate}"
+												liveChange="handleLiveChange" value="{ path : '/Placa'}">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
 											</Input>
-											
-											<!--<Input-->
-											<!--	id="tratorInput"-->
-											<!--	type="Text"-->
-											<!--	placeholder="Ex.: ABC1234"-->
-											<!--	showSuggestion="true"-->
-											<!--	showValueHelp="true"-->
-											<!--	valueHelpRequest="handleValueHelp"-->
-											<!--	suggestionItems="{/Veiculo}">-->
-											<!--	<suggestionItems>-->
-											<!--		<core:Item text="{Placa}" />-->
-											<!--	</suggestionItems>-->
-											<!--</Input>-->
-											
 										</form:fields>
 									</form:FormElement>
 									<form:FormElement visible="true">
@@ -58,40 +31,13 @@
 											<Label text="Reboque(1)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											
-											<Input 
-												id="reboque1Input" 
-												placeholder="ABC1234" 
-												type="Text" 
-												showValueHelp="true" 
-												enabled="true" 
-												visible="true" 
-												width="auto"
-												valueHelpOnly="false" 
-												maxLength="0" 
-												valueHelpRequest="handleValueHelp" 
-												suggestionItems="{/Reboque}" 
-												valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange"
-												value="{ path : '/Placa'}">
+											<Input id="reboque1Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
+												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}"
+												liveChange="handleLiveChange" value="{ path : '/Placa'}">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
 											</Input>
-											
-											<!--<Input-->
-											<!--	id="reboque1Input"-->
-											<!--	type="Text"-->
-											<!--	placeholder="Ex.: ABC1234"-->
-											<!--	showSuggestion="true"-->
-											<!--	showValueHelp="true"-->
-											<!--	valueHelpRequest="handleValueHelp"-->
-											<!--	suggestionItems="{/Veiculo}">-->
-											<!--	<suggestionItems>-->
-											<!--		<core:Item text="{Placa}" />-->
-											<!--	</suggestionItems>-->
-											<!--</Input>-->
-											
 										</form:fields>
 									</form:FormElement>
 									<form:FormElement visible="true">
@@ -99,40 +45,13 @@
 											<Label text="Reboque(2)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											
-											<Input 
-												id="reboque2Input" 
-												placeholder="ABC1234" 
-												type="Text" 
-												showValueHelp="true" 
-												enabled="true" 
-												visible="true" 
-												width="auto"
-												valueHelpOnly="false" 
-												maxLength="0" 
-												valueHelpRequest="handleValueHelp" 
-												suggestionItems="{/Reboque}" 
-												valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange"
-												value="{ path : '/Placa'}">
+											<Input id="reboque2Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
+												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}"
+												liveChange="handleLiveChange" value="{ path : '/Placa'}">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
 											</Input>
-											
-											<!--<Input-->
-											<!--	id="reboque2Input"-->
-											<!--	type="Text"-->
-											<!--	placeholder="Ex.: ABC1234"-->
-											<!--	showSuggestion="true"-->
-											<!--	showValueHelp="true"-->
-											<!--	valueHelpRequest="handleValueHelp"-->
-											<!--	suggestionItems="{/Veiculo}">-->
-											<!--	<suggestionItems>-->
-											<!--		<core:Item text="{Placa}" />-->
-											<!--	</suggestionItems>-->
-											<!--</Input>-->
-											
 										</form:fields>
 									</form:FormElement>
 									<form:FormElement visible="true">
@@ -140,39 +59,13 @@
 											<Label text="Motorista" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											
-											<Input 
-												id="motoristaInput" 
-												placeholder="Nome do motorista" 
-												type="Text" 
-												showValueHelp="true" 
-												enabled="true" 
-												visible="true" 
-												width="auto"
-												valueHelpOnly="false" 
-												maxLength="0" 
-												valueHelpRequest="handleValueHelp" 
-												suggestionItems="{/Motorista}" 
-												valueLiveUpdate="{/ValueLiveUpdate}"
+											<Input id="motoristaInput" placeholder="Nome do motorista" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
+												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Motorista}" valueLiveUpdate="{/ValueLiveUpdate}"
 												liveChange="handleLiveChange">
 												<suggestionItems>
 													<core:Item text="{Name1}"/>
 												</suggestionItems>
 											</Input>
-											
-											<!--<Input-->
-											<!--	id="motoristaInput"-->
-											<!--	type="Text"-->
-											<!--	placeholder="Ex.: Nome do motorista"-->
-											<!--	showSuggestion="true"-->
-											<!--	showValueHelp="true"-->
-											<!--	valueHelpRequest="handleValueHelp"-->
-											<!--	suggestionItems="{/Motorista}">-->
-											<!--	<suggestionItems>-->
-											<!--		<core:Item text="{Name1}" />-->
-											<!--	</suggestionItems>-->
-											<!--</Input>-->
-											
 										</form:fields>
 									</form:FormElement>
 									<form:FormElement visible="true">
@@ -180,39 +73,13 @@
 											<Label text="CPF" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											
-											<Input 
-												id="cpfInput" 
-												placeholder="00000000000" 
-												type="Number" 
-												showValueHelp="true" 
-												enabled="true" 
-												visible="true" 
-												width="auto"
-												valueHelpOnly="false" 
-												maxLength="0" 
-												valueHelpRequest="handleValueHelp" 
-												suggestionItems="{/Motorista}" 
-												valueLiveUpdate="{/ValueLiveUpdate}"
+											<Input id="cpfInput" placeholder="00000000000" type="Number" showValueHelp="true" enabled="true" visible="true" width="auto"
+												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Motorista}" valueLiveUpdate="{/ValueLiveUpdate}"
 												liveChange="handleLiveChange">
 												<suggestionItems>
 													<core:Item text="{Stcd2}"/>
 												</suggestionItems>
 											</Input>
-											
-											<!--<Input-->
-											<!--	id="cpfInput"-->
-											<!--	type="Text"-->
-											<!--	placeholder="Ex.: 00000000000"-->
-											<!--	showSuggestion="true"-->
-											<!--	showValueHelp="true"-->
-											<!--	valueHelpRequest="handleValueHelp"-->
-											<!--	suggestionItems="{/Motorista}">-->
-											<!--	<suggestionItems>-->
-											<!--		<core:Item text="{Stcd2}" />-->
-											<!--	</suggestionItems>-->
-											<!--</Input>-->
-											
 										</form:fields>
 									</form:FormElement>
 								</form:formElements>
