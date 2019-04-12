@@ -13,16 +13,16 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			if (oStorage.get("Crud") !== null) {
-				if (oStorage.get("Crud").operacao == "create") {
-					if (oStorage.get("Crud").pageReset == "conclusao") {
+				if (oStorage.get("Crud").operacao === "create") {
+					if (oStorage.get("Crud").pageReset === "conclusao") {
 						this.resetPage();
 						oStorage.put("Crud", {
 							operacao: "create",
 							pageReset: "identificacao"
 						});
 					}
-				} else if (oStorage.get("Crud").operacao == "update") {
-					if (oStorage.get("Crud").pageReset == "conclusao") {
+				} else if (oStorage.get("Crud").operacao === "update") {
+					if (oStorage.get("Crud").pageReset === "conclusao") {
 						var sPath = oStorage.get("Crud").sPath;
 						this.preenchePage(sPath);
 						oStorage.put("Crud", {
@@ -361,7 +361,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			if ((oStorage.get("Crud") === null) || (oStorage.get("Crud").operacao === "create")) {
 				this.salvaVistoria();
-			} else if (oStorage.get("Crud").operacao == "update") {
+			} else if (oStorage.get("Crud").operacao === "update") {
 				this.atualizaVistoria();
 			}
 		},

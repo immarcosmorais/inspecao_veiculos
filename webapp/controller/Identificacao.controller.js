@@ -11,11 +11,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 ], function (BaseController, MessageBox, Utilities, History, ToolPopup, Filter, JSONModel, SimpleType, ValidateException, MessageToast) {
 	"use strict";
 
-	var caminho,
-		cod,
-		filtro,
-		oStorage,
-		gModelHelp;
+	var caminho, cod, filtro, oStorage, gModelHelp;
 
 	return BaseController.extend("com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao", {
 
@@ -62,7 +58,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oView = this.getView(),
 				oModel = this.oView.getModel();
 
-			var caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog";
+			caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog";
 			var oDialog = sap.ui.xmlfragment(caminho, this);
 			oDialog.open();
 

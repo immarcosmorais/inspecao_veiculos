@@ -18,7 +18,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				if (oStorage.get("Crud").operacao !== "create") {
 					oStorage.clear();
 					oStorage.removeAll();
-
 					oStorage.put("Crud", {
 						operacao: "create",
 						pageReset: "identificacao"
