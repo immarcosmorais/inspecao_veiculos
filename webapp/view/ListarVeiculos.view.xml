@@ -17,10 +17,10 @@
 				</headerToolbar>
 				<columns>
 					<Column width="4em"/>
-					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Vistoria"/></Column>
-					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Placa"/></Column>
-					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Motorista"/></Column>
-					<Column minScreenWidth="Desktop" demandPopin="true"><Text text="Data de Carregamento"/></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Vistoria"/></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Placa"/></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Motorista"/></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Data de Carregamento"/></Column>
 					<Column hAlign="End"><Text text="Status"/></Column>
 				</columns>
 				<items>
@@ -33,6 +33,7 @@
 							<ObjectIdentifier title="{Id}"/>
 							<Text text="{Veiculo}"/>
 							<Text text="{Nome}"/>
+							<!--Formatando exibição da tela-->
 							<Text text="{ path: 'DataCarregamento', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.dataAtualFormatada'}"/>
 							<ObjectStatus class="sapUiSmallMarginBottom"
 								text="{ path: 'Status', formatter:'com.sap.build.standard.formInspecaoDeVeiculos.controller.Formatter.info'}"

@@ -43,6 +43,17 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
+			
+			if(window.location.href.split(".")[0].indexOf("testing") === -1){
+				// jQuery.sap.registerModulePath("SignaturePad","/sap/fiori/formInspecaoDeVeiculos/webapp/controller/SignaturePad");
+				jQuery.sap.registerModulePath("SignaturePad","/sap/fiori/inspecaoveiculos/webapp/controller/SignaturePad");
+			}else{
+				jQuery.sap.registerModulePath("SignaturePad","../controller/SignaturePad");
+			}
+			
+			// jQuery.sap.registerModulePath("SignaturePad","/sap/fiori/"+ window.location.href.split("/")[2] + "/webapp/controller/SignaturePad");
+			
+			jQuery.sap.require("SignaturePad");
 		},
 
 		createContent: function () {

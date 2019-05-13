@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" width="auto" height="auto">
+	<P13nDialog
+		id="idAssinatura"
+		title="Assinatura" 
+		contentHeight="auto"
+		contentWidth="auto"
+		resizable="false"
+		beforeOpen="geraSignaturePad" 
+		afterOpen="preencheSignaturePad" 
+		showResetEnabled="true" 
+		showReset="true" 
+		ok="onOK" 
+		cancel="onCancel" 
+		reset="onReset" 
+		class="sapUiSizeCompact">
+		<VBox id="" models="" bindingContexts="" objectBindings="" metadataContexts="" Type="" blocked="false" busy="false" busyIndicatorDelay="1000" busyIndicatorSize="Medium" visible="true" fieldGroupIds="[]" height="auto" width="auto" displayInline="false" direction="Row" fitContainer="false" renderType="Div" justifyContent="Center" alignItems="Center" wrap="NoWrap" alignContent="Center" backgroundDesign="Transparent" validationSuccess="" validationError="" parseError="" formatError="" modelContextChange="" validateFieldGroup="">
+			<tooltip/>
+			<customData/>
+			<layoutData/>
+			<dependents/>
+			<dragDropConfig/>
+			<items><core:HTML id="html"/></items>
+		</VBox> 
+	</P13nDialog>
+</core:FragmentDefinition>

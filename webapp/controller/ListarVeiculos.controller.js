@@ -92,29 +92,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 
-		// getData: function (sPath) {
-		// 	var oModel = this.oView.getModel(),
-		// 		data = {};
-
-		// 	// oModel.read(sPath, {
-		// 	// 	success: function (oRetrievedResult, oView) {
-		// 	// 		data = oRetrievedResult;
-		// 	// 	},
-		// 	// 	error: function (oError) {
-		// 	// 		MessageBox.error("erro ao consultar a opera\xE7\xE3o!");
-		// 	// 	}
-		// 	// });
-
-		// 	oModel.read(sPath, {
-		// 		success: function (oRetrievedResult) { 
-		// 			data = oRetrievedResult; 
-		// 		},
-		// 		error: function (oError) { /* do something */ }
-		// 	});
-
-		// 	return data;
-		// },
-
 		_onStandardListItemPress: function (oEvent) {
 
 			var sPath = oEvent.getSource().getBindingContextPath(),
@@ -185,12 +162,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			oList.attachEventOnce("updateFinished", oList.focus, oList);
 
 			if (status === "A") {
-
 				//Chamando fragment
 				var caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.BusyDialog";
 				var oDialog = sap.ui.xmlfragment(caminho, this);
 				// oDialog.open();
-
 				var dialog = new Dialog({
 					title: "Confirmar",
 					type: "Message",
@@ -218,7 +193,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 							oDialog.open();
 							jQuery.sap.delayedCall(500, this, function () {
 								oModel.remove(sPath, {
-									// groupId: "group1",
 									method: "DELETE",
 									success: function (data) {
 										oDialog.close();
@@ -229,7 +203,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 									error: function (e) {
 										oDialog.close();
 										dialog.close();
-										MessageBox.error('Erro ao deletar o vistoria!');
+										MessageBox.error("Erro ao deletar o vistoria!");
 									}
 								});
 							});
@@ -355,18 +329,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.fnApplyFiltersAndOrdering();
 		},
 
-		// convertData: function () {
-		// 	var oTable = this.byId("listaVistorias"),
-		// 		oBinding = oTable.getBinding("items"),
-		// 		oModel = oBinding.getModel(),
-		// 		oData = oModel.oData;
-		// 	jQuery.each(oData, function (i, data) {
-		// 		data.DataCarregamento.setTime(data.DataCarregamento.getTime() + (3 * 60 * 60 * 1000));
-		// 	});
-		// 	oModel.oData = oData;
-		// 	oTable.setModel(oModel);
-		// },
-
 		onRefresh: function (onEvent) {
 			this.iniciaVariaveis();
 			this.fnApplyFiltersAndOrdering();
@@ -384,10 +346,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		onExit: function () {
 			var oDialogKey,
 				oDialogValue;
-
 			for (oDialogKey in this._mViewSettingsDialogs) {
 				oDialogValue = this._mViewSettingsDialogs[oDialogKey];
-
 				if (oDialogValue) {
 					oDialogValue.destroy();
 				}
@@ -443,7 +403,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					};
 				}
 			};
-
 		}
 	});
 }, /* bExport= */ true);

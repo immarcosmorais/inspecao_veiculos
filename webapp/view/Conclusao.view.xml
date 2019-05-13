@@ -26,6 +26,8 @@
 									<DatePicker dateValue="{/date}" id="dataInput"/>
 								</form:fields>
 							</form:FormElement>
+							
+							
 							<form:FormElement visible="true">
 								<form:label>
 									<Label text="Observações" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
@@ -34,6 +36,69 @@
 									<TextArea id="obsInput" growing="true" visible="true" width="100%" maxLength="130"/>
 								</form:fields>
 							</form:FormElement>
+							
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Assinatura" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									
+									<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="100%" justifyContent="Center" renderType="Div" visible="true" displayInline="false">
+										<items>
+										    <Button xmlns="sap.m" text="Assinatura" id="btnAssinatura" width="100%" icon="sap-icon://signature" press="abreAssinatura" type="Reject"/>
+										</items><!-- sap.ui.core.Control -->
+									</VBox>
+									
+									<!--<VBox -->
+										<!--alignItems="Stretch" -->
+										<!--direction="Column" -->
+										<!--fitContainer="false" -->
+										<!--width="auto" -->
+										<!--height="100%" -->
+										<!--justifyContent="Center" -->
+										<!--renderType="Div"-->
+										<!--visible="true" -->
+										<!--displayInline="false">-->
+									<!--	<items>-->
+									<!--		<Button text="Translate" type="Emphasized" icon="sap-icon://discussion" iconFirst="true" width="100%" enabled="true" visible="true"-->
+									<!--			iconDensityAware="false" id="idTranslate" press="translate"/>-->
+									<!--	</items>-->
+									<!--</VBox>-->
+									
+								</form:fields>
+							</form:FormElement>
+							
+							<!--<form:FormElement visible="true">-->
+							<!--	<form:label>-->
+							<!--		<Label text="Assinatura" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+							<!--	</form:label>-->
+							<!--	<form:fields>-->
+							<!--		<VBox id="" models="" bindingContexts="" objectBindings="" metadataContexts="" Type="" blocked="false" busy="false"-->
+							<!--			busyIndicatorDelay="1000" busyIndicatorSize="Medium" visible="true" fieldGroupIds="[]" height="100%" width="100%" displayInline="false"-->
+							<!--			direction="Column" fitContainer="false" renderType="Div" justifyContent="Start" alignItems="Center" wrap="NoWrap" alignContent="Center"-->
+							<!--			backgroundDesign="Transparent" validationSuccess="" validationError="" parseError="" formatError="" modelContextChange=""-->
+							<!--			validateFieldGroup="">-->
+							<!--			<tooltip/>-->
+										<!-- sap.ui.core.TooltipBase -->
+							<!--			<customData/>-->
+										<!-- sap.ui.core.CustomData -->
+							<!--			<layoutData/>-->
+										<!-- sap.ui.core.LayoutData -->
+							<!--			<dependents/>-->
+										<!-- sap.ui.core.Element -->
+							<!--			<dragDropConfig/>-->
+										<!-- sap.ui.core.dnd.DragDropBase -->
+							<!--			<items><core:HTML id="html"/></items>-->
+										<!-- sap.ui.core.Control -->
+							<!--		</VBox>-->
+							<!--	</form:fields>-->
+							<!--</form:FormElement>-->
+							
+							<!--<form:FormElement visible="true">-->
+							<!--	<Button id="clear" text="Limpar Assinatura" press="clearButton" width="100%"/>-->
+							<!--	<form:fields></form:fields>-->
+							<!--</form:FormElement>-->
+							
 						</form:formElements>
 						<form:title/>
 					</form:FormContainer>
@@ -43,10 +108,6 @@
 				</form:layout>
 			</form:Form>
 		</content>
-		<!--<dependents>-->
-		<!--	<core:Fragment fragmentName="sap.m.sample.BusyDialogLight.BusyDialog" type="XML">-->
-		<!--	</core:Fragment>-->
-		<!--</dependents>-->
 		<footer>
 			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
 				<content>

@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
 	controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao">
-	<Page showHeader="true" title="Indenificação" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
+	<Page showHeader="true" title="Indentificação" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
 			<Panel height="auto" width="auto" headerText="" expandable="false" expanded="true" expandAnimation="true" backgroundDesign="Solid"
 				class="sapUiTinyMargin sapUiContentPadding">
@@ -12,6 +12,23 @@
 						<form:formContainers>
 							<form:FormContainer visible="true">
 								<form:formElements>
+									<form:FormElement xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" visible="true"
+										id="element7">
+										<form:label>
+											<Label xmlns="sap.m" text="Tipo de Veículo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
+												visible="true" id="label7"/>
+										</form:label>
+										<form:fields>
+											<Select xmlns="sap.m" id="tipoVeiculo">
+												<items>
+													<core:Item xmlns:core="sap.ui.core" key="01" text="Caminhão (toco e tracado)" id="01"/>
+													<core:Item xmlns:core="sap.ui.core" key="02" text="Caminhão trator + semi-reboque" id="02"/>
+													<core:Item xmlns:core="sap.ui.core" key="03" text="Caminhão trator + dois (2) semi-reboques" id="03"/>
+													<core:Item xmlns:core="sap.ui.core" key="04" text="Caminhão trator + dois (2) semi-reboques + reboque com doly placas" id="04"/>
+												</items>
+											</Select>
+										</form:fields>
+									</form:FormElement>
 									<form:FormElement visible="true">
 										<form:label>
 											<Label text="Veículo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
@@ -46,6 +63,20 @@
 										</form:label>
 										<form:fields>
 											<Input id="reboque2Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
+												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}"
+												liveChange="handleLiveChange" value="{ path : '/Placa'}">
+												<suggestionItems>
+													<core:Item text="{Placa}"/>
+												</suggestionItems>
+											</Input>
+										</form:fields>
+									</form:FormElement>
+									<form:FormElement visible="true">
+										<form:label>
+											<Label text="Reboque(3)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</form:label>
+										<form:fields>
+											<Input id="reboque3Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
 												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}"
 												liveChange="handleLiveChange" value="{ path : '/Placa'}">
 												<suggestionItems>

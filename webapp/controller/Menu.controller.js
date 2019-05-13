@@ -122,6 +122,16 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Menu").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 
+			jQuery.sap.require("sap.m.MessageBox");
+			
+			// sap.ui.Device.orientation.attachHandler(function () {
+			// 	if (sap.ui.Device.orientation.landscape) {
+			// 		sap.m.MessageBox.show("Please use this application in Landscape mode.", sap.m.MessageBox.Icon.INFORMATION);
+			// 	} else {
+			// 		sap.m.MessageBox.show("Please use this application in Landscape mode.", sap.m.MessageBox.Icon.INFORMATION);
+			// 	}
+			// });
+
 		}
 	});
 }, /* bExport= */ true);

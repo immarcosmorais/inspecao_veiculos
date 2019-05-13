@@ -38,7 +38,8 @@ sap.ui.define(function () {
 				return "#ffffff";
 			}
 		},
-
+		
+		// Modificando data adicionando 3h, pois a plataforma da sap subtrai 3h devido os servidores estarem no centro-oeste americano.
 		dataAtualFormatada: function (data) {
 			data.setTime(data.getTime() + (3 * 60 * 60 * 1000));
 			var dia = data.getDate().toString(),

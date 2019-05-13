@@ -19,6 +19,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oParams = {};
 
 			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+
 			if (oStorage.get("Crud") !== null) {
 				if (oStorage.get("Crud").operacao == "create") {
 					if (oStorage.get("Crud").pageReset == "identificacao") {
@@ -52,6 +53,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					this.getView().bindObject(oPath);
 				}
 			}
+
 		},
 
 		preenchePage: function (sPath) {
@@ -310,8 +312,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		},
 
 		_handleValueHelpClose: function (evt) {
-			var productInput, r1 = "",
+			var productInput,
+				r1 = "",
 				r2 = "",
+				r3 = "",
 				i1, i2, i3, cpf = "",
 				sValue;
 			var oSelectedItem = evt.getParameter("selectedItem");
@@ -366,6 +370,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		_inputDados: function () {
 			var dados = {
+				tipo_veiculo: this.getView().byId("tipoVeiculo").getSelectedKey(),
 				veiculo: this.getView().byId("tratorInput").getValue(),
 				reboque1: this.getView().byId("reboque1Input").getValue(),
 				reboque2: this.getView().byId("reboque2Input").getValue(),
