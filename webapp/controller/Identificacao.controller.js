@@ -284,6 +284,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogCPF";
 				filtro = "Stcd2";
 			}
+			
 
 			this._valueHelpDialog = sap.ui.xmlfragment(caminho, this);
 			this.getView().addDependent(this._valueHelpDialog);
