@@ -48,6 +48,7 @@ sap.ui.define([
 						this.getView().bindObject(oPath);
 					}
 				}
+				
 				this.aRadioButtonGroupIds = ["resultadoRb"];
 				this.handleRadioButtonGroupsSelectedIndex();
 			},
@@ -115,6 +116,7 @@ sap.ui.define([
 					oRouter.navTo("default", true);
 				}
 			},
+			
 			getQueryParameters: function (oLocation) {
 				var oQuery = {};
 				var aParams = oLocation.search.substring(1).split("&");
@@ -124,6 +126,7 @@ sap.ui.define([
 				}
 				return oQuery;
 			},
+			
 			convertTextToIndexFormatter: function (sTextValue) {
 				var oRadioButtonGroup = this.byId("resultadoRb");
 				var oButtonsBindingInfo = oRadioButtonGroup.getBindingInfo("buttons");

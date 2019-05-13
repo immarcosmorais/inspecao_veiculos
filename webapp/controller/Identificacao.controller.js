@@ -110,7 +110,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				oQuery[aPair[0]] = decodeURIComponent(aPair[1]);
 			}
 			return oQuery;
-
 		},
 		_onButtonPress: function (oEvent) {
 			var oBindingContext = oEvent.getSource().getBindingContext();
@@ -121,7 +120,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					MessageBox.error(err.message);
 				}
 			});
-
 		},
 		_testaCPF: function (strCPF) {
 			var Soma;
@@ -196,7 +194,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 						bValidationError = true;
 					}
 				}
-
 			});
 
 			// output result
@@ -363,21 +360,76 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			input.setValue(input.getValue().toUpperCase());
 		},
 
+		ocultaReboque: function (oEvent) {
+			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "01") {
+				this.getView().byId("reboque1Input").setVisible(false);
+				this.getView().byId("reboque2Input").setVisible(false);
+				this.getView().byId("reboque3Input").setVisible(false);
+				this.getView().byId("reboque1Label").setVisible(false);
+				this.getView().byId("reboque2Label").setVisible(false);
+				this.getView().byId("reboque3Label").setVisible(false);
+			}
+			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "02") {
+				this.getView().byId("reboque1Input").setVisible(true);
+				this.getView().byId("reboque2Input").setVisible(false);
+				this.getView().byId("reboque3Input").setVisible(false);
+				this.getView().byId("reboque1Label").setVisible(true);
+				this.getView().byId("reboque2Label").setVisible(false);
+				this.getView().byId("reboque3Label").setVisible(false);
+			}
+			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "03") {
+				this.getView().byId("reboque1Input").setVisible(true);
+				this.getView().byId("reboque2Input").setVisible(true);
+				this.getView().byId("reboque3Input").setVisible(false);
+				this.getView().byId("reboque1Label").setVisible(true);
+				this.getView().byId("reboque2Label").setVisible(true);
+				this.getView().byId("reboque3Label").setVisible(false);
+			}
+			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "04") {
+				this.getView().byId("reboque1Input").setVisible(true);
+				this.getView().byId("reboque2Input").setVisible(true);
+				this.getView().byId("reboque3Input").setVisible(true);
+				this.getView().byId("reboque1Label").setVisible(true);
+				this.getView().byId("reboque2Label").setVisible(true);
+				this.getView().byId("reboque3Label").setVisible(true);
+			}
+		},
+
 		onInit: function () {
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("Identificacao").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 		},
 
 		_inputDados: function () {
+
+			var reboque1 = "";
+			var reboque2 = "";
+			var reboque3 = "";
+
+			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "02") {
+				reboque1 = this.getView().byId("reboque1Input").getValue();
+			}
+			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "03") {
+				reboque1 = this.getView().byId("reboque1Input").getValue();
+				reboque2 = this.getView().byId("reboque2Input").getValue();
+			}
+			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "04") {
+				reboque1 = this.getView().byId("reboque1Input").getValue();
+				reboque2 = this.getView().byId("reboque2Input").getValue();
+				reboque3 = this.getView().byId("reboque3Input").getValue();
+			}
+
 			var dados = {
 				tipo_veiculo: this.getView().byId("tipoVeiculo").getSelectedKey(),
 				veiculo: this.getView().byId("tratorInput").getValue(),
-				reboque1: this.getView().byId("reboque1Input").getValue(),
-				reboque2: this.getView().byId("reboque2Input").getValue(),
+				reboque1: this.reboque1,
+				reboque2: this.reboque2,
+				reboque3: this.reboque3,
 				nome_motorista: this.getView().byId("motoristaInput").getValue(),
 				cpf: this.getView().byId("cpfInput").getValue(),
 				lifnr: this.cod
 			};
+
 			oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			oStorage.put("identificacao", dados);
 		},

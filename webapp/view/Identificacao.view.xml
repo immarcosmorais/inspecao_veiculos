@@ -1,9 +1,7 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
-	controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" controllerName="com.sap.build.standard.formInspecaoDeVeiculos.controller.Identificacao">
 	<Page showHeader="true" title="Indentificação" showFooter="true" showNavButton="true" navButtonPress="_onPageNavButtonPress">
 		<content>
-			<Panel height="auto" width="auto" headerText="" expandable="false" expanded="true" expandAnimation="true" backgroundDesign="Solid"
-				class="sapUiTinyMargin sapUiContentPadding">
+			<Panel height="auto" width="auto" headerText="" expandable="false" expanded="true" expandAnimation="true" backgroundDesign="Solid" class="sapUiTinyMargin sapUiContentPadding">
 				<content>
 					<form:Form width="100%" editable="true" visible="true">
 						<form:title>
@@ -12,14 +10,12 @@
 						<form:formContainers>
 							<form:FormContainer visible="true">
 								<form:formElements>
-									<form:FormElement xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" visible="true"
-										id="element7">
+									<form:FormElement xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" visible="true" id="element7">
 										<form:label>
-											<Label xmlns="sap.m" text="Tipo de Veículo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"
-												visible="true" id="label7"/>
+											<Label xmlns="sap.m" text="Tipo de Veículo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											<Select xmlns="sap.m" id="tipoVeiculo">
+											<Select xmlns="sap.m" id="tipoVeiculo" change="ocultaReboque" selectedKey="04" >
 												<items>
 													<core:Item xmlns:core="sap.ui.core" key="01" text="Caminhão (toco e tracado)" id="01"/>
 													<core:Item xmlns:core="sap.ui.core" key="02" text="Caminhão trator + semi-reboque" id="02"/>
@@ -31,12 +27,10 @@
 									</form:FormElement>
 									<form:FormElement visible="true">
 										<form:label>
-											<Label text="Veículo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Label text="Veículo" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" id="veiculoLabel"/>
 										</form:label>
 										<form:fields>
-											<Input id="tratorInput" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Veiculo}" valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange" value="{ path : '/Placa'}">
+											<Input id="tratorInput" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Veiculo}" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange" value="{ path : '/Placa'}">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
@@ -45,12 +39,10 @@
 									</form:FormElement>
 									<form:FormElement visible="true">
 										<form:label>
-											<Label text="Reboque(1)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Label text="Reboque(1)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" id="reboque1Label"/>
 										</form:label>
 										<form:fields>
-											<Input id="reboque1Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange" value="{ path : '/Placa'}">
+											<Input id="reboque1Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange" value="{ path : '/Placa'}">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
@@ -59,12 +51,10 @@
 									</form:FormElement>
 									<form:FormElement visible="true">
 										<form:label>
-											<Label text="Reboque(2)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Label text="Reboque(2)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" id="reboque2Label"/>
 										</form:label>
 										<form:fields>
-											<Input id="reboque2Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange" value="{ path : '/Placa'}">
+											<Input id="reboque2Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange" value="{ path : '/Placa'}">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
@@ -73,12 +63,10 @@
 									</form:FormElement>
 									<form:FormElement visible="true">
 										<form:label>
-											<Label text="Reboque(3)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Label text="Reboque(3)" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true" id="reboque3Label"/>
 										</form:label>
 										<form:fields>
-											<Input id="reboque3Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange" value="{ path : '/Placa'}">
+											<Input id="reboque3Input" placeholder="ABC1234" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Reboque}" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange" value="{ path : '/Placa'}">
 												<suggestionItems>
 													<core:Item text="{Placa}"/>
 												</suggestionItems>
@@ -90,9 +78,7 @@
 											<Label text="Motorista" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											<Input id="motoristaInput" placeholder="Nome do motorista" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Motorista}" valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange">
+											<Input id="motoristaInput" placeholder="Nome do motorista" type="Text" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Motorista}" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange">
 												<suggestionItems>
 													<core:Item text="{Name1}"/>
 												</suggestionItems>
@@ -104,9 +90,7 @@
 											<Label text="CPF" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
 										</form:label>
 										<form:fields>
-											<Input id="cpfInput" placeholder="00000000000" type="Number" showValueHelp="true" enabled="true" visible="true" width="auto"
-												valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Motorista}" valueLiveUpdate="{/ValueLiveUpdate}"
-												liveChange="handleLiveChange">
+											<Input id="cpfInput" placeholder="00000000000" type="Number" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0" valueHelpRequest="handleValueHelp" suggestionItems="{/Motorista}" valueLiveUpdate="{/ValueLiveUpdate}" liveChange="handleLiveChange">
 												<suggestionItems>
 													<core:Item text="{Stcd2}"/>
 												</suggestionItems>
@@ -128,8 +112,7 @@
 			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
 				<content>
 					<ToolbarSpacer width=""/>
-					<Button text="" type="Emphasized" icon="sap-icon://navigation-right-arrow" iconFirst="true" width="auto" enabled="true" visible="true"
-						iconDensityAware="false" press="_onContinue"/>
+					<Button text="" type="Emphasized" icon="sap-icon://navigation-right-arrow" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onContinue"/>
 				</content>
 			</OverflowToolbar>
 		</footer>
