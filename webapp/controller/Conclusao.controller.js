@@ -159,9 +159,11 @@ sap.ui.define([
 				}
 				var dados = {
 					Id: id,
+					TipoVeiculo: identificacao.tipoVeiculo,
 					Veiculo: identificacao.veiculo,
 					Reboque1: identificacao.reboque1,
 					Reboque2: identificacao.reboque2,
+					Reboque3: identificacao.reboque3,
 					Carroceria: inspecao.carroceria,
 					Motorista: identificacao.lifnr,
 					Nome: identificacao.nome_motorista,

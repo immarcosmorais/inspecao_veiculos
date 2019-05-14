@@ -41,7 +41,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					}
 				}
 			}
-			
 
 			if (oEvent.mParameters.data.context) {
 				this.sContext = oEvent.mParameters.data.context;
@@ -71,6 +70,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					oView.byId("motoristaInput").setValue(oData.Nome);
 					oView.byId("reboque1Input").setValue(oData.Reboque1);
 					oView.byId("reboque2Input").setValue(oData.Reboque2);
+					oView.byId("reboque3Input").setValue(oData.Reboque3);
+					oView.byId("tipoVeiculo").setSelectedKey(oData.TipoVeiculo);
 					oView.byId("cpfInput").setValue(oData.Cpf);
 					oDialog.close();
 				},
@@ -81,6 +82,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					rota.navTo("Menu", false);
 				}
 			});
+			this.ocultaReboque();
 		},
 
 		resetPage: function () {
@@ -88,7 +90,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.getView().byId("motoristaInput").setValue("");
 			this.getView().byId("reboque1Input").setValue("");
 			this.getView().byId("reboque2Input").setValue("");
+			this.getView().byId("reboque3Input").setValue("");
 			this.getView().byId("cpfInput").setValue("");
+			this.getView().byId("tipoVeiculo").setSelectedKey("04");
+			this.ocultaReboque();
 		},
 
 		_onPageNavButtonPress: function () {
@@ -150,9 +155,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				oView.byId("tratorInput"),
 				oView.byId("reboque1Input"),
 				oView.byId("reboque2Input"),
+				oView.byId("reboque3Input"),
 				oView.byId("motoristaInput"),
 				oView.byId("cpfInput")
 			];
+
+			//////
+
 			var bValidationError = false;
 			var regex = new RegExp("^[a-zA-Z]{3}[0-9]{4}|[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}$");
 
@@ -161,43 +170,123 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.getView().byId("cpfInput").setValueState("Error");
 			}
 
-			jQuery.each(aInputs, function (i, oInput) {
+			var tipoVeiculo = this.getView().byId("tipoVeiculo").getSelectedKey();
 
-				var id = oInput.getId();
+			for (var i = 0; i < aInputs.length; i++) {
+				var id = aInputs[i].getId();
 
 				if (id.search("tratorInput") !== -1) {
-					if (!regex.test(oInput.getValue())) {
-						oInput.setValueState("Error");
-						bValidationError = true;
-					}
-				} else if (id.search("reboque1Input") !== -1) {
-					if (oInput.getValue() !== "") {
-						if (!regex.test(oInput.getValue())) {
-							oInput.setValueState("Error");
-							bValidationError = true;
-						}
-					}
-				} else if (id.search("reboque2Input") !== -1) {
-					if (oInput.getValue() !== "") {
-						if (!regex.test(oInput.getValue())) {
-							oInput.setValueState("Error");
-							bValidationError = true;
-						}
-					}
-				} else if (id.search("motoristaInput") !== -1) {
-					if (oInput.getValue() === "") {
-						oInput.setValueState("Error");
-						bValidationError = true;
-					}
-				} else if (id.search("cpfInput") !== -1) {
-					if (oInput.getValue() === "") {
-						oInput.setValueState("Error");
+					if (!regex.test(aInputs[i].getValue())) {
+						aInputs[i].setValueState("Error");
 						bValidationError = true;
 					}
 				}
-			});
 
-			// output result
+				if (tipoVeiculo == "02") {
+					if (id.search("reboque1Input") !== -1) {
+						if (!regex.test(aInputs[i].getValue())) {
+							aInputs[i].setValueState("Error");
+							bValidationError = true;
+						}
+					}
+				} else if (tipoVeiculo == "03") {
+					if (id.search("reboque1Input") !== -1) {
+						if (!regex.test(aInputs[i].getValue())) {
+							aInputs[i].setValueState("Error");
+							bValidationError = true;
+						}
+					} else if (id.search("reboque2Input") !== -1) {
+						if (!regex.test(aInputs[i].getValue())) {
+							aInputs[i].setValueState("Error");
+							bValidationError = true;
+						}
+					}
+				} else if (tipoVeiculo == "04") {
+					if (id.search("reboque1Input") !== -1) {
+						if (!regex.test(aInputs[i].getValue())) {
+							aInputs[i].setValueState("Error");
+							bValidationError = true;
+						}
+					} else if (id.search("reboque2Input") !== -1) {
+						if (!regex.test(aInputs[i].getValue())) {
+							aInputs[i].setValueState("Error");
+							bValidationError = true;
+						}
+					} else if (id.search("reboque3Input") !== -1) {
+						if (!regex.test(aInputs[i].getValue())) {
+							aInputs[i].setValueState("Error");
+							bValidationError = true;
+						}
+					}
+				}
+
+				if (id.search("motoristaInput") !== -1) {
+					if (aInputs[i].getValue() === "") {
+						aInputs[i].setValueState("Error");
+						bValidationError = true;
+					}
+				} else if (id.search("cpfInput") !== -1) {
+					if (aInputs[i].getValue() === "") {
+						aInputs[i].setValueState("Error");
+						bValidationError = true;
+					}
+				}
+
+			}
+
+			////
+
+			// var bValidationError = false;
+			// var regex = new RegExp("^[a-zA-Z]{3}[0-9]{4}|[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}$");
+
+			// if (!this._testaCPF(this.getView().byId("cpfInput").getValue())) {
+			// 	bValidationError = true;
+			// 	this.getView().byId("cpfInput").setValueState("Error");
+			// }
+
+			// jQuery.each(aInputs, function (i, oInput) {
+
+			// 	var id = oInput.getId();
+
+			// 	if (id.search("tratorInput") !== -1) {
+			// 		if (!regex.test(oInput.getValue())) {
+			// 			oInput.setValueState("Error");
+			// 			bValidationError = true;
+			// 		}
+			// 	} else if (id.search("reboque1Input") !== -1) {
+			// 		if (oInput.getValue() !== "") {
+			// 			if (!regex.test(oInput.getValue())) {
+			// 				oInput.setValueState("Error");
+			// 				bValidationError = true;
+			// 			}
+			// 		}
+			// 	} else if (id.search("reboque2Input") !== -1) {
+			// 		if (oInput.getValue() !== "") {
+			// 			if (!regex.test(oInput.getValue())) {
+			// 				oInput.setValueState("Error");
+			// 				bValidationError = true;
+			// 			}
+			// 		}
+			// 	} else if (id.search("reboque3Input") !== -1) {
+			// 		if (oInput.getValue() !== "") {
+			// 			if (!regex.test(oInput.getValue())) {
+			// 				oInput.setValueState("Error");
+			// 				bValidationError = true;
+			// 			}
+			// 		}
+			// 	} else if (id.search("motoristaInput") !== -1) {
+			// 		if (oInput.getValue() === "") {
+			// 			oInput.setValueState("Error");
+			// 			bValidationError = true;
+			// 		}
+			// 	} else if (id.search("cpfInput") !== -1) {
+			// 		if (oInput.getValue() === "") {
+			// 			oInput.setValueState("Error");
+			// 			bValidationError = true;
+			// 		}
+			// 	}
+			// });
+
 			if (!bValidationError) {
 				this._inputDados();
 				this._onButtonPress(oEvent);
@@ -285,7 +374,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				caminho = "com.sap.build.standard.formInspecaoDeVeiculos.view.DialogCPF";
 				filtro = "Stcd2";
 			}
-			
 
 			this._valueHelpDialog = sap.ui.xmlfragment(caminho, this);
 			this.getView().addDependent(this._valueHelpDialog);
@@ -312,10 +400,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		_handleValueHelpClose: function (evt) {
 			var productInput,
-				r1 = "",
-				r2 = "",
-				r3 = "",
-				i1, i2, i3, cpf = "",
+				placaReboque1 = "",
+				placaReboque2 = "",
+				placaReboque3 = "",
+				reboque1Input, reboque2Input, reboque3Input, cpfInput, cpf = "",
 				sValue;
 			var oSelectedItem = evt.getParameter("selectedItem");
 			if (oSelectedItem) {
@@ -323,12 +411,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				sValue = oSelectedItem.getTitle();
 			}
 			gModelHelp = this.getView().getModel();
-			i1 = this.getView().byId("reboque1Input");
-			i2 = this.getView().byId("reboque2Input");
-			i3 = this.getView().byId("cpfInput");
+			reboque1Input = this.getView().byId("reboque1Input");
+			reboque2Input = this.getView().byId("reboque2Input");
+			reboque3Input = this.getView().byId("reboque3Input");
+			cpfInput = this.getView().byId("cpfInput");
 			if (this.inputId.toString().indexOf("tratorInput") != -1 && (oSelectedItem)) {
-				r1 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque1;
-				r2 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque2;
+				placaReboque1 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque1;
+				placaReboque2 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque2;
+				placaReboque3 = gModelHelp.getData("/Veiculo('" + sValue + "')").Reboque3;
 			}
 			if (this.inputId.toString().indexOf("motoristaInput") != -1 && (oSelectedItem)) {
 				cpf = gModelHelp.getData("/Motorista('" + sValue + "')").Stcd2;
@@ -336,18 +426,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 			productInput.setValue(sValue.toUpperCase());
 			productInput.setValueState("None");
-			if (r1 != "") {
-				i1.setValue(r1.toUpperCase());
+			if (placaReboque1 != "") {
+				reboque1Input.setValue(placaReboque1.toUpperCase());
 			}
-			if (r2 != "") {
-				i2.setValue(r2.toUpperCase());
+			if (placaReboque2 != "") {
+				reboque2Input.setValue(placaReboque2.toUpperCase());
+			}
+			if (placaReboque3 != "") {
+				reboque3Input.setValue(placaReboque3.toUpperCase());
 			}
 			if (cpf != "") {
-				i3.setValue(cpf.toUpperCase());
+				cpfInput.setValue(cpf.toUpperCase());
 			}
-			i1.setValueState("None");
-			i2.setValueState("None");
-			i3.setValueState("None");
+			reboque1Input.setValueState("None");
+			reboque2Input.setValueState("None");
+			reboque3Input.setValueState("None");
+			cpfInput.setValueState("None");
 			evt.getSource().getBinding("items").filter([]);
 		},
 
@@ -370,24 +464,21 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.getView().byId("reboque1Label").setVisible(false);
 				this.getView().byId("reboque2Label").setVisible(false);
 				this.getView().byId("reboque3Label").setVisible(false);
-			}
-			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "02") {
+			} else if (this.getView().byId("tipoVeiculo").getSelectedKey() === "02") {
 				this.getView().byId("reboque1Input").setVisible(true);
 				this.getView().byId("reboque2Input").setVisible(false);
 				this.getView().byId("reboque3Input").setVisible(false);
 				this.getView().byId("reboque1Label").setVisible(true);
 				this.getView().byId("reboque2Label").setVisible(false);
 				this.getView().byId("reboque3Label").setVisible(false);
-			}
-			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "03") {
+			} else if (this.getView().byId("tipoVeiculo").getSelectedKey() === "03") {
 				this.getView().byId("reboque1Input").setVisible(true);
 				this.getView().byId("reboque2Input").setVisible(true);
 				this.getView().byId("reboque3Input").setVisible(false);
 				this.getView().byId("reboque1Label").setVisible(true);
 				this.getView().byId("reboque2Label").setVisible(true);
 				this.getView().byId("reboque3Label").setVisible(false);
-			}
-			if (this.getView().byId("tipoVeiculo").getSelectedKey() === "04") {
+			} else if (this.getView().byId("tipoVeiculo").getSelectedKey() === "04") {
 				this.getView().byId("reboque1Input").setVisible(true);
 				this.getView().byId("reboque2Input").setVisible(true);
 				this.getView().byId("reboque3Input").setVisible(true);
@@ -422,11 +513,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 			var dados = {
-				tipo_veiculo: this.getView().byId("tipoVeiculo").getSelectedKey(),
+				tipoVeiculo: this.getView().byId("tipoVeiculo").getSelectedKey(),
 				veiculo: this.getView().byId("tratorInput").getValue(),
-				reboque1: this.reboque1,
-				reboque2: this.reboque2,
-				reboque3: this.reboque3,
+				reboque1: reboque1,
+				reboque2: reboque2,
+				reboque3: reboque3,
 				nome_motorista: this.getView().byId("motoristaInput").getValue(),
 				cpf: this.getView().byId("cpfInput").getValue(),
 				lifnr: this.cod
